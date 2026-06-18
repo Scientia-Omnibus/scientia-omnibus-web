@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Language } from './types';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Simulator from './components/Simulator';
+import ModulesShowcase from './components/ModulesShowcase';
 import WhySection from './components/WhySection';
 import CommunitySection from './components/CommunitySection';
 import Footer from './components/Footer';
@@ -31,7 +31,7 @@ export default function App() {
           onScrollToSection={handleScrollToSection} 
         />
 
-        <Simulator 
+        <ModulesShowcase 
           language={language} 
         />
 
@@ -50,4 +50,3 @@ export default function App() {
     </div>
   );
 }
-
