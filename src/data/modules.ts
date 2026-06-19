@@ -227,7 +227,7 @@ export const UPCOMING_PROJECTS: ProjectInfo[] = [
       en: 'A terminal file and code editor for beginners and experts. Designed to make software development accessible on fifteen-year-old computers.',
       by: 'Тэрмінальны рэдактар файлаў і кода для пачаткоўцаў і прафесіяналаў. Разлічаны на працу нават на 15-гадовых кампутарах.',
     },
-    stack: ['Python', 'TUI'],
+    stack: ['Rust', 'TUI'],
   },
 ];
 
