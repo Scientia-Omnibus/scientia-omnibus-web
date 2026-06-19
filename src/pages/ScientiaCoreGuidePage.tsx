@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { UI_TRANSLATIONS } from '../data/modules';
 import { GUIDE_SECTIONS } from '../data/scientia-core-guide';
 import { ShortcutTable, CommandTable } from '../components/ShortcutTable';
+import LanguageToggle from '../components/LanguageToggle';
 
 export default function ScientiaCoreGuidePage() {
   const { language, setLanguage } = useLanguage();
@@ -52,26 +52,7 @@ export default function ScientiaCoreGuidePage() {
             scientia-core / guide
           </span>
 
-          <div className="relative flex items-center bg-stone-100 border-2 border-stone-900 rounded-lg p-0.5 w-20 h-8">
-            <motion.div
-              className="absolute top-[2px] bottom-[2px] rounded bg-cartoon-green border border-stone-900"
-              style={{ width: '36px' }}
-              animate={{ x: language === 'en' ? 2 : 38 }}
-              transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-            />
-            <button
-              onClick={() => setLanguage('en')}
-              className={`relative z-10 w-1/2 text-[10px] font-black ${language === 'en' ? 'text-stone-900' : 'text-stone-500'}`}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLanguage('by')}
-              className={`relative z-10 w-1/2 text-[10px] font-black ${language === 'by' ? 'text-stone-900' : 'text-stone-500'}`}
-            >
-              BY
-            </button>
-          </div>
+          <LanguageToggle language={language} setLanguage={setLanguage} size="sm" />
         </div>
       </div>
 

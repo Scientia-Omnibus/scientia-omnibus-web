@@ -2,7 +2,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Language } from '../types';
 import { Github, Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
+import LanguageToggle from './LanguageToggle';
 
 interface HeaderProps {
   language: Language;
@@ -64,30 +65,7 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
         </nav>
 
         <div className="flex items-center space-x-2 sm:space-x-4">
-          <div className="relative flex items-center bg-white border-2 border-stone-900 rounded-lg p-0.5 w-20 sm:w-24 h-8 sm:h-9 shadow-[2px_2px_0px_#1A1A1A]">
-            <motion.div
-              className="absolute top-[2px] bottom-[2px] rounded bg-cartoon-green border border-stone-900"
-              style={{ width: '36px' }}
-              animate={{ x: language === 'en' ? 2 : 38 }}
-              transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-            />
-            <button
-              onClick={() => setLanguage('en')}
-              className={`relative z-10 w-1/2 text-[10px] sm:text-xs font-black tracking-wider ${
-                language === 'en' ? 'text-stone-900' : 'text-stone-500 hover:text-stone-800'
-              } transition-colors cursor-pointer`}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLanguage('by')}
-              className={`relative z-10 w-1/2 text-[10px] sm:text-xs font-black tracking-wider ${
-                language === 'by' ? 'text-stone-900' : 'text-stone-500 hover:text-stone-800'
-              } transition-colors cursor-pointer`}
-            >
-              BY
-            </button>
-          </div>
+          <LanguageToggle language={language} setLanguage={setLanguage} />
 
           <a
             href="https://github.com/Scientia-Omnibus"
