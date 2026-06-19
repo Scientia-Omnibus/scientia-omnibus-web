@@ -1,0 +1,158 @@
+import { LocalizedString } from '../types';
+
+export interface GuideBullet {
+  term: LocalizedString;
+  description: LocalizedString;
+}
+
+export interface GuideShortcut {
+  keys: string;
+  action: LocalizedString;
+}
+
+export interface GuideCommand {
+  command: string;
+  aliases: string;
+  description: LocalizedString;
+}
+
+export interface GuideSection {
+  id: string;
+  title: LocalizedString;
+  intro?: LocalizedString;
+  bullets?: GuideBullet[];
+  shortcuts?: GuideShortcut[];
+  commands?: GuideCommand[];
+  notes?: LocalizedString[];
+}
+
+export const GUIDE_SECTIONS: GuideSection[] = [
+  {
+    id: 'interface',
+    title: { en: 'Interface', by: 'Інтэрфейс' },
+    intro: {
+      en: 'The application has three main areas:',
+      by: 'Праграма складаецца з трох асноўных зон:',
+    },
+    bullets: [
+      {
+        term: { en: 'Omnibox', by: 'Omnibox' },
+        description: {
+          en: 'Top bar for command input — works like a browser address bar.',
+          by: 'Верхняя панэль для ўводу каманд — як адрасны радок у браўзеры.',
+        },
+      },
+      {
+        term: { en: 'Navigation', by: 'Навігацыя' },
+        description: {
+          en: 'Side panel with four tabs: Contents, Local, Bookmarks, History.',
+          by: 'Бакавая панэль з чатырма ўкладкамі: Змест, Лакальна, Закладкі, Гісторыя.',
+        },
+      },
+      {
+        term: { en: 'Viewer', by: 'Прагляд' },
+        description: {
+          en: 'Main area — Markdown document viewer.',
+          by: 'Галоўная зона — прагляд Markdown-дакументаў.',
+        },
+      },
+    ],
+    notes: [
+      {
+        en: 'The side panel can be hidden or shown (Ctrl+N), tabs can be switched, and the panel can be docked to the opposite side (\\).',
+        by: 'Бакавую панэль можна хаваць і паказваць (Ctrl+N), пераключаць укладкі і пераносіць на процілеглы бок (\\).',
+      },
+    ],
+  },
+  {
+    id: 'global-shortcuts',
+    title: { en: 'Global shortcuts', by: 'Глабальныя спалучэнні' },
+    shortcuts: [
+      { keys: '/ or :', action: { en: 'Focus the omnibox', by: 'Фокус на omnibox' } },
+      { keys: 'Escape', action: { en: 'Return to omnibox / clear / quit', by: 'Вярнуцца ў omnibox / ачысціць / выйсці' } },
+      { keys: 'Ctrl+N', action: { en: 'Show/hide navigation sidebar', by: 'Паказаць/схаваць бакавую панэль' } },
+      { keys: 'Ctrl+B', action: { en: 'Show bookmarks', by: 'Паказаць закладкі' } },
+      { keys: 'Ctrl+L', action: { en: 'Show local files', by: 'Паказаць лакальныя файлы' } },
+      { keys: 'Ctrl+T', action: { en: 'Show table of contents', by: 'Паказаць змест' } },
+      { keys: 'Ctrl+Y', action: { en: 'Show history', by: 'Паказаць гісторыю' } },
+      { keys: 'Ctrl+Left', action: { en: 'Go backward in history', by: 'Назад у гісторыі' } },
+      { keys: 'Ctrl+Right', action: { en: 'Go forward in history', by: 'Наперад у гісторыі' } },
+      { keys: 'Ctrl+D', action: { en: 'Bookmark current document', by: 'Дадаць закладку' } },
+      { keys: 'Ctrl+R', action: { en: 'Reload current document', by: 'Перазагрузіць дакумент' } },
+      { keys: 'Ctrl+Q', action: { en: 'Quit application', by: 'Выйсці з праграмы' } },
+      { keys: 'F1', action: { en: 'Help', by: 'Дапамога' } },
+      { keys: 'F2', action: { en: 'About', by: 'Пра праграму' } },
+      { keys: 'F10', action: { en: 'Toggle dark/light theme', by: 'Пераключыць тэму' } },
+    ],
+  },
+  {
+    id: 'navigation-panel',
+    title: { en: 'Navigation panel', by: 'Панэль навігацыі' },
+    shortcuts: [
+      { keys: ', / a / h / Ctrl+Left / Shift+Left', action: { en: 'Previous tab', by: 'Папярэдняя ўкладка' } },
+      { keys: '. / d / l / Ctrl+Right / Shift+Right', action: { en: 'Next tab', by: 'Наступная ўкладка' } },
+      { keys: '\\', action: { en: 'Dock panel left/right', by: 'Перанесці панэль лева/права' } },
+    ],
+  },
+  {
+    id: 'document-viewer',
+    title: { en: 'Document viewer', by: 'Прагляд дакумента' },
+    intro: {
+      en: 'When the viewer is focused:',
+      by: 'Калі фокус у праглядзе:',
+    },
+    shortcuts: [
+      { keys: 'w / k', action: { en: 'Scroll up', by: 'Пракруціць уверх' } },
+      { keys: 's / j', action: { en: 'Scroll down', by: 'Пракруціць уніз' } },
+      { keys: 'Space', action: { en: 'Page down', by: 'Старонка ўніз' } },
+      { keys: 'b', action: { en: 'Page up', by: 'Старонка ўверх' } },
+    ],
+  },
+  {
+    id: 'bookmarks',
+    title: { en: 'Bookmarks', by: 'Закладкі' },
+    shortcuts: [
+      { keys: 'Delete', action: { en: 'Delete bookmark', by: 'Выдаліць закладку' } },
+      { keys: 'r', action: { en: 'Rename bookmark', by: 'Перайменаваць закладку' } },
+    ],
+  },
+  {
+    id: 'history',
+    title: { en: 'History', by: 'Гісторыя' },
+    shortcuts: [
+      { keys: 'Delete', action: { en: 'Delete history entry', by: 'Выдаліць запіс' } },
+      { keys: 'Backspace', action: { en: 'Clear all history', by: 'Ачысціць усю гісторыю' } },
+    ],
+  },
+  {
+    id: 'search',
+    title: { en: 'Search', by: 'Пошук' },
+    intro: {
+      en: 'As you type in the omnibox, fuzzy search scans the knowledge directory for matching .md files. Results appear in a dropdown below.',
+      by: 'Пры ўводзе ў omnibox нечаткі пошук сканіруе каталог ведаў на .md файлы. Вынікі з\'яўляюцца ў выпадным спісе.',
+    },
+    shortcuts: [
+      { keys: 'Down', action: { en: 'Move focus to results list', by: 'Фокус на спіс вынікаў' } },
+      { keys: 'Up', action: { en: 'Return focus to omnibox (at top of results)', by: 'Вярнуць фокус у omnibox' } },
+      { keys: 'Enter', action: { en: 'Open selected file', by: 'Адкрыць выбраны файл' } },
+      { keys: 'Escape', action: { en: 'Close results dropdown', by: 'Зачыніць спіс вынікаў' } },
+    ],
+  },
+  {
+    id: 'commands',
+    title: { en: 'Commands', by: 'Каманды' },
+    intro: {
+      en: 'Press / or click the omnibox, then enter a command:',
+      by: 'Націсніце / або клікніце omnibox, затым увядзіце каманду:',
+    },
+    commands: [
+      { command: 'about', aliases: 'a', description: { en: 'Show application information', by: 'Інфармацыя пра праграму' } },
+      { command: 'bookmarks', aliases: 'b, bm', description: { en: 'Show bookmarks list', by: 'Спіс закладак' } },
+      { command: 'contents', aliases: 'c, toc', description: { en: 'Show table of contents', by: 'Паказаць змест' } },
+      { command: 'help', aliases: '?', description: { en: 'Show help', by: 'Паказаць дапамогу' } },
+      { command: 'history', aliases: 'h', description: { en: 'Show history', by: 'Паказаць гісторыю' } },
+      { command: 'local', aliases: 'l', description: { en: 'Show local files', by: 'Паказаць лакальныя файлы' } },
+      { command: 'quit', aliases: 'q', description: { en: 'Quit application', by: 'Выйсці з праграмы' } },
+    ],
+  },
+];

@@ -1,52 +1,20 @@
-import { useState } from 'react';
-import { Language } from './types';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import ModulesShowcase from './components/ModulesShowcase';
-import WhySection from './components/WhySection';
-import CommunitySection from './components/CommunitySection';
-import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './context/LanguageContext';
+import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
+import ScientiaCoreGuidePage from './pages/ScientiaCoreGuidePage';
 
 export default function App() {
-  const [language, setLanguage] = useState<Language>('en');
-
-  const handleScrollToSection = (id: string) => {
-    const target = document.getElementById(id);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-bg-warm font-sans selection:bg-cartoon-blue selection:text-stone-900 overflow-x-hidden antialiased text-stone-900">
-      <Header 
-        language={language} 
-        setLanguage={setLanguage} 
-        onScrollToSection={handleScrollToSection} 
-      />
-
-      <main>
-        <Hero 
-          language={language} 
-          onScrollToSection={handleScrollToSection} 
-        />
-
-        <ModulesShowcase 
-          language={language} 
-        />
-
-        <WhySection 
-          language={language} 
-        />
-
-        <CommunitySection 
-          language={language} 
-        />
-      </main>
-
-      <Footer 
-        language={language} 
-      />
-    </div>
+    <LanguageProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="scientia-core/guide" element={<ScientiaCoreGuidePage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }

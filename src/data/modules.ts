@@ -2,9 +2,17 @@ import { LocalizedString, TranslationDict } from '../types';
 
 export interface ModuleInfo {
   id: string;
-  icon: string;
   title: LocalizedString;
   description: LocalizedString;
+}
+
+export interface ProjectInfo {
+  id: string;
+  name: string;
+  repoUrl?: string;
+  tagline: LocalizedString;
+  description: LocalizedString;
+  stack?: string[];
 }
 
 export const UI_TRANSLATIONS: TranslationDict = {
@@ -13,174 +21,235 @@ export const UI_TRANSLATIONS: TranslationDict = {
     by: "Веды не павінны патрабаваць гігабайтаў."
   },
   heroSubtitle: {
-    en: "Most developers have forgotten about users with limited internet and weak hardware. We build open-source, ultra-efficient, and fully offline tools designed for digital equity. Access textbooks, guides, and practical knowledge anywhere—from remote classrooms to deep forests.",
-    by: "Большасць распрацоўшчыкаў забыліся на карыстальнікаў з абмежаваным інтэрнэтам і слабым абсталяваннем. Мы ствараем звышэфектыўны софт з адкрытым кодам для лічбавай роўнасці. Чытайце падручнікі, вывучайце навуку і практычныя навыкі ў любым месцы — ад аддаленых школ да гушчару лесу."
+    en: "We build open-source, ultra-efficient, and fully offline tools for users with limited internet and weak hardware. Download knowledge once — read it anywhere, without a browser or cloud subscription.",
+    by: "Мы ствараем звышэфектыўны софт з адкрытым кодам для карыстальнікаў з абмежаваным інтэрнэтам і слабым абсталяваннем. Спампуйце веды адзін раз — чытайце дзе заўгодна, без браўзера і воблачных падпісак."
   },
   statZeroOverhead: {
     en: "0MB Base Overhead",
     by: "0 МБ накладных выдаткаў"
   },
   statZeroOverheadDesc: {
-    en: "No heavy Electron shells or memory-hogging web components. Native desktop speeds.",
-    by: "Ніякага цяжкага прымусу Electron або хрому. Чыстая роўная хуткасць наўпрост."
+    en: "No heavy Electron shells or memory-hogging web components. Native terminal speeds.",
+    by: "Ніякага цяжкага Electron або хрому. Натуральная хуткасць тэрмінала."
   },
   statOffline: {
     en: "100% Offline-First",
     by: "100% праца па-за сеткай"
   },
   statOfflineDesc: {
-    en: "Internet is only needed for the first download and local update sync. The rest is 100% offline-ready anywhere.",
-    by: "Інтэрнэт патрэбны толькі для першага спампоўвання і абнаўленняў. Далей усё працуе цалкам афлайн у паходах і лесе."
+    en: "Internet is only needed for the first download. Everything else works without a connection.",
+    by: "Інтэрнэт патрэбны толькі для першага спампоўвання. Далей усё працуе без сувязі."
   },
   statLightweight: {
     en: "< 10 Megabytes",
     by: "Менш за 10 Мегабайтаў"
   },
   statLightweightDesc: {
-    en: "The entire application core fits on an old floppy disk. Runs immediately without installation.",
-    by: "Усё ядро праграмы змяшчаецца на старую дыскету і запускаецца імгненна без усталёўкі."
+    en: "The application core fits on an old floppy disk. Runs immediately without installation.",
+    by: "Ядро праграмы змяшчаецца на старую дыскету і запускаецца без усталёўкі."
   },
   statHardware: {
-    en: "15-Year-Old PCs Support",
-    by: "Падтрымка 15-гадовых ПК"
+    en: "15-Year-Old PCs",
+    by: "ПК 15-гадовай даўнасці"
   },
   statHardwareDesc: {
-    en: "Runs perfectly on old school laptops, low-power single-board computers, and legacy machines.",
-    by: "Выдатна працуе на старых школьных нетбуках, мікракампутарах і спадчынных платах."
+    en: "Runs on old school laptops, low-power single-board computers, and legacy hardware.",
+    by: "Працуе на старых школьных нетбуках, мікракампутарах і састарэлым абсталяванні."
   },
   viewOnGithub: {
     en: "View on GitHub",
     by: "Адкрыць на GitHub"
   },
-  joinDiscord: {
-    en: "Join Discord Community",
-    by: "Далучыцца да Discord"
+  viewProjects: {
+    en: "View Projects",
+    by: "Паглядзець праекты"
   },
-  exploreModules: {
-    en: "Explore Modules",
-    by: "Паглядзець модулі"
+  projectsLabel: {
+    en: "Open Source",
+    by: "Open Source"
   },
-  modulesTitle: {
-    en: "Scientia Core: Offline Knowledge Packs",
-    by: "Scientia Core: Афлайн-пакеты ведаў"
+  projectsTitle: {
+    en: "Our Projects",
+    by: "Нашы праекты"
   },
-  modulesSubtitle: {
-    en: "Download lightweight Markdown modules once and read them forever without internet. Three core topics — Education, Survival, and Do Technology — built for real-world learning.",
-    by: "Спампуйце лёгкія модулі ў фармаце Markdown адзін раз і чытайце без інтэрнэту. Тры асноўныя тэмы — Адукацыя, Выжыванне і Тэхналогіі DIY — для рэальнага навучання."
+  projectsSubtitle: {
+    en: "Real software, shipped and maintained. Each project is designed to run on minimal hardware and work fully offline.",
+    by: "Рэальны софт, які мы распрацоўваем і падтрымліваем. Кожны праект разлічаны на мінімальнае абсталяванне і поўную афлайн-працу."
   },
-  screenshotDesc: {
-    en: "A real screenshot of Scientia Core — our ultra-lightweight terminal reader that loads in milliseconds and renders formatted knowledge with elegant typography.",
-    by: "Рэальны скрыншот Scientia Core — нашага звышлёгкага тэрмінальнага рэдара, які загружаецца за мілісекунды і паказвае фарматаваныя веды."
+  releasedLabel: {
+    en: "Released",
+    by: "Выпушчана"
+  },
+  inDevelopmentLabel: {
+    en: "In Development",
+    by: "У распрацоўцы"
+  },
+  statusReleased: {
+    en: "Released",
+    by: "Выпушчана"
+  },
+  statusInDevelopment: {
+    en: "In Development",
+    by: "У распрацоўцы"
+  },
+  viewGuide: {
+    en: "Usage Guide",
+    by: "Дапаможнік"
+  },
+  guideTitle: {
+    en: "Scientia Core — Usage Guide",
+    by: "Scientia Core — Дапаможнік"
+  },
+  guideSubtitle: {
+    en: "Keyboard shortcuts, navigation, and commands for the offline knowledge reader.",
+    by: "Спалучэнні клавіш, навігацыя і каманды для афлайн-рэдара ведаў."
+  },
+  backToProjects: {
+    en: "Back to projects",
+    by: "Назад да праектаў"
   },
   whyTitle: {
-    en: "Why Software Needs a Revolution",
-    by: "Чаму праграмам патрэбная рэвалюцыя"
+    en: "Software Built for Real Constraints",
+    by: "Софт для рэальных абмежаванняў"
   },
   whySubtitle: {
-    en: "Modern computing has isolated billions. Learn how we are tackling this issue of digital and educational inequality.",
-    by: "Сучаснае праграмнае забеспячэнне пакінула па-за бортам мільярды людзей. Даведайцеся, як мы вырашаем праблему лічбавай і адукацыйнай няроўнасці."
+    en: "Billions of people lack reliable internet and modern hardware. We design tools that work within those limits — not despite them.",
+    by: "Мільярды людзей не маюць стабільнага інтэрнэту і сучаснай тэхнікі. Мы ствараем інструменты, якія працуюць у гэтых умовах — а не ігноруюць іх."
+  },
+  problemTitle: {
+    en: "The cost of bloated software",
+    by: "Цана цяжкага софту"
+  },
+  problemDesc: {
+    en: "A single educational webpage can consume 100+ MB of RAM. Students with old laptops or metered connections are effectively excluded from digital learning.",
+    by: "Адна адукацыйная старонка можа спажываць 100+ МБ АЗП. Вучні са старымі ноўтбукамі або абмежаваным трафікам фактычна адрэзаны ад лічбавага навучання."
+  },
+  problemStat: {
+    en: "Typical browser tab: 100+ MB",
+    by: "Тыповая ўкладка: 100+ МБ"
+  },
+  impactTitle: {
+    en: "Concrete impact",
+    by: "Канкрэтны ўплыў"
+  },
+  impactItems: {
+    en: "A rural school downloads Education modules once — students study math offline during power outages. A volunteer packs Survival guides onto a USB stick for field teams. A maker follows DIY instructions without needing YouTube.",
+    by: "Сельская школа спампоўвае модулі Адукацыі адзін раз — вучні вучаць матэматыку афлайн падчас адключэння святла. Валонтэр запісвае даведнікі Выжывання на USB для польскіх каманд. Майстар выконвае DIY-інструкцыі без YouTube."
   },
   equityTitle: {
-    en: "Bridging the Digital Divide",
-    by: "Адоленне лічбавага бар'ера"
+    en: "Access without barriers",
+    by: "Доступ без бар'ераў"
   },
   equityDesc: {
-    en: "As websites and educational portals grow bloated, students in developing nations and rural areas with weak devices are locked out. Scientia Omnibus levels the playing field—making premium content accessible on five-dollar hardware.",
-    by: "Пакуль сучасныя сайты растуць у памерах, вучні ў аддаленых вёсках і раёнах са слабымі ноўтбукамі губляюць доступ да ведаў. Scientia Omnibus дае роўныя магчымасці, робячы якасны кантэнт даступным нават на тэхніцы за 5 даляраў."
+    en: "Premium educational content should not require premium hardware. Our tools run on five-dollar single-board computers and decade-old laptops.",
+    by: "Якасныя адукацыйныя матэрыялы не павінны патрабаваць дарагой тэхнікі. Нашы інструменты працуюць на мікракампутары за 5 даляраў і 10-гадовых ноўтбуках."
   },
   efficiencyTitle: {
-    en: "Absolute Mechanical Efficiency",
-    by: "Абсалютная эфектыўнасць"
+    en: "Efficiency by design",
+    by: "Эфектыўнасць па задуме"
   },
   efficiencyDesc: {
-    en: "By adopting optimized terminal interfaces and direct local data reads, our core programs consume up to 98% less memory than web browsers. Squeezing maximum speed out of simple PCs saves electricity and hardware.",
-    by: "Выкарыстоўваючы тэкставыя інтэрфейсы і наўпроставае чытанне дадзеных, нашы праграмы спажываюць да 98% менш АЗП, чым браўзеры. Гэта беражэ электрычнасць і слабыя ПК."
+    en: "Terminal interfaces and direct file reads use up to 98% less memory than web browsers. Less RAM means less electricity and longer battery life.",
+    by: "Тэкставыя інтэрфейсы і прамое чытанне файлаў спажываюць да 98% менш АЗП, чым браўзеры. Менш памяці — менш электрычнасці і даўжэй працуе батарэя."
   },
   empowermentTitle: {
-    en: "Complete Academic Autonomy",
-    by: "Поўная акадэмічная аўтаномія"
+    en: "You own your knowledge",
+    by: "Веды належаць вам"
   },
   empowermentDesc: {
-    en: "With Scientia Core, knowledge isn't locked behind standard cloud systems or subscriptions. Once downloaded, you own the database. If you can carry a mobile phone or a small single-board computer, you can carry a university library.",
-    by: "З нашым ядром веды не зачыненыя за воблачнымі сэрвісамі ці падпіскамі. Спампаваўшы адзін раз, вы фізічна валодаеце базай дадзеных. Вы можаце насіць усе веды сусвету ў сваёй кішэні або на мікракампутары."
+    en: "No subscriptions, no cloud lock-in. Download once and the entire library is yours — on a USB drive, an old phone, or a Raspberry Pi.",
+    by: "Без падпісак і воблачнай залежнасці. Спампавалі адзін раз — і ўся бібліятэка ваша: на USB, старым тэлефоне ці Raspberry Pi."
   },
   contribTitle: {
-    en: "The Power of Open Source Community",
-    by: "Сіла Open Source супольнасці"
+    en: "Open Source Community",
+    by: "Супольнасць Open Source"
   },
   contribSubtitle: {
-    en: "We believe in collective intelligence. Whether you are a senior developer or a high school student who likes writing articles, there is a place for you in Scientia Omnibus.",
-    by: "Мы верым у сілу супольнага розуму. Незалежна ад таго, ці вы прафесійны распрацоўшчык, ці проста вучань, які любіць пісаць тэксты — для вас ёсць пачэснае месца ў Scientia Omnibus."
+    en: "Scientia Omnibus is a volunteer initiative. Writers, translators, and developers are all welcome to contribute.",
+    by: "Scientia Omnibus — валонцёрская ініцыятыва. Аўтары, перакладчыкі і распрацоўшчыкі могуць далучыцца."
   },
   contribNonCoder: {
-    en: "For Content Creators & Editors",
-    by: "Для аўтараў тэкстаў і рэдактараў"
+    en: "Content creators",
+    by: "Аўтары кантэнту"
   },
   contribNonCoderDesc: {
-    en: "You don't need to write code to make an impact. Contribute survival instructions, educational articles, or translate existing books into Belarusian, Spanish, or Hindi. Write simple Markdown texts and help thousands.",
-    by: "Вам не трэба быць кодэрам, каб дапамагаць. Стварайце інструкцыі па выжыванні, адукацыйныя артыкулы або перакладайце матэрыялы на беларускую ці іншыя мовы. Просты Markdown — і вы дапамагаеце тысячам."
+    en: "Write survival guides, educational articles, or translations in simple Markdown. No programming required.",
+    by: "Пішыце даведнікі па выжыванні, адукацыйныя артыкулы ці пераклады ў простым Markdown. Праграмаванне не патрэбна."
   },
   contribDev: {
-    en: "For Engineers & Optimizers",
-    by: "Для інжынераў і аптымізатараў"
+    en: "Developers",
+    by: "Распрацоўшчыкі"
   },
   contribDevDesc: {
-    en: "Are you passionate about low-level algorithms, assembly, or embedded systems? Help us squeeze the absolute maximum out of every byte. Join our GitHub to optimize client structures and compress modules.",
-    by: "Цікавіцеся нізкаўзроўневымі алгарытмамі, мовай асэмблера ці эмбэдам? Дапамажыце нам выціснуць максімум з кожнага байта. Далучайцеся да GitHub для аптымізацыі ядра ісціны за кодам."
-  },
-  upcomingTitle: {
-    en: "Coming Soon: The Ultra-Lightweight Code Editor",
-    by: "Тут будзе: Ультра-лёгкі тэрмінальны рэдактар кода"
-  },
-  upcomingDesc: {
-    en: "An ultra-low footprint terminal file and code editor designed for both beginners and experts. Running directly in your command-line terminal, it makes software development accessible and incredibly fast on fifteen-year-old computers.",
-    by: "Адкрыты звышлёгкі рэдактар кода для пачаткоўцаў і прафесіяналаў. Ён працуе наўпрост у тэрмінале Unix/Windows, дазваляючы зручна праграмаваць нават на самых старых і слабых ПК."
+    en: "Optimize performance, improve the terminal UI, compress modules, or port to new platforms. All contributions go through GitHub.",
+    by: "Аптымізуйце прадукцыйнасць, палягчайце інтэрфейс, сціскайце модулі ці пераносьце на новыя платформы. Усе ўнёскі — праз GitHub."
   },
   footerRights: {
-    en: "All knowledge is free. Scientia Omnibus open-source initiative.",
-    by: "Усе веды — бясплатныя. Open-source ініцыятыва Scientia Omnibus."
+    en: "All knowledge is free. Open-source initiative.",
+    by: "Усе веды — бясплатныя. Ініцыятыва з адкрытым кодам."
   },
-  footerUwcMessage: {
-    en: "Dedicated to promoting digital and educational equity through offline open-source software, in harmony with United World Colleges values of peace and a sustainable future.",
-    by: "Прысвечана прасоўванню лічбавай і адукацыйнай роўнасці праз афлайн-софт з адкрытым кодам у гармоніі з каштоўнасцямі каледжаў UWC: мір і будучыня."
+  footerMission: {
+    en: "Volunteer project promoting digital and educational equity through lightweight, offline open-source software.",
+    by: "Валонцёрскі праект, які прасоўвае лічбавую і адукацыйную роўнасць праз лёгкі афлайн-софт з адкрытым кодам."
   },
 };
+
+export const RELEASED_PROJECTS: ProjectInfo[] = [
+  {
+    id: 'scientia-core',
+    name: 'scientia-core',
+    repoUrl: 'https://github.com/Scientia-Omnibus/scientia-core',
+    tagline: {
+      en: 'Offline terminal knowledge reader',
+      by: 'Афлайн тэрмінальны рэдар ведаў',
+    },
+    description: {
+      en: 'A lightweight Python application that downloads Markdown knowledge packs once and lets you read them forever without internet. Built with the Textual framework for a fast, keyboard-driven interface.',
+      by: 'Лёгкая Python-праграма, якая спампоўвае Markdown-пакеты ведаў адзін раз і дазваляе чытаць іх без інтэрнэту. Створана на Textual для хуткага кіравання з клавіятуры.',
+    },
+    stack: ['Python', 'Textual'],
+  },
+];
+
+export const UPCOMING_PROJECTS: ProjectInfo[] = [
+  {
+    id: 'code-editor',
+    name: 'scientia-editor',
+    tagline: {
+      en: 'Ultra-lightweight terminal code editor',
+      by: 'Ультра-лёгкі тэрмінальны рэдактар кода',
+    },
+    description: {
+      en: 'A terminal file and code editor for beginners and experts. Designed to make software development accessible on fifteen-year-old computers.',
+      by: 'Тэрмінальны рэдактар файлаў і кода для пачаткоўцаў і прафесіяналаў. Разлічаны на працу нават на 15-гадовых кампутарах.',
+    },
+    stack: ['Python', 'TUI'],
+  },
+];
 
 export const MODULES: ModuleInfo[] = [
   {
     id: "education",
-    icon: "📚",
-    title: {
-      en: "Education",
-      by: "Адукацыя"
-    },
+    title: { en: "Education", by: "Адукацыя" },
     description: {
-      en: "Mathematics, science, and academic subjects — compact textbooks in Markdown format.",
-      by: "Матэматыка, навука і акадэмічныя прадметы — кампактныя падручнікі ў фармаце Markdown."
+      en: "Mathematics, science, and academic subjects in compact Markdown textbooks.",
+      by: "Матэматыка, навука і акадэмічныя прадметы ў кампактных Markdown-падручніках.",
     },
   },
   {
     id: "survival",
-    icon: "🧭",
-    title: {
-      en: "Survival",
-      by: "Выжыванне"
-    },
+    title: { en: "Survival", by: "Выжыванне" },
     description: {
-      en: "Practical offline guidance on finding water, starting campfires, and wild navigation.",
-      by: "Практычныя парады: як знайсці ваду, запаліць агонь і зарыентавацца ў глухім лесе без сувязі."
+      en: "Water purification, campfires, and navigation — practical guides for the field.",
+      by: "Ачыстка вады, вогнішча і арыентаванне — практычныя даведнікі для паходу.",
     },
   },
   {
     id: "diy_tech",
-    icon: "🛠️",
-    title: {
-      en: "Do Technology",
-      by: "Тэхналогіі DIY"
-    },
+    title: { en: "Do Technology", by: "Тэхналогіі DIY" },
     description: {
-      en: "Build low-power solar chargers, simple electronics, and independent tech without power grids.",
-      by: "Стварайце аўтаномныя сонечныя сістэмы і наладжвайце простую нізкавольтную электроніку."
+      en: "Solar chargers, battery reuse, and basic electronics without a power grid.",
+      by: "Сонечныя зараднікі, перавыкарыстанне батарэй і простая электроніка без электрасеткі.",
     },
   },
 ];
