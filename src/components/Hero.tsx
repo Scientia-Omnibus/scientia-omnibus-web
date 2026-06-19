@@ -1,6 +1,6 @@
 import { Language } from '../types';
 import { UI_TRANSLATIONS } from '../data/modules';
-import { Github, MessageSquare } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { motion } from 'motion/react';
 import demoMain from '../assets/images/demo-main.jpg';
 
@@ -63,13 +63,6 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
                 {t.viewOnGithub[language]}
               </a>
 
-              <a
-                href="#"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-stone-900 rounded-lg text-stone-900 font-bold text-sm hover:bg-cartoon-purple transition-colors"
-              >
-                <MessageSquare className="h-4 w-4" />
-                {t.joinDiscord[language]}
-              </a>
             </div>
           </motion.div>
 

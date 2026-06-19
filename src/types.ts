@@ -17,7 +17,6 @@ export interface TranslationDict {
   statHardware: LocalizedString;
   statHardwareDesc: LocalizedString;
   viewOnGithub: LocalizedString;
-  joinDiscord: LocalizedString;
   viewProjects: LocalizedString;
   projectsLabel: LocalizedString;
   projectsTitle: LocalizedString;
@@ -51,4 +50,16 @@ export interface TranslationDict {
   contribDevDesc: LocalizedString;
   footerRights: LocalizedString;
   footerMission: LocalizedString;
+  knowledgeBasesTitle: LocalizedString;
+  formalSciencesDesc: LocalizedString;
+  kbBasic: LocalizedString;
+  kbAlgebraCore: LocalizedString;
+  kbAdvanced: LocalizedString;
+  kbPlanned: LocalizedString;
+  kbHumanities: LocalizedString;
+  kbSocial: LocalizedString;
+  kbNatural: LocalizedString;
+  kbDiy: LocalizedString;
+  kbSurvival: LocalizedString;
+  kbContrib: LocalizedString;
 }

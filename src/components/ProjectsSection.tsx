@@ -1,17 +1,8 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Language } from '../types';
-import { MODULES, RELEASED_PROJECTS, UPCOMING_PROJECTS, UI_TRANSLATIONS } from '../data/modules';
+import { RELEASED_PROJECTS, UPCOMING_PROJECTS, UI_TRANSLATIONS } from '../data/modules';
 import { Github, BookOpen, Terminal } from 'lucide-react';
 import screenshotEducation from '../assets/images/screenshot-education.jpg';
-import screenshotSurvival from '../assets/images/screenshot-survival.jpg';
-import screenshotDiy from '../assets/images/screenshot-diy.jpg';
-
-const SCREENSHOTS: Record<string, string> = {
-  education: screenshotEducation,
-  survival: screenshotSurvival,
-  diy_tech: screenshotDiy,
-};
 
 interface ProjectsSectionProps {
   language: Language;
@@ -19,8 +10,6 @@ interface ProjectsSectionProps {
 
 export default function ProjectsSection({ language }: ProjectsSectionProps) {
   const t = UI_TRANSLATIONS;
-  const [activeModuleId, setActiveModuleId] = useState(MODULES[0].id);
-  const activeModule = MODULES.find((m) => m.id === activeModuleId) ?? MODULES[0];
   const coreProject = RELEASED_PROJECTS[0];
 
   return (
@@ -97,33 +86,6 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
             {coreProject.description[language]}
           </p>
 
-          <div className="mb-3">
-            <p className="text-[11px] font-mono font-bold uppercase tracking-widest text-stone-500 mb-2.5">
-              {language === 'en' ? 'Sample knowledge packs' : 'Прыклады пакетаў ведаў'}
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {MODULES.map((mod) => {
-                const isActive = activeModuleId === mod.id;
-                return (
-                  <button
-                    key={mod.id}
-                    type="button"
-                    onClick={() => setActiveModuleId(mod.id)}
-                    className={`
-                      px-3.5 py-1.5 rounded-lg font-sans text-sm font-semibold border-2 transition-colors cursor-pointer
-                      ${isActive
-                        ? 'bg-stone-900 text-white border-stone-900 shadow-[2px_2px_0px_#1A1A1A]'
-                        : 'bg-white text-stone-700 border-stone-300 hover:border-stone-900 hover:bg-stone-50'
-                      }
-                    `}
-                  >
-                    {mod.title[language]}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
           <div className="rounded-xl overflow-hidden border-2 border-stone-900 bg-[#1e1b29] shadow-[4px_4px_0px_#1A1A1A]">
             <div className="flex items-center gap-2 px-3 py-2 bg-[#15121e] border-b border-stone-800">
               <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-stone-700" />
@@ -136,17 +98,60 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
 
             <div className="bg-[#110e19] p-2 sm:p-3">
               <img
-                src={SCREENSHOTS[activeModule.id]}
-                alt={activeModule.title[language]}
+                src={screenshotEducation}
+                alt="scientia-core"
                 className="w-full h-auto rounded border border-stone-800"
               />
             </div>
           </div>
 
-          <p className="mt-3 text-sm text-stone-600 leading-relaxed">
-            <span className="font-semibold text-stone-800">{activeModule.title[language]}.</span>{' '}
-            {activeModule.description[language]}
-          </p>
+          <div className="mt-4">
+            <p className="text-[11px] font-mono font-bold uppercase tracking-widest text-stone-500 mb-2">
+              {t.knowledgeBasesTitle[language]}
+            </p>
+
+            <a
+              href="https://github.com/Scientia-Omnibus/formal-sciences"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-stone-900 hover:text-cartoon-purple transition-colors"
+            >
+              formal-sciences <Github className="h-3 w-3" />
+            </a>
+            <p className="text-xs text-stone-500 mt-0.5 mb-2">
+              {t.formalSciencesDesc[language]}
+            </p>
+
+            <div className="ml-2 space-y-0.5 mb-3">
+              <div className="text-xs sm:text-sm text-stone-700 font-mono">
+                <span className="text-stone-400 select-none">├──</span> {t.kbBasic[language]}/
+              </div>
+              <div className="text-xs sm:text-sm text-stone-700 font-mono">
+                <span className="text-stone-400 select-none">├──</span> {t.kbAlgebraCore[language]}/
+              </div>
+              <div className="text-xs sm:text-sm text-stone-400 font-mono">
+                <span className="text-stone-400 select-none">└──</span> {t.kbAdvanced[language]}
+              </div>
+            </div>
+
+            <p className="text-[11px] font-mono font-bold uppercase tracking-widest text-stone-500 mb-1.5">
+              {t.kbPlanned[language]}
+            </p>
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbHumanities[language]}</span>
+              <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbSocial[language]}</span>
+              <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbNatural[language]}</span>
+              <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbDiy[language]}</span>
+              <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbSurvival[language]}</span>
+            </div>
+
+            <p className="text-xs text-stone-500 leading-relaxed">
+              {t.kbContrib[language]}{' '}
+              <a href="https://github.com/Scientia-Omnibus/formal-sciences" target="_blank" rel="noreferrer" className="text-stone-900 font-semibold underline hover:text-cartoon-purple transition-colors">formal-sciences</a>
+              {' / '}
+              <a href="https://github.com/Scientia-Omnibus/scientia-core" target="_blank" rel="noreferrer" className="text-stone-900 font-semibold underline hover:text-cartoon-purple transition-colors">scientia-core</a>
+            </p>
+          </div>
         </div>
 
         <p className="text-xs font-mono font-bold uppercase tracking-widest text-stone-500 mb-4">

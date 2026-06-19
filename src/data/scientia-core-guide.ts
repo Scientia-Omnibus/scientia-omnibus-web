@@ -155,4 +155,27 @@ export const GUIDE_SECTIONS: GuideSection[] = [
       { command: 'quit', aliases: 'q', description: { en: 'Quit application', by: 'Выйсці з праграмы' } },
     ],
   },
+  {
+    id: 'knowledge-base-sync',
+    title: { en: 'Knowledge Base Sync', by: 'Сінхранізацыя баз ведаў' },
+    intro: {
+      en: 'Ctrl+G opens a dialog to download or update knowledge repositories. Currently one repository is available:',
+      by: 'Ctrl+G адкрывае дыялог для спампоўкі або абнаўлення рэпазіторыяў ведаў. На дадзены момант даступны адзін рэпазіторый:',
+    },
+    bullets: [
+      {
+        term: { en: 'formal-sciences', by: 'formal-sciences' },
+        description: {
+          en: 'Mathematics from basics to calculus. More repositories will be added in future releases.',
+          by: 'Матэматыка ад асноў да вылічэнняў. У будучых версіях будуць дададзены новыя рэпазіторыі.',
+        },
+      },
+    ],
+    notes: [
+      {
+        en: 'Select a repository and press OK. If the repository already exists locally, it will be force-synced — any local changes are overwritten with the remote version. If it does not exist, it will be cloned from GitHub (github.com/Scientia-Omnibus). After syncing, the file tree navigates to the downloaded repository so you can browse its contents immediately.',
+        by: 'Абярыце рэпазіторый і націсніце OK. Калі рэпазіторый ужо існуе лакальна, ён будзе прымусова сінхранізаваны — усе лакальныя змены будуць заменены выдаленай версіяй. Калі не існуе, ён будзе скапіяваны з GitHub (github.com/Scientia-Omnibus). Пасля сінхранізацыі дрэва файлаў перамесціцца ў спампаваны рэпазіторый, каб вы маглі адразу праглядаць яго змесціва.',
+      },
+    ],
+  },
 ];

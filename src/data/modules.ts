@@ -60,10 +60,6 @@ export const UI_TRANSLATIONS: TranslationDict = {
     en: "View on GitHub",
     by: "Адкрыць на GitHub"
   },
-  joinDiscord: {
-    en: "Join Discord Community",
-    by: "Далучыцца да Discord"
-  },
   viewProjects: {
     en: "View Projects",
     by: "Паглядзець праекты"
@@ -196,6 +192,54 @@ export const UI_TRANSLATIONS: TranslationDict = {
     en: "Volunteer project promoting digital and educational equity through lightweight, offline open-source software.",
     by: "Валонцёрскі праект, які прасоўвае лічбавую і адукацыйную роўнасць праз лёгкі афлайн-софт з адкрытым кодам."
   },
+  knowledgeBasesTitle: {
+    en: "Knowledge Bases",
+    by: "Базы ведаў"
+  },
+  formalSciencesDesc: {
+    en: "Formal sciences — mathematics from basics to calculus.",
+    by: "Фармальныя навукі — матэматыка ад асноў да вылічэнняў."
+  },
+  kbBasic: {
+    en: "Basic",
+    by: "Асновы"
+  },
+  kbAlgebraCore: {
+    en: "Algebra & Trigonometry Core",
+    by: "Алгебра і трыганаметрыя"
+  },
+  kbAdvanced: {
+    en: "advanced (coming soon)",
+    by: "advanced (хутка)"
+  },
+  kbPlanned: {
+    en: "Planned",
+    by: "Плануецца"
+  },
+  kbHumanities: {
+    en: "humanities-sciences",
+    by: "humanities-sciences"
+  },
+  kbSocial: {
+    en: "social-sciences",
+    by: "social-sciences"
+  },
+  kbNatural: {
+    en: "natural-sciences",
+    by: "natural-sciences"
+  },
+  kbDiy: {
+    en: "DIY (make it yourself)",
+    by: "DIY (зрабі сам)"
+  },
+  kbSurvival: {
+    en: "Survival & Medicine",
+    by: "Выжыванне і медыцына"
+  },
+  kbContrib: {
+    en: "Contribute — fix a bug, write content, or translate:",
+    by: "Дапамажыце — выпраўце памылку, напішыце тэкст ці перакладзіце:"
+  },
 };
 
 export const RELEASED_PROJECTS: ProjectInfo[] = [
@@ -246,14 +290,6 @@ export const MODULES: ModuleInfo[] = [
     description: {
       en: "Water purification, campfires, and navigation — practical guides for the field.",
       by: "Ачыстка вады, вогнішча і арыентаванне — практычныя даведнікі для паходу.",
-    },
-  },
-  {
-    id: "diy_tech",
-    title: { en: "Do Technology", by: "Тэхналогіі DIY" },
-    description: {
-      en: "Solar chargers, battery reuse, and basic electronics without a power grid.",
-      by: "Сонечныя зараднікі, перавыкарыстанне батарэй і простая электроніка без электрасеткі.",
     },
   },
 ];
