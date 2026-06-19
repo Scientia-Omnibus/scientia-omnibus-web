@@ -21,6 +21,10 @@ export default function Layout() {
   };
 
   useEffect(() => {
+    document.documentElement.lang = language === 'by' ? 'be' : 'en';
+  }, [language]);
+
+  useEffect(() => {
     if (location.pathname === '/' && location.hash) {
       const id = location.hash.slice(1);
       requestAnimationFrame(() => {
@@ -32,7 +36,9 @@ export default function Layout() {
   const isGuidePage = location.pathname.startsWith('/scientia-core');
 
   return (
-    <div className="min-h-screen bg-bg-warm font-sans selection:bg-cartoon-blue selection:text-stone-900 overflow-x-hidden antialiased text-stone-900">
+    <div
+      className={`min-h-screen bg-bg-warm font-sans selection:bg-cartoon-blue selection:text-stone-900 overflow-x-hidden antialiased text-stone-900 ${language === 'by' ? 'lang-by' : 'lang-en'}`}
+    >
       {!isGuidePage && (
         <Header
           language={language}

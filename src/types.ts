@@ -6,7 +6,9 @@ export interface LocalizedString {
 }
 
 export interface TranslationDict {
+  heroEyebrow: LocalizedString;
   heroTitle: LocalizedString;
+  heroLead: LocalizedString;
   heroSubtitle: LocalizedString;
   statZeroOverhead: LocalizedString;
   statZeroOverheadDesc: LocalizedString;

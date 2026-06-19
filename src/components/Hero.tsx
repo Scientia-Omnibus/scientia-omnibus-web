@@ -1,7 +1,8 @@
 import { Language } from '../types';
 import { UI_TRANSLATIONS } from '../data/modules';
-import { Github, Cpu, WifiOff, Database, Monitor } from 'lucide-react';
+import { Github, ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import demoMain from '../assets/images/demo-main.jpg';
 
 interface HeroProps {
@@ -9,136 +10,119 @@ interface HeroProps {
   onScrollToSection: (id: string) => void;
 }
 
+const QUICK_STATS = [
+  { key: 'statLightweight' as const, descKey: 'statLightweightDesc' as const },
+  { key: 'statOffline' as const, descKey: 'statOfflineDesc' as const },
+  { key: 'statHardware' as const, descKey: 'statHardwareDesc' as const },
+] as const;
+
 export default function Hero({ language, onScrollToSection }: HeroProps) {
   const t = UI_TRANSLATIONS;
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 15 } }
-  };
-
   return (
-    <section className="relative overflow-hidden bg-bg-warm py-12 sm:py-16 lg:py-24 border-b-3 border-stone-1000">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-[0.07]" />
+    <section className="relative overflow-hidden bg-bg-warm border-b-3 border-stone-900">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_65%,transparent_100%)] opacity-[0.06]" />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 lg:pt-20 pb-12 sm:pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <motion.div
-            className="lg:col-span-7 flex flex-col justify-center order-2 lg:order-1"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <motion.h2
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 leading-[1.1] mb-4 sm:mb-6"
-              variants={itemVariants}
+            <p className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-[0.15em] text-stone-500 mb-4">
+              {t.heroEyebrow[language]}
+            </p>
+
+            <h1
+              className={`
+                font-display font-bold text-stone-950 leading-[1.08] mb-5
+                text-[2rem] sm:text-5xl lg:text-[3.25rem] xl:text-6xl
+                ${language === 'by' ? 'tracking-tight' : ''}
+              `}
             >
               {t.heroTitle[language]}
-            </motion.h2>
+            </h1>
 
-            <motion.p
-              className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed font-medium mb-6 sm:mb-8"
-              variants={itemVariants}
-            >
+            <p className="text-base sm:text-lg text-stone-700 font-medium leading-relaxed mb-3 max-w-xl">
+              {t.heroLead[language]}
+            </p>
+
+            <p className="text-sm text-stone-500 leading-relaxed mb-8 max-w-xl">
               {t.heroSubtitle[language]}
-            </motion.p>
+            </p>
 
-            <motion.div
-              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8 sm:mb-10"
-              variants={itemVariants}
-            >
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-10">
               <button
                 onClick={() => onScrollToSection('projects')}
-                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 sm:py-4 sketch-button bg-cartoon-blue text-stone-900 font-bold text-sm sm:text-base"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sketch-button bg-stone-900 text-white font-bold text-sm sm:text-base hover:bg-stone-800"
               >
                 <span>{t.viewProjects[language]}</span>
+                <ArrowRight className="h-4 w-4" />
               </button>
 
               <a
-                href="https://github.com/Scientia-Omnibus"
+                href="https://github.com/Scientia-Omnibus/scientia-core"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3.5 sm:py-4 sketch-button bg-cartoon-green text-stone-900 font-bold text-sm sm:text-base"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sketch-button bg-cartoon-green text-stone-900 font-bold text-sm sm:text-base"
               >
-                <Github className="h-5 w-5" />
+                <Github className="h-4 w-4" />
                 <span>{t.viewOnGithub[language]}</span>
               </a>
-            </motion.div>
+
+              <Link
+                to="/scientia-core/guide"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-stone-900 rounded-lg text-stone-900 font-bold text-sm sm:text-base hover:bg-cartoon-blue transition-colors"
+              >
+                <span>{t.viewGuide[language]}</span>
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl lg:max-w-none">
+              {QUICK_STATS.map(({ key, descKey }) => (
+                <div
+                  key={key}
+                  className="px-4 py-3 bg-white border-2 border-stone-900 rounded-lg shadow-[2px_2px_0px_#1A1A1A]"
+                >
+                  <p className="font-display font-bold text-base sm:text-lg text-stone-900 leading-tight">
+                    {t[key][language]}
+                  </p>
+                  <p className="text-[11px] sm:text-xs text-stone-500 mt-1 leading-snug">
+                    {t[descKey][language]}
+                  </p>
+                </div>
+              ))}
+            </div>
           </motion.div>
 
           <motion.div
-            className="lg:col-span-5 flex justify-center items-center order-1 lg:order-2"
-            initial={{ opacity: 0, scale: 0.92 }}
+            className="flex justify-center lg:justify-end"
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: 'spring', stiffness: 70, damping: 20, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
           >
-            <div className="relative p-2 bg-white sketch-border w-full max-w-sm sm:max-w-md lg:max-w-none">
-              <div className="absolute -top-3 sm:-top-4 -left-3 sm:-left-4 bg-cartoon-green text-stone-900 font-fredoka text-[10px] sm:text-[11px] font-bold uppercase px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border-2 border-stone-900 shadow-[3px_3px_0px_#1A1A1A] z-10">
-                {language === 'en' ? 'Offline-first' : 'Афлайн-падыход'}
-              </div>
-              <div className="absolute -bottom-2 sm:-bottom-3 -right-2 sm:-right-3 bg-cartoon-blue text-stone-900 font-fredoka text-[10px] sm:text-[11px] font-bold uppercase px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border-2 border-stone-900 shadow-[3px_3px_0px_#1A1A1A] z-10">
-                {language === 'en' ? 'Open source' : 'Адкрыты код'}
-              </div>
+            <div className="relative w-full max-w-md lg:max-w-lg">
+              <div className="absolute -inset-3 bg-cartoon-blue/30 rounded-2xl border-2 border-stone-900/10 -z-10" />
 
-              <div className="overflow-hidden rounded-xl bg-stone-100 border-2 border-stone-900 aspect-4/3">
+              <div className="overflow-hidden rounded-xl border-3 border-stone-900 bg-stone-100 shadow-[8px_8px_0px_#1A1A1A]">
                 <img
                   src={demoMain}
-                  alt="Scientia Omnibus — offline learning"
-                  className="w-full h-full object-cover select-none pointer-events-none"
+                  alt="Scientia Omnibus"
+                  className="w-full aspect-4/3 object-cover"
                 />
+              </div>
+
+              <div className="absolute -bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-auto flex flex-wrap gap-2 justify-center sm:justify-end">
+                <span className="inline-block bg-white border-2 border-stone-900 text-stone-900 font-mono text-[10px] sm:text-xs font-bold uppercase px-3 py-1.5 rounded-lg shadow-[2px_2px_0px_#1A1A1A]">
+                  {language === 'en' ? 'Offline-first' : 'Афлайн-падыход'}
+                </span>
+                <span className="inline-block bg-cartoon-green border-2 border-stone-900 text-stone-900 font-mono text-[10px] sm:text-xs font-bold uppercase px-3 py-1.5 rounded-lg shadow-[2px_2px_0px_#1A1A1A]">
+                  {language === 'en' ? 'GPL-3.0' : 'Адкрыты код'}
+                </span>
               </div>
             </div>
           </motion.div>
-        </div>
-
-        <div id="benchmarks" className="mt-12 sm:mt-20">
-          <div className="text-center mb-6 sm:mb-10">
-            <h3 className="text-xs sm:text-sm font-fredoka font-bold text-stone-850 uppercase tracking-widest bg-cartoon-orange border-2 border-stone-900 px-3 sm:px-4 py-1 rounded-lg inline-block shadow-[2px_2px_0px_#1A1A1A]">
-              {language === 'en' ? 'Performance' : 'Прадукцыйнасць'}
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <motion.div className="p-5 sm:p-6 bg-white sketch-border hover:bg-cartoon-orange transition-colors duration-200 group" whileHover={{ y: -4 }}>
-              <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center sketch-border-xs bg-cartoon-orange text-stone-900 mb-3 sm:mb-4">
-                <Cpu className="h-5 w-5" />
-              </div>
-              <h4 className="font-display text-xl sm:text-2xl font-bold text-stone-900 mb-1.5 sm:mb-2 leading-tight">{t.statZeroOverhead[language]}</h4>
-              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-sans">{t.statZeroOverheadDesc[language]}</p>
-            </motion.div>
-
-            <motion.div className="p-5 sm:p-6 bg-white sketch-border hover:bg-cartoon-green transition-colors duration-200 group" whileHover={{ y: -4 }}>
-              <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center sketch-border-xs bg-cartoon-green text-stone-900 mb-3 sm:mb-4">
-                <WifiOff className="h-5 w-5" />
-              </div>
-              <h4 className="font-display text-xl sm:text-2xl font-bold text-stone-900 mb-1.5 sm:mb-2 leading-tight">{t.statOffline[language]}</h4>
-              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-sans">{t.statOfflineDesc[language]}</p>
-            </motion.div>
-
-            <motion.div className="p-5 sm:p-6 bg-white sketch-border hover:bg-cartoon-blue transition-colors duration-200 group" whileHover={{ y: -4 }}>
-              <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center sketch-border-xs bg-cartoon-blue text-stone-900 mb-3 sm:mb-4">
-                <Database className="h-5 w-5" />
-              </div>
-              <h4 className="font-display text-xl sm:text-2xl font-bold text-stone-900 mb-1.5 sm:mb-2 leading-tight">{t.statLightweight[language]}</h4>
-              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-sans">{t.statLightweightDesc[language]}</p>
-            </motion.div>
-
-            <motion.div className="p-5 sm:p-6 bg-white sketch-border hover:bg-cartoon-purple transition-colors duration-200 group" whileHover={{ y: -4 }}>
-              <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center sketch-border-xs bg-cartoon-purple text-stone-900 mb-3 sm:mb-4">
-                <Monitor className="h-5 w-5" />
-              </div>
-              <h4 className="font-display text-xl sm:text-2xl font-bold text-stone-900 mb-1.5 sm:mb-2 leading-tight">{t.statHardware[language]}</h4>
-              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-sans">{t.statHardwareDesc[language]}</p>
-            </motion.div>
-          </div>
         </div>
       </div>
     </section>

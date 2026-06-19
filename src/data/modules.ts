@@ -16,13 +16,21 @@ export interface ProjectInfo {
 }
 
 export const UI_TRANSLATIONS: TranslationDict = {
+  heroEyebrow: {
+    en: "Volunteer · Open Source · Offline-First",
+    by: "Валонцёрскі праект · Open Source · Афлайн"
+  },
   heroTitle: {
     en: "Knowledge shouldn't demand gigabytes.",
     by: "Веды не павінны патрабаваць гігабайтаў."
   },
+  heroLead: {
+    en: "We build lightweight software that runs on old hardware — no browser, no cloud, no subscription.",
+    by: "Мы ствараем лёгкі софт для слабых камп'ютараў — без браўзера, воблака і падпісак."
+  },
   heroSubtitle: {
-    en: "We build open-source, ultra-efficient, and fully offline tools for users with limited internet and weak hardware. Download knowledge once — read it anywhere, without a browser or cloud subscription.",
-    by: "Мы ствараем звышэфектыўны софт з адкрытым кодам для карыстальнікаў з абмежаваным інтэрнэтам і слабым абсталяваннем. Спампуйце веды адзін раз — чытайце дзе заўгодна, без браўзера і воблачных падпісак."
+    en: "Download Markdown knowledge packs once and read them anywhere. Built for students, volunteers, and communities with limited internet access.",
+    by: "Спампуйце Markdown-пакеты ведаў адзін раз і чытайце дзе заўгодна. Створана для вучняў, валонтэраў і суполак з абмежаваным інтэрнэтам."
   },
   statZeroOverhead: {
     en: "0MB Base Overhead",
