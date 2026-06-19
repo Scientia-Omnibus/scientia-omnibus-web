@@ -97,6 +97,33 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
             {coreProject.description[language]}
           </p>
 
+          <div className="mb-3">
+            <p className="text-[11px] font-mono font-bold uppercase tracking-widest text-stone-500 mb-2.5">
+              {language === 'en' ? 'Sample knowledge packs' : 'Прыклады пакетаў ведаў'}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {MODULES.map((mod) => {
+                const isActive = activeModuleId === mod.id;
+                return (
+                  <button
+                    key={mod.id}
+                    type="button"
+                    onClick={() => setActiveModuleId(mod.id)}
+                    className={`
+                      px-3.5 py-1.5 rounded-lg font-sans text-sm font-semibold border-2 transition-colors cursor-pointer
+                      ${isActive
+                        ? 'bg-stone-900 text-white border-stone-900 shadow-[2px_2px_0px_#1A1A1A]'
+                        : 'bg-white text-stone-700 border-stone-300 hover:border-stone-900 hover:bg-stone-50'
+                      }
+                    `}
+                  >
+                    {mod.title[language]}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
           <div className="rounded-xl overflow-hidden border-2 border-stone-900 bg-[#1e1b29] shadow-[4px_4px_0px_#1A1A1A]">
             <div className="flex items-center gap-2 px-3 py-2 bg-[#15121e] border-b border-stone-800">
               <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-stone-700" />
@@ -105,27 +132,6 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               <span className="ml-2 font-mono text-[10px] sm:text-xs text-stone-500 truncate">
                 scientia-core
               </span>
-            </div>
-
-            <div className="flex border-b border-stone-800 overflow-x-auto">
-              {MODULES.map((mod) => {
-                const isActive = activeModuleId === mod.id;
-                return (
-                  <button
-                    key={mod.id}
-                    onClick={() => setActiveModuleId(mod.id)}
-                    className={`
-                      flex-1 min-w-0 px-3 sm:px-5 py-2.5 font-mono text-[11px] sm:text-xs font-semibold transition-colors border-r border-stone-800 last:border-r-0 whitespace-nowrap
-                      ${isActive
-                        ? 'bg-[#312a45] text-orange-300'
-                        : 'bg-[#15121e] text-stone-500 hover:text-stone-300 hover:bg-[#1e1b29]'
-                      }
-                    `}
-                  >
-                    {mod.title[language]}
-                  </button>
-                );
-              })}
             </div>
 
             <div className="bg-[#110e19] p-2 sm:p-3">
@@ -137,7 +143,8 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
             </div>
           </div>
 
-          <p className="mt-3 text-xs text-stone-500 font-sans">
+          <p className="mt-3 text-sm text-stone-600 leading-relaxed">
+            <span className="font-semibold text-stone-800">{activeModule.title[language]}.</span>{' '}
             {activeModule.description[language]}
           </p>
         </div>

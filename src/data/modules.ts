@@ -21,8 +21,8 @@ export const UI_TRANSLATIONS: TranslationDict = {
     by: "Веды не павінны патрабаваць гігабайтаў."
   },
   heroSubtitle: {
-    en: "We build open-source, offline tools for users with limited internet and weak hardware. Download knowledge once — read it anywhere, without a browser or cloud subscription.",
-    by: "Мы ствараем адкрыты афлайн-софт для карыстальнікаў з абмежаваным інтэрнэтам і слабым абсталяваннем. Спампуйце веды адзін раз — чытайце дзе заўгодна, без браўзера і воблачных падпісак."
+    en: "A volunteer open-source initiative building lightweight, offline-first software — for communities where internet is unreliable and hardware is old.",
+    by: "Валонцёрская open-source ініцыятыва, якая стварае лёгкі афлайн-софт — для суполак, дзе інтэрнэт ненадзейны, а тэхніка састарэлая."
   },
   statZeroOverhead: {
     en: "0MB Base Overhead",
@@ -45,20 +45,24 @@ export const UI_TRANSLATIONS: TranslationDict = {
     by: "Менш за 10 Мегабайтаў"
   },
   statLightweightDesc: {
-    en: "The application core fits on an old floppy disk. Runs immediately without installation.",
-    by: "Ядро праграмы змяшчаецца на старую дыскету і запускаецца без усталёўкі."
+    en: "Every tool we ship fits on an old floppy disk. No installers, no background services.",
+    by: "Кожны наш інструмент змяшчаецца на старую дыскету. Без усталёўшчыкаў і фонавых сэрвісаў."
   },
   statHardware: {
     en: "15-Year-Old PCs",
     by: "ПК 15-гадовай даўнасці"
   },
   statHardwareDesc: {
-    en: "Runs on old school laptops, low-power single-board computers, and legacy hardware.",
-    by: "Працуе на старых школьных нетбуках, мікракампутарах і састарэлым абсталяванні."
+    en: "Designed for old school laptops, low-power boards, and hardware others have left behind.",
+    by: "Разлічана на старыя школьныя нетбукі, слабыя платы і абсталяванне, якое іншыя ўжо не падтрымліваюць."
   },
   viewOnGithub: {
     en: "View on GitHub",
     by: "Адкрыць на GitHub"
+  },
+  joinDiscord: {
+    en: "Join Discord Community",
+    by: "Далучыцца да Discord"
   },
   viewProjects: {
     en: "View Projects",

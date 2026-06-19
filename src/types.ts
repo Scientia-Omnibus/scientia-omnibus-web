@@ -17,6 +17,7 @@ export interface TranslationDict {
   statHardware: LocalizedString;
   statHardwareDesc: LocalizedString;
   viewOnGithub: LocalizedString;
+  joinDiscord: LocalizedString;
   viewProjects: LocalizedString;
   projectsLabel: LocalizedString;
   projectsTitle: LocalizedString;
