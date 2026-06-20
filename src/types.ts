@@ -32,8 +32,9 @@ export interface TranslationDict {
   installTitle: LocalizedString;
   installViaUV: LocalizedString;
   installViaPip: LocalizedString;
-  installUpcomingLinux: LocalizedString;
-  installUpcomingWindows: LocalizedString;
+  installOneLiner: LocalizedString;
+  installGitNote: LocalizedString;
+  installUpcoming: LocalizedString;
   whyTitle: LocalizedString;
   whySubtitle: LocalizedString;
   problemTitle: LocalizedString;

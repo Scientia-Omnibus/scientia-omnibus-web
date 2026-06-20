@@ -35,25 +35,33 @@ export interface GuideSection {
 export const GUIDE_SECTIONS: GuideSection[] = [
   {
     id: 'installation',
-    title: { en: 'Installation', by: 'Усталёўка' },
+    title: { en: 'Installation', by: 'Installation' },
     intro: {
       en: 'Install scientia-core with one of the following methods:',
-      by: 'Усталюйце scientia-core адным з наступных спосабаў:',
+      by: 'Install scientia-core with one of the following methods:',
     },
     codeBlocks: [
       {
-        label: { en: 'via uv (recommended)', by: 'праз uv (рэкамендавана)' },
+        label: { en: 'via uv (recommended)', by: 'via uv (recommended)' },
         command: 'uv tool install scientia-core',
       },
       {
-        label: { en: 'via pip', by: 'праз pip' },
+        label: { en: 'via pip', by: 'via pip' },
         command: 'pip install scientia-core',
+      },
+      {
+        label: { en: 'Linux / macOS (one-liner)', by: 'Linux / macOS (one-liner)' },
+        command: "bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-core/main/install.sh)",
       },
     ],
     notes: [
       {
-        en: 'Standalone packages for Linux (.deb / AppImage) and Windows (.exe) are coming soon.',
-        by: 'Асобныя пакеты для Linux (.deb / AppImage) і Windows (.exe) хутка з\'явяцца.',
+        en: 'Git must be installed when using uv or pip.',
+        by: 'Git must be installed when using uv or pip.',
+      },
+      {
+        en: 'Windows support will be added later.',
+        by: 'Windows support will be added later.',
       },
     ],
   },

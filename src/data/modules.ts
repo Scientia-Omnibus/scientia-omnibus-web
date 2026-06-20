@@ -110,23 +110,27 @@ export const UI_TRANSLATIONS: TranslationDict = {
   },
   installTitle: {
     en: "Installation",
-    by: "Усталёўка"
+    by: "Installation"
   },
   installViaUV: {
     en: "via uv (recommended)",
-    by: "праз uv (рэкамендавана)"
+    by: "via uv (recommended)"
   },
   installViaPip: {
     en: "via pip",
-    by: "праз pip"
+    by: "via pip"
   },
-  installUpcomingLinux: {
-    en: "Standalone .deb / AppImage package for Linux coming soon.",
-    by: "Асобны .deb / AppImage пакет для Linux хутка."
+  installOneLiner: {
+    en: "Linux / macOS (one-liner)",
+    by: "Linux / macOS (one-liner)"
   },
-  installUpcomingWindows: {
-    en: "Standalone .exe installer for Windows coming soon.",
-    by: "Асобны .exe інсталятар для Windows хутка."
+  installGitNote: {
+    en: "Git must be installed when using uv or pip.",
+    by: "Git must be installed when using uv or pip."
+  },
+  installUpcoming: {
+    en: "Windows support will be added later.",
+    by: "Windows support will be added later."
   },
   whyTitle: {
     en: "Software Built for Real Constraints",

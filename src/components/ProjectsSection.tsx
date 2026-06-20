@@ -99,10 +99,16 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                 <p className="text-[10px] font-mono font-semibold text-stone-400 mb-1">{t.installViaPip[language]}</p>
                 <pre className="bg-stone-900 text-cartoon-green px-3 py-2 rounded-lg border border-stone-700 text-xs font-mono overflow-x-auto shadow-[1px_1px_0px_#1A1A1A]">$ pip install scientia-core</pre>
               </div>
+              <div>
+                <p className="text-[10px] font-mono font-semibold text-stone-400 mb-1">{t.installOneLiner[language]}</p>
+                <pre className="bg-stone-900 text-cartoon-green px-3 py-2 rounded-lg border border-stone-700 text-xs font-mono overflow-x-auto shadow-[1px_1px_0px_#1A1A1A]">$ bash &lt;(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-core/main/install.sh)</pre>
+              </div>
             </div>
             <p className="text-[10px] font-mono text-stone-500 mt-2 leading-relaxed">
-              {t.installUpcomingLinux[language]}<br />
-              {t.installUpcomingWindows[language]}
+              {t.installGitNote[language]}
+            </p>
+            <p className="text-[10px] font-mono text-stone-500 leading-relaxed">
+              {t.installUpcoming[language]}
             </p>
           </div>
 
