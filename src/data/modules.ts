@@ -108,6 +108,26 @@ export const UI_TRANSLATIONS: TranslationDict = {
     en: "Back to projects",
     by: "Назад да праектаў"
   },
+  installTitle: {
+    en: "Installation",
+    by: "Усталёўка"
+  },
+  installViaUV: {
+    en: "via uv (recommended)",
+    by: "праз uv (рэкамендавана)"
+  },
+  installViaPip: {
+    en: "via pip",
+    by: "праз pip"
+  },
+  installUpcomingLinux: {
+    en: "Standalone .deb / AppImage package for Linux coming soon.",
+    by: "Асобны .deb / AppImage пакет для Linux хутка."
+  },
+  installUpcomingWindows: {
+    en: "Standalone .exe installer for Windows coming soon.",
+    by: "Асобны .exe інсталятар для Windows хутка."
+  },
   whyTitle: {
     en: "Software Built for Real Constraints",
     by: "Софт для рэальных абмежаванняў"

@@ -29,6 +29,11 @@ export interface TranslationDict {
   guideTitle: LocalizedString;
   guideSubtitle: LocalizedString;
   backToProjects: LocalizedString;
+  installTitle: LocalizedString;
+  installViaUV: LocalizedString;
+  installViaPip: LocalizedString;
+  installUpcomingLinux: LocalizedString;
+  installUpcomingWindows: LocalizedString;
   whyTitle: LocalizedString;
   whySubtitle: LocalizedString;
   problemTitle: LocalizedString;

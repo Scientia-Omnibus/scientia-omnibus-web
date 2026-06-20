@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Language } from '../types';
 import { RELEASED_PROJECTS, UPCOMING_PROJECTS, UI_TRANSLATIONS } from '../data/modules';
 import { Github, BookOpen, Terminal } from 'lucide-react';
-import screenshotEducation from '../assets/images/screenshot-education.jpg';
+import screenshotEducation from '../assets/images/screenshot-education.png';
 
 interface ProjectsSectionProps {
   language: Language;
@@ -85,6 +85,26 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
           <p className="text-sm text-gray-700 leading-relaxed mb-6 max-w-3xl">
             {coreProject.description[language]}
           </p>
+
+          <div className="mb-6 p-4 bg-stone-50 border-2 border-stone-900 rounded-xl shadow-[2px_2px_0px_#1A1A1A]">
+            <p className="text-[11px] font-mono font-bold uppercase tracking-widest text-stone-500 mb-3">
+              {t.installTitle[language]}
+            </p>
+            <div className="space-y-2">
+              <div>
+                <p className="text-[10px] font-mono font-semibold text-stone-400 mb-1">{t.installViaUV[language]}</p>
+                <pre className="bg-stone-900 text-cartoon-green px-3 py-2 rounded-lg border border-stone-700 text-xs font-mono overflow-x-auto shadow-[1px_1px_0px_#1A1A1A]">$ uv tool install scientia-core</pre>
+              </div>
+              <div>
+                <p className="text-[10px] font-mono font-semibold text-stone-400 mb-1">{t.installViaPip[language]}</p>
+                <pre className="bg-stone-900 text-cartoon-green px-3 py-2 rounded-lg border border-stone-700 text-xs font-mono overflow-x-auto shadow-[1px_1px_0px_#1A1A1A]">$ pip install scientia-core</pre>
+              </div>
+            </div>
+            <p className="text-[10px] font-mono text-stone-500 mt-2 leading-relaxed">
+              {t.installUpcomingLinux[language]}<br />
+              {t.installUpcomingWindows[language]}
+            </p>
+          </div>
 
           <div className="rounded-xl overflow-hidden border-2 border-stone-900 bg-[#1e1b29] shadow-[4px_4px_0px_#1A1A1A]">
             <div className="flex items-center gap-2 px-3 py-2 bg-[#15121e] border-b border-stone-800">

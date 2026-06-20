@@ -108,6 +108,21 @@ export default function ScientiaCoreGuidePage() {
                   <p className="text-sm text-stone-700 mb-4">{section.intro[language]}</p>
                 )}
 
+                {section.codeBlocks && (
+                  <div className="space-y-3 mb-4">
+                    {section.codeBlocks.map((block, i) => (
+                      <div key={i}>
+                        <p className="text-[11px] font-mono font-bold text-stone-500 mb-1">
+                          {block.label[language]}
+                        </p>
+                        <pre className="bg-stone-900 text-cartoon-green p-3 rounded-lg border border-stone-700 overflow-x-auto text-sm font-mono shadow-[2px_2px_0px_#1A1A1A]">
+                          $ {block.command}
+                        </pre>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 {section.bullets && (
                   <dl className="space-y-3 mb-4">
                     {section.bullets.map((b) => (

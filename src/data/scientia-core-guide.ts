@@ -16,10 +16,16 @@ export interface GuideCommand {
   description: LocalizedString;
 }
 
+export interface GuideCodeBlock {
+  label: LocalizedString;
+  command: string;
+}
+
 export interface GuideSection {
   id: string;
   title: LocalizedString;
   intro?: LocalizedString;
+  codeBlocks?: GuideCodeBlock[];
   bullets?: GuideBullet[];
   shortcuts?: GuideShortcut[];
   commands?: GuideCommand[];
@@ -27,6 +33,61 @@ export interface GuideSection {
 }
 
 export const GUIDE_SECTIONS: GuideSection[] = [
+  {
+    id: 'installation',
+    title: { en: 'Installation', by: 'Усталёўка' },
+    intro: {
+      en: 'Install scientia-core with one of the following methods:',
+      by: 'Усталюйце scientia-core адным з наступных спосабаў:',
+    },
+    codeBlocks: [
+      {
+        label: { en: 'via uv (recommended)', by: 'праз uv (рэкамендавана)' },
+        command: 'uv tool install scientia-core',
+      },
+      {
+        label: { en: 'via pip', by: 'праз pip' },
+        command: 'pip install scientia-core',
+      },
+    ],
+    notes: [
+      {
+        en: 'Standalone packages for Linux (.deb / AppImage) and Windows (.exe) are coming soon.',
+        by: 'Асобныя пакеты для Linux (.deb / AppImage) і Windows (.exe) хутка з\'явяцца.',
+      },
+    ],
+  },
+  {
+    id: 'quick-start',
+    title: { en: 'Quick Start', by: 'Хуткі старт' },
+    intro: {
+      en: 'Get started with scientia-core in three steps:',
+      by: 'Пачніце працаваць з scientia-core у тры крокі:',
+    },
+    bullets: [
+      {
+        term: { en: '1. Launch', by: '1. Запуск' },
+        description: {
+          en: 'Run scientia-core in your terminal. The interface has an omnibox (top bar), a navigation panel (left side), and a document viewer (main area).',
+          by: 'Запусціце scientia-core у тэрмінале. Інтэрфейс складаецца з omnibox (верхняя панэль), панэлі навігацыі (злева) і прагляду дакументаў (асноўная вобласць).',
+        },
+      },
+      {
+        term: { en: '2. Find content', by: '2. Пошук' },
+        description: {
+          en: 'Press / to focus the omnibox, then type to search for documents. Select a result with arrow keys and press Enter to open it.',
+          by: 'Націсніце / каб перайсці да omnibox, затым увядзіце запыт для пошуку дакументаў. Выберыце вынік стрэлкамі і націсніце Enter.',
+        },
+      },
+      {
+        term: { en: '3. Read & navigate', by: '3. Чытанне' },
+        description: {
+          en: 'Use j/k or w/s to scroll, Ctrl+N to toggle the sidebar, and Ctrl+G to download knowledge repositories.',
+          by: 'Выкарыстоўвайце j/k ці w/s для пракруткі, Ctrl+N каб схаваць/паказаць панэль і Ctrl+G для спампоўкі баз ведаў.',
+        },
+      },
+    ],
+  },
   {
     id: 'interface',
     title: { en: 'Interface', by: 'Інтэрфейс' },
@@ -65,6 +126,60 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     ],
   },
   {
+    id: 'search',
+    title: { en: 'Search', by: 'Пошук' },
+    intro: {
+      en: 'As you type in the omnibox, fuzzy search scans the knowledge directory for matching .md files. Results appear in a dropdown below.',
+      by: 'Пры ўводзе ў omnibox нечаткі пошук сканіруе каталог ведаў на .md файлы. Вынікі з\'яўляюцца ў выпадным спісе.',
+    },
+    shortcuts: [
+      { keys: 'Down', action: { en: 'Move focus to results list', by: 'Фокус на спіс вынікаў' } },
+      { keys: 'Up', action: { en: 'Return focus to omnibox (at top of results)', by: 'Вярнуць фокус у omnibox' } },
+      { keys: 'Enter', action: { en: 'Open selected file', by: 'Адкрыць выбраны файл' } },
+      { keys: 'Escape', action: { en: 'Close results dropdown', by: 'Зачыніць спіс вынікаў' } },
+    ],
+  },
+  {
+    id: 'document-viewer',
+    title: { en: 'Document viewer', by: 'Прагляд дакумента' },
+    intro: {
+      en: 'When the viewer is focused:',
+      by: 'Калі фокус у праглядзе:',
+    },
+    shortcuts: [
+      { keys: 'w / k', action: { en: 'Scroll up', by: 'Пракруціць уверх' } },
+      { keys: 's / j', action: { en: 'Scroll down', by: 'Пракруціць уніз' } },
+      { keys: 'Space', action: { en: 'Page down', by: 'Старонка ўніз' } },
+      { keys: 'b', action: { en: 'Page up', by: 'Старонка ўверх' } },
+    ],
+  },
+  {
+    id: 'commands',
+    title: { en: 'Commands', by: 'Каманды' },
+    intro: {
+      en: 'Press / or click the omnibox, then enter a command:',
+      by: 'Націсніце / або клікніце omnibox, затым увядзіце каманду:',
+    },
+    commands: [
+      { command: 'about', aliases: 'a', description: { en: 'Show application information', by: 'Інфармацыя пра праграму' } },
+      { command: 'bookmarks', aliases: 'b, bm', description: { en: 'Show bookmarks list', by: 'Спіс закладак' } },
+      { command: 'contents', aliases: 'c, toc', description: { en: 'Show table of contents', by: 'Паказаць змест' } },
+      { command: 'help', aliases: '?', description: { en: 'Show help', by: 'Паказаць дапамогу' } },
+      { command: 'history', aliases: 'h', description: { en: 'Show history', by: 'Паказаць гісторыю' } },
+      { command: 'local', aliases: 'l', description: { en: 'Show local files', by: 'Паказаць лакальныя файлы' } },
+      { command: 'quit', aliases: 'q', description: { en: 'Quit application', by: 'Выйсці з праграмы' } },
+    ],
+  },
+  {
+    id: 'navigation-panel',
+    title: { en: 'Navigation panel', by: 'Панэль навігацыі' },
+    shortcuts: [
+      { keys: ', / a / h / Ctrl+Left / Shift+Left', action: { en: 'Previous tab', by: 'Папярэдняя ўкладка' } },
+      { keys: '. / d / l / Ctrl+Right / Shift+Right', action: { en: 'Next tab', by: 'Наступная ўкладка' } },
+      { keys: '\\', action: { en: 'Dock panel left/right', by: 'Перанесці панэль лева/права' } },
+    ],
+  },
+  {
     id: 'global-shortcuts',
     title: { en: 'Global shortcuts', by: 'Глабальныя спалучэнні' },
     shortcuts: [
@@ -86,29 +201,6 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     ],
   },
   {
-    id: 'navigation-panel',
-    title: { en: 'Navigation panel', by: 'Панэль навігацыі' },
-    shortcuts: [
-      { keys: ', / a / h / Ctrl+Left / Shift+Left', action: { en: 'Previous tab', by: 'Папярэдняя ўкладка' } },
-      { keys: '. / d / l / Ctrl+Right / Shift+Right', action: { en: 'Next tab', by: 'Наступная ўкладка' } },
-      { keys: '\\', action: { en: 'Dock panel left/right', by: 'Перанесці панэль лева/права' } },
-    ],
-  },
-  {
-    id: 'document-viewer',
-    title: { en: 'Document viewer', by: 'Прагляд дакумента' },
-    intro: {
-      en: 'When the viewer is focused:',
-      by: 'Калі фокус у праглядзе:',
-    },
-    shortcuts: [
-      { keys: 'w / k', action: { en: 'Scroll up', by: 'Пракруціць уверх' } },
-      { keys: 's / j', action: { en: 'Scroll down', by: 'Пракруціць уніз' } },
-      { keys: 'Space', action: { en: 'Page down', by: 'Старонка ўніз' } },
-      { keys: 'b', action: { en: 'Page up', by: 'Старонка ўверх' } },
-    ],
-  },
-  {
     id: 'bookmarks',
     title: { en: 'Bookmarks', by: 'Закладкі' },
     shortcuts: [
@@ -122,37 +214,6 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     shortcuts: [
       { keys: 'Delete', action: { en: 'Delete history entry', by: 'Выдаліць запіс' } },
       { keys: 'Backspace', action: { en: 'Clear all history', by: 'Ачысціць усю гісторыю' } },
-    ],
-  },
-  {
-    id: 'search',
-    title: { en: 'Search', by: 'Пошук' },
-    intro: {
-      en: 'As you type in the omnibox, fuzzy search scans the knowledge directory for matching .md files. Results appear in a dropdown below.',
-      by: 'Пры ўводзе ў omnibox нечаткі пошук сканіруе каталог ведаў на .md файлы. Вынікі з\'яўляюцца ў выпадным спісе.',
-    },
-    shortcuts: [
-      { keys: 'Down', action: { en: 'Move focus to results list', by: 'Фокус на спіс вынікаў' } },
-      { keys: 'Up', action: { en: 'Return focus to omnibox (at top of results)', by: 'Вярнуць фокус у omnibox' } },
-      { keys: 'Enter', action: { en: 'Open selected file', by: 'Адкрыць выбраны файл' } },
-      { keys: 'Escape', action: { en: 'Close results dropdown', by: 'Зачыніць спіс вынікаў' } },
-    ],
-  },
-  {
-    id: 'commands',
-    title: { en: 'Commands', by: 'Каманды' },
-    intro: {
-      en: 'Press / or click the omnibox, then enter a command:',
-      by: 'Націсніце / або клікніце omnibox, затым увядзіце каманду:',
-    },
-    commands: [
-      { command: 'about', aliases: 'a', description: { en: 'Show application information', by: 'Інфармацыя пра праграму' } },
-      { command: 'bookmarks', aliases: 'b, bm', description: { en: 'Show bookmarks list', by: 'Спіс закладак' } },
-      { command: 'contents', aliases: 'c, toc', description: { en: 'Show table of contents', by: 'Паказаць змест' } },
-      { command: 'help', aliases: '?', description: { en: 'Show help', by: 'Паказаць дапамогу' } },
-      { command: 'history', aliases: 'h', description: { en: 'Show history', by: 'Паказаць гісторыю' } },
-      { command: 'local', aliases: 'l', description: { en: 'Show local files', by: 'Паказаць лакальныя файлы' } },
-      { command: 'quit', aliases: 'q', description: { en: 'Quit application', by: 'Выйсці з праграмы' } },
     ],
   },
   {
