@@ -90,9 +90,9 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, maxHeight: 0 }}
+            animate={{ opacity: 1, maxHeight: 300 }}
+            exit={{ opacity: 0, maxHeight: 0 }}
             className="md:hidden border-t-2 border-stone-900 bg-bg-warm overflow-hidden"
           >
             <div className="px-4 py-3 space-y-1">

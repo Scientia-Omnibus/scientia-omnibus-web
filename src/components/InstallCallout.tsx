@@ -1,4 +1,5 @@
-import { Terminal, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { Terminal, Sparkles, Copy, Check } from 'lucide-react';
 import { Language } from '../types';
 import { UI_TRANSLATIONS } from '../data/modules';
 
@@ -12,7 +13,15 @@ interface InstallCalloutProps {
 }
 
 export default function InstallCallout({ language, className = '' }: InstallCalloutProps) {
+  const [copiedBash, setCopiedBash] = useState(false);
+  const [copiedUv, setCopiedUv] = useState(false);
   const t = UI_TRANSLATIONS;
+
+  const copyToClipboard = async (text: string, setCopied: (v: boolean) => void) => {
+    await navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div
@@ -44,10 +53,19 @@ export default function InstallCallout({ language, className = '' }: InstallCall
               {t.installRecommended[language]}
             </span>
           </div>
-          <pre className="bg-stone-950 text-cartoon-green px-4 py-4 sm:py-5 rounded-lg border-2 border-stone-700 text-sm sm:text-base font-mono overflow-x-auto shadow-[2px_2px_0px_#1A1A1A]">
-            <span className="text-stone-500 select-none">$ </span>
-            {BASH_COMMAND}
-          </pre>
+          <div className="relative">
+            <button
+              onClick={() => copyToClipboard(BASH_COMMAND, setCopiedBash)}
+              className="absolute top-2 right-2 z-10 p-1.5 rounded border bg-stone-800 border-stone-600 text-stone-400 hover:text-stone-200 hover:border-stone-400 transition-colors"
+              aria-label="Copy command"
+            >
+              {copiedBash ? <Check className="h-3.5 w-3.5 text-cartoon-green" /> : <Copy className="h-3.5 w-3.5" />}
+            </button>
+            <pre className="bg-stone-950 text-cartoon-green px-4 py-4 sm:py-5 rounded-lg border-2 border-stone-700 text-sm sm:text-base font-mono overflow-x-auto shadow-[2px_2px_0px_#1A1A1A]">
+              <span className="text-stone-500 select-none">$ </span>
+              {BASH_COMMAND}
+            </pre>
+          </div>
         </div>
 
         <div className="rounded-lg border border-stone-800 bg-[#0d0b14] p-3 sm:p-4">
@@ -65,10 +83,19 @@ export default function InstallCallout({ language, className = '' }: InstallCall
               git-scm.com
             </a>
           </p>
-          <pre className="bg-stone-950/80 text-stone-400 px-3 py-2.5 rounded-lg border border-stone-800 text-xs sm:text-sm font-mono overflow-x-auto">
-            <span className="text-stone-600 select-none">$ </span>
-            {UV_COMMAND}
-          </pre>
+          <div className="relative">
+            <button
+              onClick={() => copyToClipboard(UV_COMMAND, setCopiedUv)}
+              className="absolute top-1.5 right-1.5 z-10 p-1 rounded border bg-stone-800 border-stone-700 text-stone-500 hover:text-stone-300 hover:border-stone-500 transition-colors"
+              aria-label="Copy command"
+            >
+              {copiedUv ? <Check className="h-3 w-3 text-cartoon-green" /> : <Copy className="h-3 w-3" />}
+            </button>
+            <pre className="bg-stone-950/80 text-stone-400 px-3 py-2.5 rounded-lg border border-stone-800 text-xs sm:text-sm font-mono overflow-x-auto">
+              <span className="text-stone-600 select-none">$ </span>
+              {UV_COMMAND}
+            </pre>
+          </div>
         </div>
 
         <p className="text-[11px] font-mono text-stone-500 leading-relaxed pt-1 border-t border-stone-800">

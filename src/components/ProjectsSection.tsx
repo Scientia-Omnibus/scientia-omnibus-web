@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Language } from '../types';
-import { RELEASED_PROJECTS, UPCOMING_PROJECTS, UI_TRANSLATIONS } from '../data/modules';
+import { RELEASED_PROJECTS, UPCOMING_PROJECTS, MODULES, UI_TRANSLATIONS } from '../data/modules';
 import { Github, BookOpen, Terminal } from 'lucide-react';
 import screenshotEducation from '../assets/images/screenshot-education.png';
+import screenshotSurvival from '../assets/images/screenshot-survival.png';
 import InstallCallout from './InstallCallout';
 
 interface ProjectsSectionProps {
@@ -10,8 +12,11 @@ interface ProjectsSectionProps {
 }
 
 export default function ProjectsSection({ language }: ProjectsSectionProps) {
+  const [activeScreenshot, setActiveScreenshot] = useState<'education' | 'survival'>('education');
   const t = UI_TRANSLATIONS;
   const coreProject = RELEASED_PROJECTS[0];
+  const educationModule = MODULES.find((m) => m.id === 'education');
+  const survivalModule = MODULES.find((m) => m.id === 'survival');
 
   return (
     <section id="projects" className="py-12 sm:py-20 bg-[#FFFCEE] border-b-3 border-stone-900">
@@ -97,11 +102,33 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               <span className="ml-2 font-mono text-[10px] sm:text-xs text-stone-500 truncate">
                 scientia-core
               </span>
+              <div className="ml-auto flex gap-1">
+                <button
+                  onClick={() => setActiveScreenshot('education')}
+                  className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors ${
+                    activeScreenshot === 'education'
+                      ? 'bg-cartoon-green text-stone-900 border-stone-900'
+                      : 'bg-stone-800 text-stone-500 border-stone-700 hover:text-stone-300'
+                  }`}
+                >
+                  {educationModule?.title[language]}
+                </button>
+                <button
+                  onClick={() => setActiveScreenshot('survival')}
+                  className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors ${
+                    activeScreenshot === 'survival'
+                      ? 'bg-cartoon-green text-stone-900 border-stone-900'
+                      : 'bg-stone-800 text-stone-500 border-stone-700 hover:text-stone-300'
+                  }`}
+                >
+                  {survivalModule?.title[language]}
+                </button>
+              </div>
             </div>
 
             <div className="bg-[#110e19] p-2 sm:p-3">
               <img
-                src={screenshotEducation}
+                src={activeScreenshot === 'education' ? screenshotEducation : screenshotSurvival}
                 alt="scientia-core"
                 className="w-full h-auto rounded border border-stone-800"
               />
@@ -125,15 +152,23 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               {t.formalSciencesDesc[language]}
             </p>
 
-            <div className="ml-2 space-y-0.5 mb-3">
-              <div className="text-xs sm:text-sm text-stone-700 font-mono">
-                <span className="text-stone-400 select-none">├──</span> {t.kbBasic[language]}/
+            <div className="ml-2 mb-3 font-mono text-xs sm:text-sm">
+              <div className="relative pl-4 pb-0.5">
+                <span className="absolute left-0 top-0 bottom-0 w-3 border-l-2 border-stone-300 rounded-bl" />
+                <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
+                <span className="pl-1 text-stone-900 font-semibold">{t.kbBasic[language]}/</span>
+                <span className="text-[10px] ml-1.5 text-emerald-600 font-bold">✓ {language === 'en' ? 'done' : 'гатова'}</span>
               </div>
-              <div className="text-xs sm:text-sm text-stone-700 font-mono">
-                <span className="text-stone-400 select-none">├──</span> {t.kbAlgebraCore[language]}/
+              <div className="relative pl-4 pb-0.5">
+                <span className="absolute left-0 top-0 bottom-0 w-3 border-l-2 border-stone-300 rounded-bl" />
+                <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
+                <span className="pl-1 text-stone-700">{t.kbAlgebraCore[language]}/</span>
+                <span className="text-[10px] ml-1.5 text-emerald-600 font-bold">✓ {language === 'en' ? 'done' : 'гатова'}</span>
               </div>
-              <div className="text-xs sm:text-sm text-stone-400 font-mono">
-                <span className="text-stone-400 select-none">└──</span> {t.kbAdvanced[language]}
+              <div className="relative pl-4">
+                <span className="absolute left-0 top-0 w-3 border-l-2 border-stone-300" style={{ height: '0.55em' }} />
+                <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
+                <span className="pl-1 text-stone-400">{t.kbAdvanced[language]}</span>
               </div>
             </div>
 

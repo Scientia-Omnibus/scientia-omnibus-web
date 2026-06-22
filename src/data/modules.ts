@@ -110,7 +110,7 @@ export const UI_TRANSLATIONS: TranslationDict = {
   },
   installTitle: {
     en: "Installation",
-    by: "Installation"
+    by: "Усталяванне"
   },
   installOneLiner: {
     en: "Linux / macOS",
@@ -118,19 +118,19 @@ export const UI_TRANSLATIONS: TranslationDict = {
   },
   installRecommended: {
     en: "Recommended",
-    by: "Recommended"
+    by: "Рэкамендавана"
   },
   installManual: {
     en: "Manual install",
-    by: "Manual install"
+    by: "Уручную"
   },
   installManualGit: {
     en: "Install Git, then run:",
-    by: "Install Git, then run:"
+    by: "Усталюйце Git, потым выканайце:"
   },
   installUpcoming: {
     en: "Windows support will be added later.",
-    by: "Windows support will be added later."
+    by: "Падтрымка Windows з'явіцца пазней."
   },
   whyTitle: {
     en: "Software Built for Real Constraints",
@@ -225,16 +225,16 @@ export const UI_TRANSLATIONS: TranslationDict = {
     by: "Фармальныя навукі — матэматыка ад асноў да вылічэнняў."
   },
   kbBasic: {
-    en: "Basic",
-    by: "Асновы"
+    en: "Arithmetic & Algebra Basics",
+    by: "Арыфметыка і асновы алгебры"
   },
   kbAlgebraCore: {
     en: "Algebra & Trigonometry Core",
     by: "Алгебра і трыганаметрыя"
   },
   kbAdvanced: {
-    en: "advanced (coming soon)",
-    by: "advanced (хутка)"
+    en: "Advanced (coming soon)",
+    by: "Прасунутае (хутка)"
   },
   kbPlanned: {
     en: "Planned",

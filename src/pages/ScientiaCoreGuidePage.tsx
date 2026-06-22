@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Copy, Check } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { UI_TRANSLATIONS } from '../data/modules';
 import { GUIDE_SECTIONS } from '../data/scientia-core-guide';
@@ -12,6 +12,13 @@ export default function ScientiaCoreGuidePage() {
   const { language, setLanguage } = useLanguage();
   const t = UI_TRANSLATIONS;
   const [activeSection, setActiveSection] = useState(GUIDE_SECTIONS[0].id);
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+
+  const copyCommand = async (text: string, idx: number) => {
+    await navigator.clipboard.writeText(text);
+    setCopiedIndex(idx);
+    setTimeout(() => setCopiedIndex(null), 2000);
+  };
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -120,9 +127,21 @@ export default function ScientiaCoreGuidePage() {
                         <p className="text-[11px] font-mono font-bold text-stone-500 mb-1">
                           {block.label[language]}
                         </p>
-                        <pre className="bg-stone-900 text-cartoon-green p-3 rounded-lg border border-stone-700 overflow-x-auto text-sm font-mono shadow-[2px_2px_0px_#1A1A1A]">
-                          $ {block.command}
-                        </pre>
+                        <div className="relative">
+                          <button
+                            onClick={() => copyCommand(block.command, i)}
+                            className="absolute top-2 right-2 z-10 p-1.5 rounded border bg-stone-800 border-stone-600 text-stone-500 hover:text-stone-300 hover:border-stone-400 transition-colors"
+                            aria-label="Copy command"
+                          >
+                            {copiedIndex === i
+                              ? <Check className="h-3.5 w-3.5 text-cartoon-green" />
+                              : <Copy className="h-3.5 w-3.5" />
+                            }
+                          </button>
+                          <pre className="bg-stone-900 text-cartoon-green p-3 rounded-lg border border-stone-700 overflow-x-auto text-sm font-mono shadow-[2px_2px_0px_#1A1A1A]">
+                            $ {block.command}
+                          </pre>
+                        </div>
                       </div>
                     ))}
                   </div>

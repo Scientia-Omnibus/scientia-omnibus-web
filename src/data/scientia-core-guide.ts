@@ -35,10 +35,10 @@ export interface GuideSection {
 export const GUIDE_SECTIONS: GuideSection[] = [
   {
     id: 'installation',
-    title: { en: 'Installation', by: 'Installation' },
+    title: { en: 'Installation', by: 'Усталяванне' },
     intro: {
       en: 'On Linux and macOS, run the one-liner below. For manual setup, install Git first, then use uv.',
-      by: 'On Linux and macOS, run the one-liner below. For manual setup, install Git first, then use uv.',
+      by: 'На Linux і macOS запусціце адну каманду ніжэй. Для ручной усталёўкі спачатку ўсталюйце Git, потым выкарыстоўвайце uv.',
     },
   },
   {
