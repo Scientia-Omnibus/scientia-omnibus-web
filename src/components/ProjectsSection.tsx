@@ -152,7 +152,7 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               {t.formalSciencesDesc[language]}
             </p>
 
-            <div className="ml-2 mb-3 font-mono text-xs sm:text-sm">
+            <div className="ml-2 mb-4 font-mono text-xs sm:text-sm">
               <div className="relative pl-4 pb-0.5">
                 <span className="absolute left-0 top-0 bottom-0 w-3 border-l-2 border-stone-300 rounded-bl" />
                 <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
@@ -172,6 +172,36 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               </div>
             </div>
 
+            {survivalModule && (
+              <>
+                <a
+                  href="https://github.com/Scientia-Omnibus/survival-and-medicine"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-sm font-semibold text-stone-900 hover:text-cartoon-purple transition-colors"
+                >
+                  survival-and-medicine <Github className="h-3 w-3" />
+                </a>
+                <p className="text-xs text-stone-500 mt-0.5 mb-2">
+                  {survivalModule.description[language]}
+                </p>
+
+                <div className="ml-2 mb-4 font-mono text-xs sm:text-sm">
+                  <div className="relative pl-4 pb-0.5">
+                    <span className="absolute left-0 top-0 bottom-0 w-3 border-l-2 border-stone-300 rounded-bl" />
+                    <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
+                    <span className="pl-1 text-stone-900 font-semibold">{survivalModule.title[language]}/</span>
+                    <span className="text-[10px] ml-1.5 text-emerald-500 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
+                  </div>
+                  <div className="relative pl-4">
+                    <span className="absolute left-0 top-0 w-3 border-l-2 border-stone-300" style={{ height: '0.55em' }} />
+                    <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
+                    <span className="pl-1 text-stone-400">{language === 'en' ? 'Medicine (coming soon)' : 'Медыцына (хутка)'}</span>
+                  </div>
+                </div>
+              </>
+            )}
+
             <p className="text-[11px] font-mono font-bold uppercase tracking-widest text-stone-500 mb-1.5">
               {t.kbPlanned[language]}
             </p>
@@ -180,12 +210,13 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbSocial[language]}</span>
               <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbNatural[language]}</span>
               <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbDiy[language]}</span>
-              <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbSurvival[language]}</span>
             </div>
 
             <p className="text-xs text-stone-500 leading-relaxed">
               {t.kbContrib[language]}{' '}
               <a href="https://github.com/Scientia-Omnibus/formal-sciences" target="_blank" rel="noreferrer" className="text-stone-900 font-semibold underline hover:text-cartoon-purple transition-colors">formal-sciences</a>
+              {' / '}
+              <a href="https://github.com/Scientia-Omnibus/survival-and-medicine" target="_blank" rel="noreferrer" className="text-stone-900 font-semibold underline hover:text-cartoon-purple transition-colors">survival-and-medicine</a>
               {' / '}
               <a href="https://github.com/Scientia-Omnibus/scientia-core" target="_blank" rel="noreferrer" className="text-stone-900 font-semibold underline hover:text-cartoon-purple transition-colors">scientia-core</a>
             </p>
