@@ -6,6 +6,7 @@ import { UI_TRANSLATIONS } from '../data/modules';
 import { GUIDE_SECTIONS } from '../data/scientia-core-guide';
 import { ShortcutTable, CommandTable } from '../components/ShortcutTable';
 import LanguageToggle from '../components/LanguageToggle';
+import InstallCallout from '../components/InstallCallout';
 
 export default function ScientiaCoreGuidePage() {
   const { language, setLanguage } = useLanguage();
@@ -106,6 +107,10 @@ export default function ScientiaCoreGuidePage() {
 
                 {section.intro && (
                   <p className="text-sm text-stone-700 mb-4">{section.intro[language]}</p>
+                )}
+
+                {section.id === 'installation' && (
+                  <InstallCallout language={language} className="mb-4" />
                 )}
 
                 {section.codeBlocks && (

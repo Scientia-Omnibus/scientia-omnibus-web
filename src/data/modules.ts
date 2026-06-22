@@ -112,21 +112,21 @@ export const UI_TRANSLATIONS: TranslationDict = {
     en: "Installation",
     by: "Installation"
   },
-  installViaUV: {
-    en: "via uv (recommended)",
-    by: "via uv (recommended)"
-  },
-  installViaPip: {
-    en: "via pip",
-    by: "via pip"
-  },
   installOneLiner: {
-    en: "Linux / macOS (one-liner)",
-    by: "Linux / macOS (one-liner)"
+    en: "Linux / macOS",
+    by: "Linux / macOS"
   },
-  installGitNote: {
-    en: "Git must be installed when using uv or pip.",
-    by: "Git must be installed when using uv or pip."
+  installRecommended: {
+    en: "Recommended",
+    by: "Recommended"
+  },
+  installManual: {
+    en: "Manual install",
+    by: "Manual install"
+  },
+  installManualGit: {
+    en: "Install Git, then run:",
+    by: "Install Git, then run:"
   },
   installUpcoming: {
     en: "Windows support will be added later.",

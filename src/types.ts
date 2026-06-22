@@ -30,10 +30,10 @@ export interface TranslationDict {
   guideSubtitle: LocalizedString;
   backToProjects: LocalizedString;
   installTitle: LocalizedString;
-  installViaUV: LocalizedString;
-  installViaPip: LocalizedString;
   installOneLiner: LocalizedString;
-  installGitNote: LocalizedString;
+  installRecommended: LocalizedString;
+  installManual: LocalizedString;
+  installManualGit: LocalizedString;
   installUpcoming: LocalizedString;
   whyTitle: LocalizedString;
   whySubtitle: LocalizedString;

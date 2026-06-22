@@ -37,33 +37,9 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     id: 'installation',
     title: { en: 'Installation', by: 'Installation' },
     intro: {
-      en: 'Install scientia-core with one of the following methods:',
-      by: 'Install scientia-core with one of the following methods:',
+      en: 'On Linux and macOS, run the one-liner below. For manual setup, install Git first, then use uv.',
+      by: 'On Linux and macOS, run the one-liner below. For manual setup, install Git first, then use uv.',
     },
-    codeBlocks: [
-      {
-        label: { en: 'via uv (recommended)', by: 'via uv (recommended)' },
-        command: 'uv tool install scientia-core',
-      },
-      {
-        label: { en: 'via pip', by: 'via pip' },
-        command: 'pip install scientia-core',
-      },
-      {
-        label: { en: 'Linux / macOS (one-liner)', by: 'Linux / macOS (one-liner)' },
-        command: "bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-core/main/install.sh)",
-      },
-    ],
-    notes: [
-      {
-        en: 'Git must be installed when using uv or pip.',
-        by: 'Git must be installed when using uv or pip.',
-      },
-      {
-        en: 'Windows support will be added later.',
-        by: 'Windows support will be added later.',
-      },
-    ],
   },
   {
     id: 'quick-start',
