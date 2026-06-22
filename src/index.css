@@ -23,8 +23,13 @@
   --color-cartoon-purple: #DDD6FE;
   --color-cartoon-yellow: #FEF08A;
   --color-bg-warm: #FFFDF5;
+  --color-bg-card: #FFFAF3;
   --color-stone-1000: #050308;
   --color-gray-750: #2d2a35;
+
+  --color-accent-green: rgba(187, 247, 208, 0.35);
+  --color-accent-blue: rgba(186, 230, 253, 0.3);
+  --color-accent-glow: rgba(187, 247, 208, 0.1);
 }
 
 /* Fredoka has no Cyrillic — switch display fonts for Belarusian */

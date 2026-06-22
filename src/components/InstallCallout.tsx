@@ -25,7 +25,7 @@ export default function InstallCallout({ language, className = '' }: InstallCall
 
   return (
     <div
-      className={`rounded-xl overflow-hidden border-2 border-stone-900 bg-[#1e1b29] shadow-[4px_4px_0px_#1A1A1A] ${className}`}
+      className={`rounded-xl overflow-hidden border-2 border-stone-900 bg-[#1e1b29] shadow-[4px_4px_0px_#1A1A1A] relative before:absolute before:inset-0 before:pointer-events-none before:rounded-xl before:shadow-[inset_0_0_30px_rgba(187,247,208,0.05)] ${className}`}
     >
       <div className="flex items-center justify-between gap-3 px-4 py-3 bg-[#15121e] border-b border-stone-800">
         <div className="flex items-center gap-2 min-w-0">

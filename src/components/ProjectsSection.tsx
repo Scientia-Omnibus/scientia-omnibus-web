@@ -37,7 +37,7 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
           {t.releasedLabel[language]}
         </p>
 
-        <div className="bg-white sketch-border p-5 sm:p-8 mb-10 sm:mb-14">
+        <div className="bg-[#FFFAF3] sketch-border p-5 sm:p-8 mb-10 sm:mb-14">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
             <div className="flex items-start gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center sketch-border-xs bg-[#1e1b29] text-cartoon-green">
@@ -94,7 +94,7 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
 
           <InstallCallout language={language} className="mb-6" />
 
-          <div className="rounded-xl overflow-hidden border-2 border-stone-900 bg-[#1e1b29] shadow-[4px_4px_0px_#1A1A1A]">
+          <div className="rounded-xl overflow-hidden border-2 border-stone-900 bg-[#1e1b29] shadow-[4px_4px_0px_#1A1A1A] relative before:absolute before:inset-0 before:pointer-events-none before:rounded-xl before:shadow-[inset_0_0_20px_rgba(187,247,208,0.06)]">
             <div className="flex items-center gap-2 px-3 py-2 bg-[#15121e] border-b border-stone-800">
               <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-stone-700" />
               <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-stone-700" />
@@ -157,13 +157,13 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                 <span className="absolute left-0 top-0 bottom-0 w-3 border-l-2 border-stone-300 rounded-bl" />
                 <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
                 <span className="pl-1 text-stone-900 font-semibold">{t.kbBasic[language]}/</span>
-                <span className="text-[10px] ml-1.5 text-emerald-600 font-bold">✓ {language === 'en' ? 'done' : 'гатова'}</span>
+                <span className="text-[10px] ml-1.5 text-emerald-500 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
               </div>
               <div className="relative pl-4 pb-0.5">
                 <span className="absolute left-0 top-0 bottom-0 w-3 border-l-2 border-stone-300 rounded-bl" />
                 <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
                 <span className="pl-1 text-stone-700">{t.kbAlgebraCore[language]}/</span>
-                <span className="text-[10px] ml-1.5 text-emerald-600 font-bold">✓ {language === 'en' ? 'done' : 'гатова'}</span>
+                <span className="text-[10px] ml-1.5 text-emerald-500 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
               </div>
               <div className="relative pl-4">
                 <span className="absolute left-0 top-0 w-3 border-l-2 border-stone-300" style={{ height: '0.55em' }} />
@@ -200,8 +200,9 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
           {UPCOMING_PROJECTS.map((project) => (
             <div
               key={project.id}
-              className="p-5 sm:p-6 bg-stone-50 border-2 border-dashed border-stone-400 rounded-xl"
+              className="p-5 sm:p-6 bg-stone-50 border-2 border-dashed border-stone-400 rounded-xl relative overflow-hidden"
             >
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-cartoon-blue/40 to-transparent" />
               <div className="flex items-start justify-between gap-3 mb-3">
                 <h3 className="font-display text-lg font-bold text-stone-800">
                   {project.name}

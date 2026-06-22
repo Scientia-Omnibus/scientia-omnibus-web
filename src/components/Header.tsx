@@ -36,7 +36,7 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
   };
 
   return (
-    <header className="sticky top-0 z-30 w-full border-b-3 border-stone-900 bg-bg-warm/95 py-2 backdrop-blur-md">
+    <header className="sticky top-0 z-30 w-full border-b-3 border-stone-900 bg-bg-warm/95 py-2 backdrop-blur-md shadow-[0_2px_0px_0px_rgba(187,247,208,0.15)]">
       <div className="mx-auto flex max-w-7xl h-14 sm:h-18 items-center justify-between px-4 sm:px-6 lg:px-8">
         <button type="button" className="flex items-center space-x-2 sm:space-x-3 min-w-0" onClick={goHome}>
           <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center sketch-border-xs bg-cartoon-blue text-stone-900 shadow-sm">
