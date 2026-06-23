@@ -5,6 +5,7 @@ import { RELEASED_PROJECTS, UPCOMING_PROJECTS, MODULES, UI_TRANSLATIONS } from '
 import { Github, BookOpen, Terminal } from 'lucide-react';
 import screenshotEducation from '../assets/images/screenshot-education.png';
 import screenshotSurvival from '../assets/images/screenshot-survival.png';
+import screenshotEditor from '../assets/images/screenshot-editor.png';
 import InstallCallout from './InstallCallout';
 
 interface ProjectsSectionProps {
@@ -223,43 +224,124 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
           </div>
         </div>
 
-        <p className="text-xs font-mono font-bold uppercase tracking-widest text-stone-500 mb-4">
-          {t.inDevelopmentLabel[language]}
-        </p>
+        {RELEASED_PROJECTS.filter((p) => p.id !== 'scientia-core').map((project) => (
+          <div key={project.id} className="bg-[#FFFAF3] sketch-border p-5 sm:p-8 mb-10 sm:mb-14">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center sketch-border-xs bg-[#1e1b29] text-cartoon-green">
+                  <Terminal className="h-6 w-6" />
+                </div>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-stone-950">
+                      {project.name}
+                    </h3>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-cartoon-green border border-stone-900 px-2 py-0.5 rounded">
+                      {t.statusReleased[language]}
+                    </span>
+                  </div>
+                  <p className="text-sm text-stone-600 font-medium mb-2">
+                    {project.tagline[language]}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          {UPCOMING_PROJECTS.map((project) => (
-            <div
-              key={project.id}
-              className="p-5 sm:p-6 bg-stone-50 border-2 border-dashed border-stone-400 rounded-xl relative overflow-hidden"
-            >
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-cartoon-blue/40 to-transparent" />
-              <div className="flex items-start justify-between gap-3 mb-3">
-                <h3 className="font-display text-lg font-bold text-stone-800">
+              <div className="flex flex-wrap gap-2 shrink-0">
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 sketch-button bg-cartoon-green text-stone-900 font-bold text-sm"
+                >
+                  <Github className="h-4 w-4" />
+                  <span>GitHub</span>
+                </a>
+                <Link
+                  to={`/${project.id}/guide`}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 sketch-button bg-cartoon-blue text-stone-900 font-bold text-sm"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  <span>{t.viewGuide[language]}</span>
+                </Link>
+              </div>
+            </div>
+
+            <p className="text-sm text-gray-700 leading-relaxed mb-6 max-w-3xl">
+              {project.description[language]}
+            </p>
+
+            <InstallCallout language={language} project={project.id as 'scientia-core' | 'scientia-editor'} className="mb-4" />
+
+            <div className="rounded-xl overflow-hidden border-2 border-stone-900 bg-[#1e1b29] shadow-[4px_4px_0px_#1A1A1A] relative">
+              <div className="flex items-center gap-2 px-3 py-2 bg-[#15121e] border-b border-stone-800">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-stone-700" />
+                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-stone-700" />
+                <span className="h-2.5 w-2.5 rounded-full bg-green-400 border border-stone-700" />
+                <span className="ml-2 font-mono text-[10px] sm:text-xs text-stone-500 truncate">
                   {project.name}
-                </h3>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-stone-200 text-stone-600 border border-stone-400 px-2 py-0.5 rounded shrink-0">
-                  {t.statusInDevelopment[language]}
                 </span>
               </div>
-              <p className="text-sm text-stone-600 leading-relaxed mb-3">
-                {project.description[language]}
-              </p>
-              {project.stack && (
-                <div className="flex flex-wrap gap-1.5">
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-[10px] font-mono bg-white border border-stone-300 text-stone-500 px-2 py-0.5 rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              )}
+              <div className="bg-[#110e19] p-2 sm:p-3">
+                <img
+                  src={screenshotEditor}
+                  alt="scientia-editor"
+                  className="w-full h-auto rounded border border-stone-800"
+                />
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+
+        {UPCOMING_PROJECTS.length > 0 && (
+          <>
+            <p className="text-xs font-mono font-bold uppercase tracking-widest text-stone-500 mb-4">
+              {t.inDevelopmentLabel[language]}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              {UPCOMING_PROJECTS.map((project) => (
+                <div
+                  key={project.id}
+                  className="p-5 sm:p-6 bg-stone-50 border-2 border-dashed border-stone-400 rounded-xl relative overflow-hidden"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-cartoon-blue/40 to-transparent" />
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <h3 className="font-display text-lg font-bold text-stone-800">
+                      {project.name}
+                    </h3>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-stone-200 text-stone-600 border border-stone-400 px-2 py-0.5 rounded shrink-0">
+                      {t.statusInDevelopment[language]}
+                    </span>
+                  </div>
+                  <p className="text-sm text-stone-600 leading-relaxed mb-3">
+                    {project.description[language]}
+                  </p>
+                  {project.stack && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-[10px] font-mono bg-white border border-stone-300 text-stone-500 px-2 py-0.5 rounded"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

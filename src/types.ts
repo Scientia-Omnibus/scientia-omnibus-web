@@ -68,4 +68,7 @@ export interface TranslationDict {
   kbDiy: LocalizedString;
   kbSurvival: LocalizedString;
   kbContrib: LocalizedString;
+  editorGuideTitle: LocalizedString;
+  editorGuideSubtitle: LocalizedString;
+  installManualRust: LocalizedString;
 }

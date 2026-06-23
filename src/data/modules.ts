@@ -132,6 +132,18 @@ export const UI_TRANSLATIONS: TranslationDict = {
     en: "Windows support will be added later.",
     by: "Падтрымка Windows з'явіцца пазней."
   },
+  editorGuideTitle: {
+    en: "Scientia Editor — Usage Guide",
+    by: "Scientia Editor — Дапаможнік"
+  },
+  editorGuideSubtitle: {
+    en: "Keyboard shortcuts, commands, and configuration for the terminal code editor.",
+    by: "Спалучэнні клавіш, каманды і налады для тэрмінальнага рэдактара кода."
+  },
+  installManualRust: {
+    en: "Install Rust, then run:",
+    by: "Усталюйце Rust, потым выканайце:"
+  },
   whyTitle: {
     en: "Software Built for Real Constraints",
     by: "Софт для рэальных абмежаванняў"
@@ -281,12 +293,10 @@ export const RELEASED_PROJECTS: ProjectInfo[] = [
     },
     stack: ['Python', 'Textual'],
   },
-];
-
-export const UPCOMING_PROJECTS: ProjectInfo[] = [
   {
-    id: 'code-editor',
+    id: 'scientia-editor',
     name: 'scientia-editor',
+    repoUrl: 'https://github.com/Scientia-Omnibus/scientia-editor',
     tagline: {
       en: 'Ultra-lightweight terminal code editor',
       by: 'Ультра-лёгкі тэрмінальны рэдактар кода',
@@ -298,6 +308,8 @@ export const UPCOMING_PROJECTS: ProjectInfo[] = [
     stack: ['Rust', 'TUI'],
   },
 ];
+
+export const UPCOMING_PROJECTS: ProjectInfo[] = [];
 
 export const MODULES: ModuleInfo[] = [
   {

@@ -3,19 +3,36 @@ import { Terminal, Sparkles, Copy, Check } from 'lucide-react';
 import { Language } from '../types';
 import { UI_TRANSLATIONS } from '../data/modules';
 
-const UV_COMMAND = 'uv tool install scientia-core';
-const BASH_COMMAND =
-  'bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-core/main/install.sh)';
+type Project = 'scientia-core' | 'scientia-editor';
+
+const PROJECT_CONFIG: Record<Project, { bashCommand: string; manualCommand: string; manualLabel: keyof typeof UI_TRANSLATIONS; downloadUrl: string; downloadLabel: string }> = {
+  'scientia-core': {
+    bashCommand: 'bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-core/main/install.sh)',
+    manualCommand: 'uv tool install scientia-core',
+    manualLabel: 'installManualGit',
+    downloadUrl: 'https://git-scm.com/downloads',
+    downloadLabel: 'git-scm.com',
+  },
+  'scientia-editor': {
+    bashCommand: 'bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-editor/main/install.sh)',
+    manualCommand: 'cargo install scientia-editor',
+    manualLabel: 'installManualRust',
+    downloadUrl: 'https://rustup.rs',
+    downloadLabel: 'rustup.rs',
+  },
+};
 
 interface InstallCalloutProps {
   language: Language;
   className?: string;
+  project?: Project;
 }
 
-export default function InstallCallout({ language, className = '' }: InstallCalloutProps) {
+export default function InstallCallout({ language, className = '', project = 'scientia-core' }: InstallCalloutProps) {
   const [copiedBash, setCopiedBash] = useState(false);
-  const [copiedUv, setCopiedUv] = useState(false);
+  const [copiedManual, setCopiedManual] = useState(false);
   const t = UI_TRANSLATIONS;
+  const config = PROJECT_CONFIG[project];
 
   const copyToClipboard = async (text: string, setCopied: (v: boolean) => void) => {
     await navigator.clipboard.writeText(text);
@@ -55,7 +72,7 @@ export default function InstallCallout({ language, className = '' }: InstallCall
           </div>
           <div className="relative">
             <button
-              onClick={() => copyToClipboard(BASH_COMMAND, setCopiedBash)}
+              onClick={() => copyToClipboard(config.bashCommand, setCopiedBash)}
               className="absolute top-2 right-2 z-10 p-1.5 rounded border bg-stone-800 border-stone-600 text-stone-400 hover:text-stone-200 hover:border-stone-400 transition-colors"
               aria-label="Copy command"
             >
@@ -63,7 +80,7 @@ export default function InstallCallout({ language, className = '' }: InstallCall
             </button>
             <pre className="bg-stone-950 text-cartoon-green px-4 py-4 sm:py-5 rounded-lg border-2 border-stone-700 text-sm sm:text-base font-mono overflow-x-auto shadow-[2px_2px_0px_#1A1A1A]">
               <span className="text-stone-500 select-none">$ </span>
-              {BASH_COMMAND}
+              {config.bashCommand}
             </pre>
           </div>
         </div>
@@ -73,27 +90,27 @@ export default function InstallCallout({ language, className = '' }: InstallCall
             {t.installManual[language]}
           </p>
           <p className="text-xs text-stone-500 mb-3 leading-relaxed">
-            {t.installManualGit[language]}{' '}
+            {t[config.manualLabel][language]}{' '}
             <a
-              href="https://git-scm.com/downloads"
+              href={config.downloadUrl}
               target="_blank"
               rel="noreferrer"
               className="text-stone-400 underline decoration-stone-600 hover:text-cartoon-green transition-colors"
             >
-              git-scm.com
+              {config.downloadLabel}
             </a>
           </p>
           <div className="relative">
             <button
-              onClick={() => copyToClipboard(UV_COMMAND, setCopiedUv)}
+              onClick={() => copyToClipboard(config.manualCommand, setCopiedManual)}
               className="absolute top-1.5 right-1.5 z-10 p-1 rounded border bg-stone-800 border-stone-700 text-stone-500 hover:text-stone-300 hover:border-stone-500 transition-colors"
               aria-label="Copy command"
             >
-              {copiedUv ? <Check className="h-3 w-3 text-cartoon-green" /> : <Copy className="h-3 w-3" />}
+              {copiedManual ? <Check className="h-3 w-3 text-cartoon-green" /> : <Copy className="h-3 w-3" />}
             </button>
             <pre className="bg-stone-950/80 text-stone-400 px-3 py-2.5 rounded-lg border border-stone-800 text-xs sm:text-sm font-mono overflow-x-auto">
               <span className="text-stone-600 select-none">$ </span>
-              {UV_COMMAND}
+              {config.manualCommand}
             </pre>
           </div>
         </div>

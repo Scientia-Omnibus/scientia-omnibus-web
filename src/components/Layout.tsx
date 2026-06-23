@@ -33,7 +33,7 @@ export default function Layout() {
     }
   }, [location]);
 
-  const isGuidePage = location.pathname.startsWith('/scientia-core');
+  const isGuidePage = location.pathname.startsWith('/scientia-core') || location.pathname.startsWith('/scientia-editor');
 
   return (
     <div
