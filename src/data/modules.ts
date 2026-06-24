@@ -296,7 +296,6 @@ export const RELEASED_PROJECTS: ProjectInfo[] = [
   {
     id: 'scientia-editor',
     name: 'scientia-editor',
-    repoUrl: 'https://github.com/Scientia-Omnibus/scientia-editor',
     tagline: {
       en: 'Ultra-lightweight terminal code editor',
       by: 'Ультра-лёгкі тэрмінальны рэдактар кода',

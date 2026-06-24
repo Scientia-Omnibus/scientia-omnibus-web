@@ -5,20 +5,22 @@ import { UI_TRANSLATIONS } from '../data/modules';
 
 type Project = 'scientia-core' | 'scientia-editor';
 
-const PROJECT_CONFIG: Record<Project, { bashCommand: string; manualCommand: string; manualLabel: keyof typeof UI_TRANSLATIONS; downloadUrl: string; downloadLabel: string }> = {
+const PROJECT_CONFIG: Record<Project, { bashCommand: string; manualCommand: string; manualLabel: keyof typeof UI_TRANSLATIONS; downloadUrl: string; downloadLabel: string; hasOneLiner?: boolean }> = {
   'scientia-core': {
     bashCommand: 'bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-core/main/install.sh)',
     manualCommand: 'uv tool install scientia-core',
     manualLabel: 'installManualGit',
     downloadUrl: 'https://git-scm.com/downloads',
     downloadLabel: 'git-scm.com',
+    hasOneLiner: true,
   },
   'scientia-editor': {
-    bashCommand: 'bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-editor/master/install.sh)',
+    bashCommand: '',
     manualCommand: 'cargo install scientia-editor',
     manualLabel: 'installManualRust',
     downloadUrl: 'https://rustup.rs',
     downloadLabel: 'rustup.rs',
+    hasOneLiner: false,
   },
 };
 
@@ -60,30 +62,32 @@ export default function InstallCallout({ language, className = '', project = 'sc
       </div>
 
       <div className="p-4 sm:p-5 bg-[#110e19] space-y-5">
-        <div className="rounded-xl border-2 border-cartoon-green bg-[#15121e] p-4 sm:p-5 shadow-[3px_3px_0px_#BBF7D0]">
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            <p className="text-xs sm:text-sm font-display font-bold text-stone-100">
-              {t.installOneLiner[language]}
-            </p>
-            <span className="inline-flex items-center gap-1 font-fredoka text-[10px] font-bold uppercase tracking-wider text-stone-900 bg-cartoon-yellow border border-stone-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#1A1A1A]">
-              <Sparkles className="h-3 w-3" />
-              {t.installRecommended[language]}
-            </span>
+        {config.hasOneLiner !== false && (
+          <div className="rounded-xl border-2 border-cartoon-green bg-[#15121e] p-4 sm:p-5 shadow-[3px_3px_0px_#BBF7D0]">
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <p className="text-xs sm:text-sm font-display font-bold text-stone-100">
+                {t.installOneLiner[language]}
+              </p>
+              <span className="inline-flex items-center gap-1 font-fredoka text-[10px] font-bold uppercase tracking-wider text-stone-900 bg-cartoon-yellow border border-stone-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#1A1A1A]">
+                <Sparkles className="h-3 w-3" />
+                {t.installRecommended[language]}
+              </span>
+            </div>
+            <div className="relative">
+              <button
+                onClick={() => copyToClipboard(config.bashCommand, setCopiedBash)}
+                className="absolute top-2 right-2 z-10 p-1.5 rounded border bg-stone-800 border-stone-600 text-stone-400 hover:text-stone-200 hover:border-stone-400 transition-colors"
+                aria-label="Copy command"
+              >
+                {copiedBash ? <Check className="h-3.5 w-3.5 text-cartoon-green" /> : <Copy className="h-3.5 w-3.5" />}
+              </button>
+              <pre className="bg-stone-950 text-cartoon-green px-4 py-4 sm:py-5 rounded-lg border-2 border-stone-700 text-sm sm:text-base font-mono overflow-x-auto shadow-[2px_2px_0px_#1A1A1A]">
+                <span className="text-stone-500 select-none">$ </span>
+                {config.bashCommand}
+              </pre>
+            </div>
           </div>
-          <div className="relative">
-            <button
-              onClick={() => copyToClipboard(config.bashCommand, setCopiedBash)}
-              className="absolute top-2 right-2 z-10 p-1.5 rounded border bg-stone-800 border-stone-600 text-stone-400 hover:text-stone-200 hover:border-stone-400 transition-colors"
-              aria-label="Copy command"
-            >
-              {copiedBash ? <Check className="h-3.5 w-3.5 text-cartoon-green" /> : <Copy className="h-3.5 w-3.5" />}
-            </button>
-            <pre className="bg-stone-950 text-cartoon-green px-4 py-4 sm:py-5 rounded-lg border-2 border-stone-700 text-sm sm:text-base font-mono overflow-x-auto shadow-[2px_2px_0px_#1A1A1A]">
-              <span className="text-stone-500 select-none">$ </span>
-              {config.bashCommand}
-            </pre>
-          </div>
-        </div>
+        )}
 
         <div className="rounded-lg border border-stone-800 bg-[#0d0b14] p-3 sm:p-4">
           <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-stone-500 mb-2">

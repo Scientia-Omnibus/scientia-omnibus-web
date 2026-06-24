@@ -37,9 +37,24 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     id: 'installation',
     title: { en: 'Installation', by: 'Усталяванне' },
     intro: {
-      en: 'Coming soon.',
-      by: 'Хутка.',
+      en: 'Install scientia-editor with Cargo:',
+      by: 'Усталюйце scientia-editor праз Cargo:',
     },
+    codeBlocks: [
+      {
+        label: { en: 'Install from source', by: 'Усталяваць з зыходнікаў' },
+        command: 'cargo install scientia-editor',
+      },
+    ],
+    bullets: [
+      {
+        term: { en: 'Prerequisites', by: 'Патрабаванні' },
+        description: {
+          en: 'Install Rust from https://rustup.rs, then run the command above.',
+          by: 'Усталюйце Rust з https://rustup.rs, потым выканайце каманду вышэй.',
+        },
+      },
+    ],
   },
   {
     id: 'quick-start',

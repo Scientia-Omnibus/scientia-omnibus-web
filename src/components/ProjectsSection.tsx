@@ -257,15 +257,17 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               </div>
 
               <div className="flex flex-wrap gap-2 shrink-0">
-                <a
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 sketch-button bg-cartoon-green text-stone-900 font-bold text-sm"
-                >
-                  <Github className="h-4 w-4" />
-                  <span>GitHub</span>
-                </a>
+                {project.repoUrl && (
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 sketch-button bg-cartoon-green text-stone-900 font-bold text-sm"
+                  >
+                    <Github className="h-4 w-4" />
+                    <span>GitHub</span>
+                  </a>
+                )}
                 <Link
                   to={`/${project.id}/guide`}
                   className="inline-flex items-center gap-1.5 px-4 py-2 sketch-button bg-cartoon-blue text-stone-900 font-bold text-sm"
