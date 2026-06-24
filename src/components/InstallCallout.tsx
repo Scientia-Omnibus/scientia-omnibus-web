@@ -14,7 +14,7 @@ const PROJECT_CONFIG: Record<Project, { bashCommand: string; manualCommand: stri
     downloadLabel: 'git-scm.com',
   },
   'scientia-editor': {
-    bashCommand: 'bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-editor/main/install.sh)',
+    bashCommand: 'bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-editor/master/install.sh)',
     manualCommand: 'cargo install scientia-editor',
     manualLabel: 'installManualRust',
     downloadUrl: 'https://rustup.rs',
