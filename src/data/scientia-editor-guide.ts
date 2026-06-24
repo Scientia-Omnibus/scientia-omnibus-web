@@ -37,8 +37,8 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     id: 'installation',
     title: { en: 'Installation', by: 'Усталяванне' },
     intro: {
-      en: 'On Linux and macOS, run the one-liner below. For manual setup, install Rust first, then use cargo.',
-      by: 'На Linux і macOS запусціце адну каманду ніжэй. Для ручной усталёўкі спачатку ўсталюйце Rust, потым выкарыстоўвайце cargo.',
+      en: 'Coming soon.',
+      by: 'Хутка.',
     },
   },
   {
