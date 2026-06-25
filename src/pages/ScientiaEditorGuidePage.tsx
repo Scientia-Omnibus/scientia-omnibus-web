@@ -6,6 +6,7 @@ import { UI_TRANSLATIONS } from '../data/modules';
 import { GUIDE_SECTIONS } from '../data/scientia-editor-guide';
 import { ShortcutTable, CommandTable } from '../components/ShortcutTable';
 import LanguageToggle from '../components/LanguageToggle';
+import InstallCallout from '../components/InstallCallout';
 
 export default function ScientiaEditorGuidePage() {
   const { language, setLanguage } = useLanguage();
@@ -79,6 +80,10 @@ export default function ScientiaEditorGuidePage() {
 
             {activeData.intro && (
               <p className="text-sm text-stone-700 mb-4">{activeData.intro[language]}</p>
+            )}
+
+            {activeData.id === 'installation' && (
+              <InstallCallout language={language} project="scientia-editor" className="mb-4" />
             )}
 
             {activeData.codeBlocks && (

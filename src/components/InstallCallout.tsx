@@ -15,12 +15,12 @@ const PROJECT_CONFIG: Record<Project, { bashCommand: string; manualCommand: stri
     hasOneLiner: true,
   },
   'scientia-editor': {
-    bashCommand: '',
+    bashCommand: 'bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-omnibus-web/main/install.sh)',
     manualCommand: 'cargo install scientia-editor',
     manualLabel: 'installManualRust',
     downloadUrl: 'https://rustup.rs',
     downloadLabel: 'rustup.rs',
-    hasOneLiner: false,
+    hasOneLiner: true,
   },
 };
 
