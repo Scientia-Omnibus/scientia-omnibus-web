@@ -133,6 +133,7 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     shortcuts: [
       { keys: 'w / k', action: { en: 'Scroll up', by: 'Пракруціць уверх' } },
       { keys: 's / j', action: { en: 'Scroll down', by: 'Пракруціць уніз' } },
+      { keys: 'Ctrl+F', action: { en: 'Find in file', by: 'Знайсці ў файле' } },
       { keys: 'Space', action: { en: 'Page down', by: 'Старонка ўніз' } },
       { keys: 'b', action: { en: 'Page up', by: 'Старонка ўверх' } },
     ],
