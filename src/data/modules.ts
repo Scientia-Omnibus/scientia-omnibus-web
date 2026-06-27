@@ -21,8 +21,8 @@ export const UI_TRANSLATIONS: TranslationDict = {
     by: "Веды не павінны патрабаваць гігабайтаў."
   },
   heroSubtitle: {
-    en: "A volunteer open-source initiative building lightweight, offline-first software — for communities where internet is unreliable and hardware is old.",
-    by: "Валонцёрская open-source ініцыятыва, якая стварае лёгкі афлайн-софт — для суполак, дзе інтэрнэт ненадзейны, а тэхніка састарэлая."
+    en: "A volunteer open-source initiative building lightweight, offline-first terminal software — for communities where internet is unreliable and hardware is old.",
+    by: "Валонцёрская open-source ініцыятыва, якая стварае лёгкі тэрмінальны афлайн-софт — для суполак, дзе інтэрнэт ненадзейны, а тэхніка састарэлая."
   },
   statZeroOverhead: {
     en: "0MB Base Overhead",
@@ -181,12 +181,12 @@ export const UI_TRANSLATIONS: TranslationDict = {
     by: "Якасныя адукацыйныя матэрыялы не павінны патрабаваць дарагой тэхнікі. Нашы інструменты працуюць на мікракампутары за 5 даляраў і 10-гадовых ноўтбуках."
   },
   efficiencyTitle: {
-    en: "Efficiency by design",
-    by: "Эфектыўнасць па задуме"
+    en: "Terminal-Native by Design",
+    by: "Створаны для тэрмінала"
   },
   efficiencyDesc: {
-    en: "Terminal interfaces and direct file reads use up to 98% less memory than web browsers. Less RAM means less electricity and longer battery life.",
-    by: "Тэкставыя інтэрфейсы і прамое чытанне файлаў спажываюць да 98% менш АЗП, чым браўзеры. Менш памяці — менш электрычнасці і даўжэй працуе батарэя."
+    en: "Terminal (TUI) interfaces and direct file reads use up to 98% less memory than web browsers. Less RAM means less electricity and longer battery life.",
+    by: "Тэрмінальныя (TUI) інтэрфейсы і прамое чытанне файлаў спажываюць да 98% менш АЗП, чым браўзеры. Менш памяці — менш электрычнасці і даўжэй працуе батарэя."
   },
   empowermentTitle: {
     en: "You own your knowledge",

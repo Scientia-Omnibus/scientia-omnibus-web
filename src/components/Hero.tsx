@@ -19,10 +19,8 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
   const t = UI_TRANSLATIONS;
 
   return (
-    <section className="relative overflow-hidden bg-bg-warm border-b-3 border-stone-900">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_55%_at_30%_0%,#000_60%,transparent_100%)] opacity-[0.05]" />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+    <section className="relative overflow-hidden bg-bg-warm">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -40,7 +38,7 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
               {t.heroTitle[language]}
             </h1>
 
-            <p className="text-base sm:text-lg text-stone-600 leading-relaxed mb-8 max-w-lg">
+            <p className="text-base sm:text-lg text-stone-600 leading-relaxed mb-8 max-w-lg font-mono">
               {t.heroSubtitle[language]}
             </p>
 
@@ -64,6 +62,24 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
               </a>
 
             </div>
+
+            <motion.div
+              className="mt-12 sm:mt-14 pt-8 sm:pt-10 border-t border-stone-300 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.2 }}
+            >
+              {HERO_STATS.map(({ key, descKey }) => (
+                <div key={key} className="flex flex-col gap-1.5">
+                  <span className="font-mono text-[11px] sm:text-xs font-bold text-stone-700 bg-stone-100 border border-stone-300 rounded-md px-2.5 py-1 w-fit leading-none">
+                    {t[key][language]}
+                  </span>
+                  <p className="text-xs sm:text-sm text-stone-500 leading-relaxed">
+                    {t[descKey][language]}
+                  </p>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
 
           <motion.div
@@ -73,7 +89,7 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
             transition={{ duration: 0.45, delay: 0.1 }}
           >
             <div className="w-full max-w-md lg:max-w-lg">
-              <div className="overflow-hidden rounded-xl border-3 border-stone-900 bg-stone-100 shadow-[6px_6px_0px_#1A1A1A]">
+              <div className="overflow-hidden rounded-xl border-2 border-stone-900 bg-stone-100 shadow-[4px_4px_0px_#1A1A1A]">
                 <img
                   src={demoMain}
                   alt=""
@@ -83,24 +99,6 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
             </div>
           </motion.div>
         </div>
-
-        <motion.div
-          className="mt-14 sm:mt-16 pt-10 sm:pt-12 border-t border-stone-300 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.2 }}
-        >
-          {HERO_STATS.map(({ key, descKey }) => (
-            <div key={key}>
-              <h2 className="font-display font-bold text-base sm:text-lg text-stone-900 leading-snug">
-                {t[key][language]}
-              </h2>
-              <p className="text-sm text-stone-500 leading-relaxed mt-2">
-                {t[descKey][language]}
-              </p>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

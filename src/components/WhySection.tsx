@@ -1,6 +1,6 @@
 import { Language } from '../types';
 import { UI_TRANSLATIONS } from '../data/modules';
-import { Globe, Zap, BookOpen } from 'lucide-react';
+import { Globe, Terminal, BookOpen } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface WhySectionProps {
@@ -16,7 +16,7 @@ export default function WhySection({ language }: WhySectionProps) {
   };
 
   return (
-    <section id="why" className="py-12 sm:py-20 bg-bg-warm overflow-hidden border-b-3 border-stone-1000">
+    <section id="why" className="py-12 sm:py-20 bg-bg-warm overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <span className="font-fredoka text-xs sm:text-sm font-bold text-stone-1000 bg-cartoon-purple px-4 py-1.5 border-2 border-stone-900 rounded-lg shadow-[2px_2px_0px_#1A1A1A] uppercase tracking-wider">
@@ -80,14 +80,14 @@ export default function WhySection({ language }: WhySectionProps) {
           </motion.div>
 
           <motion.div
-            className="p-6 sm:p-8 bg-white sketch-border hover:bg-cartoon-purple transition-colors duration-200"
+            className="p-6 sm:p-8 bg-white sketch-border hover:bg-cartoon-green transition-colors duration-200"
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
           >
-            <div className="flex h-11 w-11 items-center justify-center sketch-border-xs bg-cartoon-purple text-stone-900 mb-4">
-              <Zap className="h-5 w-5" />
+            <div className="flex h-11 w-11 items-center justify-center sketch-border-xs bg-stone-900 text-cartoon-green mb-4">
+              <Terminal className="h-5 w-5" />
             </div>
             <h3 className="font-display text-xl font-bold text-stone-950 mb-2 leading-tight">
               {t.efficiencyTitle[language]}
@@ -98,13 +98,13 @@ export default function WhySection({ language }: WhySectionProps) {
           </motion.div>
 
           <motion.div
-            className="p-6 sm:p-8 bg-white sketch-border hover:bg-cartoon-green transition-colors duration-200"
+            className="p-6 sm:p-8 bg-white sketch-border hover:bg-cartoon-orange transition-colors duration-200"
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
           >
-            <div className="flex h-11 w-11 items-center justify-center sketch-border-xs bg-cartoon-green text-stone-900 mb-4">
+            <div className="flex h-11 w-11 items-center justify-center sketch-border-xs bg-cartoon-orange text-stone-900 mb-4">
               <BookOpen className="h-5 w-5" />
             </div>
             <h3 className="font-display text-xl font-bold text-stone-950 mb-2 leading-tight">

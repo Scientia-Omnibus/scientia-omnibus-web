@@ -20,7 +20,7 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
   const survivalModule = MODULES.find((m) => m.id === 'survival');
 
   return (
-    <section id="projects" className="py-12 sm:py-20 bg-[#FFFCEE] border-b-3 border-stone-900">
+    <section id="projects" className="py-12 sm:py-20 bg-[#FFFCEE]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <span className="font-fredoka text-xs sm:text-sm font-bold text-stone-900 bg-cartoon-yellow px-4 py-1.5 border-2 border-stone-900 rounded-lg shadow-[2px_2px_0px_#1A1A1A] uppercase tracking-wider">
