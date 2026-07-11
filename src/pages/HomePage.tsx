@@ -1,4 +1,5 @@
 import Hero from '../components/Hero';
+import ProblemMapSection from '../components/ProblemMapSection';
 import ProjectsSection from '../components/ProjectsSection';
 import WhySection from '../components/WhySection';
 import CommunitySection from '../components/CommunitySection';
@@ -18,6 +19,8 @@ export default function HomePage() {
   return (
     <main>
       <Hero language={language} onScrollToSection={handleScrollToSection} />
+      <SectionDivider />
+      <ProblemMapSection language={language} />
       <SectionDivider />
       <ProjectsSection language={language} />
       <SectionDivider />
