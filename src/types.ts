@@ -71,4 +71,12 @@ export interface TranslationDict {
   editorGuideTitle: LocalizedString;
   editorGuideSubtitle: LocalizedString;
   installManualRust: LocalizedString;
+  regionAfrica: LocalizedString;
+  regionSouthAsia: LocalizedString;
+  regionSoutheastAsia: LocalizedString;
+  regionLatinAmerica: LocalizedString;
+  mapFactStudents: LocalizedString;
+  mapFactSchools: LocalizedString;
+  mapFactHardware: LocalizedString;
+  mapFactBloat: LocalizedString;
 }

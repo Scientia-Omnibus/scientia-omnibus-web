@@ -276,6 +276,38 @@ export const UI_TRANSLATIONS: TranslationDict = {
     en: "Contribute — fix a bug, write content, or translate:",
     by: "Дапамажыце — выпраўце памылку, напішыце тэкст ці перакладзіце:"
   },
+  regionAfrica: {
+    en: "Sub-Saharan Africa — 37% internet penetration",
+    by: "Афрыка на поўдзень ад Сахары — 37% пранікнення інтэрнэту"
+  },
+  regionSouthAsia: {
+    en: "South Asia — 52% internet penetration",
+    by: "Паўднёвая Азія — 52% пранікнення інтэрнэту"
+  },
+  regionSoutheastAsia: {
+    en: "Southeast Asia — 65% internet penetration",
+    by: "Паўднёва-Усходняя Азія — 65% пранікнення інтэрнэту"
+  },
+  regionLatinAmerica: {
+    en: "Latin America — 75% but rural areas have 35%",
+    by: "Лацінская Амерыка — 75%, але сельскія раёны — 35%"
+  },
+  mapFactStudents: {
+    en: "~400 million students worldwide lack internet at home",
+    by: "~400 млн вучняў у свеце не маюць інтэрнэту дома"
+  },
+  mapFactSchools: {
+    en: "43% of schools in developing countries lack internet",
+    by: "43% школ у краінах, якія развіваюцца, не маюць інтэрнэту"
+  },
+  mapFactHardware: {
+    en: "Average school PC age in rural areas: 12+ years",
+    by: "Сярэдні ўзрост школьнага ПК у сельскіх раёнах: 12+ гадоў"
+  },
+  mapFactBloat: {
+    en: "Educational web apps grew 300% in size since 2015",
+    by: "Памер адукацыйных вэб-дадаткаў вырас на 300% з 2015 года"
+  },
 };
 
 export const RELEASED_PROJECTS: ProjectInfo[] = [
