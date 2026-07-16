@@ -308,6 +308,54 @@ export const UI_TRANSLATIONS: TranslationDict = {
     en: "Educational web apps grew 300% in size since 2015",
     by: "Памер адукацыйных вэб-дадаткаў вырас на 300% з 2015 года"
   },
+  helpSectionTitle: {
+    en: "You Can Help, Even Without Code",
+    by: "Можна дапамагчы нават без кода"
+  },
+  helpSectionSubtitle: {
+    en: "Every skill counts — writing, translating, testing, teaching, or simply spreading the word.",
+    by: "Кожны навык мае значэнне — пісанне, пераклад, тэставанне, навучанне ці проста распаўсюд."
+  },
+  helpWriteTitle: {
+    en: "Write & Edit Knowledge",
+    by: "Пішы і рэдагуй веды"
+  },
+  helpWriteDesc: {
+    en: "Fix typos, write new chapters, or translate existing ones — all in simple Markdown. No programming required. Your edits go directly into the official knowledge packs.",
+    by: "Выпраўляй памылкі, пішы новыя раздзелы ці перакладай існуючыя — усё ў простым Markdown. Праграмаванне не патрэбнае. Твае праўкі трапляюць проста ў афіцыйныя пакеты ведаў."
+  },
+  helpFormalDesc: {
+    en: "Open math textbook collection — arithmetic through calculus, with advanced topics coming.",
+    by: "Адкрытая калекцыя падручнікаў па матэматыцы — ад арыфметыкі да вылічэнняў, хутка прасунутыя тэмы."
+  },
+  helpSurvivalDesc: {
+    en: "31 chapters of field-proven survival knowledge — medicine, shelter, water, fire, and more.",
+    by: "31 раздзел правераных ведаў па выжыванні — медыцына, жытло, вада, агонь і іншае."
+  },
+  helpBuildTitle: {
+    en: "Build the Tools",
+    by: "Стварай інструменты"
+  },
+  helpBuildDesc: {
+    en: "Improve scientia-core (Python/Textual) — fix bugs, optimise performance. The Rust-based scientia-editor is coming open source soon. Code, test, design, or share feedback.",
+    by: "Паляпшай scientia-core (Python/Textual) — выпраўляй памылкі, аптымізуй. Rust-рэдактар scientia-editor хутка стане адкрытым. Пішы код, тэстуй, прапаноўвай дызайн ці проста дзяліся меркаваннем."
+  },
+  helpEditorComing: {
+    en: "Rust/TUI editor — coming open source soon. Watch the repo for announcements.",
+    by: "Rust/TUI-рэдактар — хутка з адкрытым кодам. Сачы за рэпазітаром."
+  },
+  helpShareTitle: {
+    en: "Spread the Word",
+    by: "Распаўсюджвай"
+  },
+  helpShareDesc: {
+    en: "Tell educators, volunteers, and community organizers about Scientia Omnibus. Share it with schools and field teams that lack reliable internet or modern hardware.",
+    by: "Раскажы настаўнікам, валанцёрам і арганізатарам пра Scientia Omnibus. Падзяліся са школамі і палявымі камандамі, якім не хапае інтэрнэту ці сучаснай тэхнікі."
+  },
+  helpCTA: {
+    en: "Every contribution, big or small, makes knowledge accessible.",
+    by: "Кожны ўнёсак, вялікі ці малы, робіць веды даступнымі."
+  },
 };
 
 export const RELEASED_PROJECTS: ProjectInfo[] = [

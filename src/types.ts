@@ -79,4 +79,16 @@ export interface TranslationDict {
   mapFactSchools: LocalizedString;
   mapFactHardware: LocalizedString;
   mapFactBloat: LocalizedString;
+  helpSectionTitle: LocalizedString;
+  helpSectionSubtitle: LocalizedString;
+  helpWriteTitle: LocalizedString;
+  helpWriteDesc: LocalizedString;
+  helpFormalDesc: LocalizedString;
+  helpSurvivalDesc: LocalizedString;
+  helpBuildTitle: LocalizedString;
+  helpBuildDesc: LocalizedString;
+  helpEditorComing: LocalizedString;
+  helpShareTitle: LocalizedString;
+  helpShareDesc: LocalizedString;
+  helpCTA: LocalizedString;
 }

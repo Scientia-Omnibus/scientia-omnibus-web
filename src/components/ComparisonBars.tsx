@@ -10,7 +10,7 @@ const BAR_DATA = [
   {
     id: 'chrome',
     label: { en: 'Modern Browser (Chrome)', by: 'Сучасны браўзер (Chrome)' },
-    value: 450,
+    value: 350,
     unit: 'MB',
     color: 'bg-gradient-to-r from-red-400 to-red-500',
     barColor: '#EF4444',

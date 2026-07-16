@@ -3,6 +3,7 @@ import ProblemMapSection from '../components/ProblemMapSection';
 import ComparisonBars from '../components/ComparisonBars';
 import ProjectsSection from '../components/ProjectsSection';
 import WhySection from '../components/WhySection';
+import HowToHelpSection from '../components/HowToHelpSection';
 import CommunitySection from '../components/CommunitySection';
 import SectionDivider from '../components/SectionDivider';
 import { useLanguage } from '../context/LanguageContext';
@@ -28,6 +29,8 @@ export default function HomePage() {
       <ProjectsSection language={language} />
       <SectionDivider />
       <WhySection language={language} />
+      <SectionDivider />
+      <HowToHelpSection language={language} />
       <SectionDivider />
       <CommunitySection language={language} />
     </main>
