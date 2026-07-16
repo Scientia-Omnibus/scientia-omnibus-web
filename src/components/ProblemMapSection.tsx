@@ -63,7 +63,7 @@ export default function ProblemMapSection({ language }: ProblemMapSectionProps) 
   const isEn = language === 'en';
 
   return (
-    <section id="problem" className="py-12 sm:py-20 bg-white overflow-hidden">
+    <section id="problem" className="py-12 sm:py-20 bg-[#FFFCEE] overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center max-w-3xl mx-auto mb-8 sm:mb-12"
@@ -283,9 +283,9 @@ export default function ProblemMapSection({ language }: ProblemMapSectionProps) 
                   <Zap className="h-4 w-4" />
                 </div>
                 <div>
-                  <span className="font-display text-xl font-bold text-stone-950">450 MB</span>
+                  <span className="font-display text-xl font-bold text-stone-950">350 MB</span>
                   <p className="font-mono text-[10px] text-stone-500 leading-tight">
-                    {isEn ? 'Chrome browser installer in 2025' : 'усталёўшчык Chrome у 2025 годзе'}
+                    {isEn ? 'Chrome RAM per open tab' : 'АЗП Chrome на адну ўкладку'}
                   </p>
                 </div>
               </div>

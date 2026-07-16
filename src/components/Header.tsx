@@ -54,7 +54,7 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
   const navItems = [
     { id: 'why', label: { en: 'Philosophy', by: 'Філасофія' } },
     { id: 'projects', label: { en: 'Projects', by: 'Праекты' } },
-    { id: 'community', label: { en: 'Community', by: 'Супольнасць' } },
+    { id: 'get-involved', label: { en: 'Get Involved', by: 'Далучыцца' } },
   ];
 
   const handleNavClick = (id: string) => {
@@ -73,18 +73,10 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
   return (
     <header className="sticky top-0 z-30 w-full border-b-3 border-stone-900 bg-bg-warm/95 py-2 backdrop-blur-md shadow-[0_2px_0px_0px_rgba(187,247,208,0.15)]">
       <div className="mx-auto flex max-w-7xl h-14 sm:h-18 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <button type="button" className="flex items-center space-x-2 sm:space-x-3 min-w-0 relative" onClick={() => { goHome(); handleLogoClick(); }}>
-          <div className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center sketch-border-xs bg-cartoon-blue text-stone-900 shadow-sm">
-            <span className="font-display text-lg sm:text-xl font-bold">S</span>
-          </div>
-          <div className="min-w-0 text-left">
-            <span className="font-display text-base sm:text-xl font-bold tracking-tight text-stone-900 leading-tight truncate block">
-              Scientia Omnibus
-            </span>
-            <span className="text-[9px] sm:text-xs font-mono font-bold text-stone-600 uppercase tracking-wider hidden sm:block">
-              {language === 'en' ? 'Knowledge for Everyone' : 'Веды для Кожнага'}
-            </span>
-          </div>
+        <button type="button" className="flex items-center min-w-0 relative" onClick={() => { goHome(); handleLogoClick(); }}>
+          <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-stone-900 leading-tight truncate">
+            Scientia Omnibus
+          </span>
         </button>
 
         <nav className="hidden md:flex items-center space-x-6">

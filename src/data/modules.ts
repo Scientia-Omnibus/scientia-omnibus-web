@@ -161,8 +161,8 @@ export const UI_TRANSLATIONS: TranslationDict = {
     by: "Адна адукацыйная старонка можа спажываць 100+ МБ АЗП. Вучні са старымі ноўтбукамі або абмежаваным трафікам фактычна адрэзаны ад лічбавага навучання."
   },
   problemStat: {
-    en: "Typical browser tab: 100+ MB",
-    by: "Тыповая ўкладка: 100+ МБ"
+    en: "Single educational page: 100+ MB of RAM",
+    by: "Адна адукацыйная старонка: 100+ МБ АЗП"
   },
   impactTitle: {
     en: "Concrete impact",

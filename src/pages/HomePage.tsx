@@ -3,8 +3,7 @@ import ProblemMapSection from '../components/ProblemMapSection';
 import ComparisonBars from '../components/ComparisonBars';
 import ProjectsSection from '../components/ProjectsSection';
 import WhySection from '../components/WhySection';
-import HowToHelpSection from '../components/HowToHelpSection';
-import CommunitySection from '../components/CommunitySection';
+import MergedHelpSection from '../components/MergedHelpSection';
 import SectionDivider from '../components/SectionDivider';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -30,9 +29,7 @@ export default function HomePage() {
       <SectionDivider />
       <WhySection language={language} />
       <SectionDivider />
-      <HowToHelpSection language={language} />
-      <SectionDivider />
-      <CommunitySection language={language} />
+      <MergedHelpSection language={language} />
     </main>
   );
 }
