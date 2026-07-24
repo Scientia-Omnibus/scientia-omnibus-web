@@ -35,6 +35,8 @@ export interface TranslationDict {
   installManual: LocalizedString;
   installManualGit: LocalizedString;
   installUpcoming: LocalizedString;
+  installWindowsLabel: LocalizedString;
+  installWindowsDesc: LocalizedString;
   whyTitle: LocalizedString;
   whySubtitle: LocalizedString;
   problemTitle: LocalizedString;

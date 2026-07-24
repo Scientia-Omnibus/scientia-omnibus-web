@@ -129,8 +129,16 @@ export const UI_TRANSLATIONS: TranslationDict = {
     by: "Усталюйце Git, потым выканайце:"
   },
   installUpcoming: {
-    en: "Windows support will be added later.",
-    by: "Падтрымка Windows з'явіцца пазней."
+    en: "Windows release coming soon",
+    by: "Выхад на Windows хутка"
+  },
+  installWindowsLabel: {
+    en: "Coming soon",
+    by: "Хутка"
+  },
+  installWindowsDesc: {
+    en: "A native Windows installer is being prepared. Watch the GitHub repository for release announcements.",
+    by: "Нацыйны інсталятар для Windows рыхтуецца. Сачыце за рэлізамі на GitHub."
   },
   editorGuideTitle: {
     en: "Scientia Editor — Usage Guide",

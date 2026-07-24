@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Terminal, Sparkles, Copy, Check } from 'lucide-react';
+import { Terminal, Sparkles, Copy, Check, Monitor } from 'lucide-react';
 import { Language } from '../types';
 import { UI_TRANSLATIONS } from '../data/modules';
 
@@ -119,9 +119,20 @@ export default function InstallCallout({ language, className = '', project = 'sc
           </div>
         </div>
 
-        <p className="text-[11px] font-mono text-stone-500 leading-relaxed pt-1 border-t border-stone-800">
-          {t.installUpcoming[language]}
-        </p>
+        <div className="rounded-lg border border-dashed border-cartoon-orange/30 bg-[#0d0b14] p-3 sm:p-4">
+          <div className="flex items-center gap-2 mb-1">
+            <Monitor className="h-3.5 w-3.5 shrink-0 text-cartoon-orange" />
+            <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold uppercase tracking-wider text-stone-900 bg-cartoon-orange border border-stone-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#1A1A1A]">
+              {t.installWindowsLabel[language]}
+            </span>
+            <span className="text-xs font-mono text-stone-300 font-semibold">
+              {t.installUpcoming[language]}
+            </span>
+          </div>
+          <p className="text-[11px] font-mono text-stone-500 leading-relaxed ml-6">
+            {t.installWindowsDesc[language]}
+          </p>
+        </div>
       </div>
     </div>
   );
