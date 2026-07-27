@@ -7,12 +7,12 @@ type Project = 'scientia-core' | 'scientia-editor';
 
 const PROJECT_CONFIG: Record<Project, { bashCommand: string; manualCommand: string; manualLabel?: keyof typeof UI_TRANSLATIONS; downloadUrl?: string; downloadLabel?: string; hasOneLiner?: boolean }> = {
   'scientia-core': {
-    bashCommand: 'bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-core/main/install.sh)',
+    bashCommand: 'curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-core/main/install.sh | bash',
     manualCommand: 'uv tool install scientia-core',
     hasOneLiner: true,
   },
   'scientia-editor': {
-    bashCommand: 'bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-omnibus-web/main/install.sh)',
+    bashCommand: 'curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-omnibus-web/main/install.sh | bash',
     manualCommand: 'cargo install scientia-editor',
     manualLabel: 'installManualRust',
     downloadUrl: 'https://rustup.rs',

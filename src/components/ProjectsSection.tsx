@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Language } from '../types';
 import { RELEASED_PROJECTS, UPCOMING_PROJECTS, MODULES, UI_TRANSLATIONS } from '../data/modules';
-import { Github, BookOpen, Terminal } from 'lucide-react';
+import { Github, BookOpen, Terminal, Play, ChevronLeft, ChevronRight, Map } from 'lucide-react';
 import screenshotEducation from '../assets/images/screenshot-education.png';
 import screenshotSurvival from '../assets/images/screenshot-survival.png';
 import screenshotEditor from '../assets/images/screenshot-editor.png';
+import corePreviewVideo from '../assets/videos/scientia-core-preview.mp4';
 import InstallCallout from './InstallCallout';
 
 interface ProjectsSectionProps {
@@ -13,11 +14,18 @@ interface ProjectsSectionProps {
 }
 
 export default function ProjectsSection({ language }: ProjectsSectionProps) {
-  const [activeScreenshot, setActiveScreenshot] = useState<'education' | 'survival'>('education');
+  type PreviewMode = 'video' | 'education' | 'survival';
+  const [previewMode, setPreviewMode] = useState<PreviewMode>('video');
   const t = UI_TRANSLATIONS;
   const coreProject = RELEASED_PROJECTS[0];
   const educationModule = MODULES.find((m) => m.id === 'education');
   const survivalModule = MODULES.find((m) => m.id === 'survival');
+  const previewLabels = {
+    video: { en: 'Preview', by: "Прэв'ю" },
+    education: { en: 'Formal Sciences', by: 'Фармальныя навукі' },
+    survival: { en: 'Survival', by: 'Выжыванне' },
+  };
+  const previewModes: PreviewMode[] = ['video', 'education', 'survival'];
 
   return (
     <section id="projects" className="py-12 sm:py-20 bg-[#FFFCEE]">
@@ -103,36 +111,96 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               <span className="ml-2 font-mono text-[10px] sm:text-xs text-stone-500 truncate">
                 scientia-core
               </span>
-              <div className="ml-auto flex gap-1">
+              <div className="ml-auto flex flex-wrap gap-1.5 justify-end">
                 <button
-                  onClick={() => setActiveScreenshot('education')}
-                  className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors ${
-                    activeScreenshot === 'education'
-                      ? 'bg-cartoon-green text-stone-900 border-stone-900'
-                      : 'bg-stone-800 text-stone-500 border-stone-700 hover:text-stone-300'
+                  onClick={() => setPreviewMode('video')}
+                  className={`inline-flex items-center gap-1 text-xs font-mono font-bold px-3 py-1.5 rounded border transition-all ${
+                    previewMode === 'video'
+                      ? 'bg-cartoon-green text-stone-900 border-stone-900 shadow-[2px_2px_0px_#1A1A1A]'
+                      : 'bg-stone-800 text-stone-400 border-stone-700 hover:text-stone-200 hover:bg-stone-700'
                   }`}
                 >
-                  {educationModule?.title[language]}
+                  <Play className="h-3 w-3" />
+                  {previewLabels.video[language]}
                 </button>
                 <button
-                  onClick={() => setActiveScreenshot('survival')}
-                  className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded border transition-colors ${
-                    activeScreenshot === 'survival'
-                      ? 'bg-cartoon-green text-stone-900 border-stone-900'
-                      : 'bg-stone-800 text-stone-500 border-stone-700 hover:text-stone-300'
+                  onClick={() => setPreviewMode('education')}
+                  className={`inline-flex items-center gap-1 text-xs font-mono font-bold px-3 py-1.5 rounded border transition-all ${
+                    previewMode === 'education'
+                      ? 'bg-cartoon-green text-stone-900 border-stone-900 shadow-[2px_2px_0px_#1A1A1A]'
+                      : 'bg-stone-800 text-stone-400 border-stone-700 hover:text-stone-200 hover:bg-stone-700'
                   }`}
                 >
-                  {survivalModule?.title[language]}
+                  <BookOpen className="h-3 w-3" />
+                  {previewLabels.education[language]}
+                </button>
+                <button
+                  onClick={() => setPreviewMode('survival')}
+                  className={`inline-flex items-center gap-1 text-xs font-mono font-bold px-3 py-1.5 rounded border transition-all ${
+                    previewMode === 'survival'
+                      ? 'bg-cartoon-green text-stone-900 border-stone-900 shadow-[2px_2px_0px_#1A1A1A]'
+                      : 'bg-stone-800 text-stone-400 border-stone-700 hover:text-stone-200 hover:bg-stone-700'
+                  }`}
+                >
+                  <Map className="h-3 w-3" />
+                  {previewLabels.survival[language]}
                 </button>
               </div>
             </div>
 
-            <div className="bg-[#110e19] p-2 sm:p-3">
-              <img
-                src={activeScreenshot === 'education' ? screenshotEducation : screenshotSurvival}
-                alt="scientia-core"
-                className="w-full h-auto rounded border border-stone-800"
-              />
+            <div className="bg-[#110e19] p-2 sm:p-3 relative group">
+              {previewMode === 'video' ? (
+                <video
+                  src={corePreviewVideo}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-auto rounded border border-stone-800"
+                />
+              ) : (
+                <img
+                  src={previewMode === 'education' ? screenshotEducation : screenshotSurvival}
+                  alt="scientia-core"
+                  className="w-full h-auto rounded border border-stone-800"
+                />
+              )}
+
+              <button
+                onClick={() => {
+                  const idx = previewModes.indexOf(previewMode);
+                  setPreviewMode(previewModes[(idx - 1 + 3) % 3]);
+                }}
+                className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-60 hover:!opacity-100 transition-all bg-stone-900/80 hover:bg-stone-900 text-white rounded-full p-1.5 border border-white/20"
+                aria-label="Previous"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => {
+                  const idx = previewModes.indexOf(previewMode);
+                  setPreviewMode(previewModes[(idx + 1) % 3]);
+                }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-60 hover:!opacity-100 transition-all bg-stone-900/80 hover:bg-stone-900 text-white rounded-full p-1.5 border border-white/20"
+                aria-label="Next"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-center gap-2 pb-3 pt-2 bg-[#15121e] border-t border-stone-800/50">
+              {previewModes.map((mode) => (
+                <button
+                  key={mode}
+                  onClick={() => setPreviewMode(mode)}
+                  className={`transition-all duration-300 rounded-full ${
+                    previewMode === mode
+                      ? 'bg-cartoon-green w-6 h-2'
+                      : 'bg-stone-600 hover:bg-stone-400 w-2 h-2'
+                  }`}
+                  title={previewLabels[mode][language]}
+                />
+              ))}
             </div>
           </div>
 
