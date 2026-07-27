@@ -5,13 +5,10 @@ import { UI_TRANSLATIONS } from '../data/modules';
 
 type Project = 'scientia-core' | 'scientia-editor';
 
-const PROJECT_CONFIG: Record<Project, { bashCommand: string; manualCommand: string; manualLabel: keyof typeof UI_TRANSLATIONS; downloadUrl: string; downloadLabel: string; hasOneLiner?: boolean }> = {
+const PROJECT_CONFIG: Record<Project, { bashCommand: string; manualCommand: string; manualLabel?: keyof typeof UI_TRANSLATIONS; downloadUrl?: string; downloadLabel?: string; hasOneLiner?: boolean }> = {
   'scientia-core': {
     bashCommand: 'bash <(curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-core/main/install.sh)',
     manualCommand: 'uv tool install scientia-core',
-    manualLabel: 'installManualGit',
-    downloadUrl: 'https://git-scm.com/downloads',
-    downloadLabel: 'git-scm.com',
     hasOneLiner: true,
   },
   'scientia-editor': {
@@ -93,17 +90,19 @@ export default function InstallCallout({ language, className = '', project = 'sc
           <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-stone-500 mb-2">
             {t.installManual[language]}
           </p>
-          <p className="text-xs text-stone-500 mb-3 leading-relaxed">
-            {t[config.manualLabel][language]}{' '}
-            <a
-              href={config.downloadUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="text-stone-400 underline decoration-stone-600 hover:text-cartoon-green transition-colors"
-            >
-              {config.downloadLabel}
-            </a>
-          </p>
+          {config.downloadUrl && (
+            <p className="text-xs text-stone-500 mb-3 leading-relaxed">
+              {t[config.manualLabel!][language]}{' '}
+              <a
+                href={config.downloadUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-stone-400 underline decoration-stone-600 hover:text-cartoon-green transition-colors"
+              >
+                {config.downloadLabel}
+              </a>
+            </p>
+          )}
           <div className="relative">
             <button
               onClick={() => copyToClipboard(config.manualCommand, setCopiedManual)}
