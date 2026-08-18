@@ -7,10 +7,8 @@ function Key({ children }: { children: string }) {
     <span className="inline-flex flex-wrap gap-1">
       {parts.map((part, i) => (
         <span key={i} className="inline-flex items-center">
-          {i > 0 && <span className="text-stone-400 mx-0.5 text-[10px]">/</span>}
-          <kbd className="px-1.5 py-0.5 bg-stone-100 border border-stone-300 rounded font-mono text-[11px] sm:text-xs text-stone-800 whitespace-nowrap">
-            {part.trim()}
-          </kbd>
+          {i > 0 && <span className="text-ink-600 mx-0.5 text-[10px]">/</span>}
+          <span className="kbd whitespace-nowrap">{part.trim()}</span>
         </span>
       ))}
     </span>
@@ -23,11 +21,11 @@ export function ShortcutTable({ shortcuts, language }: { shortcuts: GuideShortcu
       <table className="w-full text-sm border-collapse">
         <tbody>
           {shortcuts.map((row, i) => (
-            <tr key={i} className="border-b border-stone-200 last:border-0">
+            <tr key={i} className="border-b border-ink-800 last:border-0">
               <td className="py-2 pr-4 align-top w-[45%] sm:w-[40%]">
                 <Key>{row.keys}</Key>
               </td>
-              <td className="py-2 text-stone-700 align-top">{row.action[language]}</td>
+              <td className="py-2 text-ink-400 align-top">{row.action[language]}</td>
             </tr>
           ))}
         </tbody>
@@ -41,7 +39,7 @@ export function CommandTable({ commands, language }: { commands: GuideCommand[];
     <div className="overflow-x-auto -mx-1">
       <table className="w-full text-sm border-collapse">
         <thead>
-          <tr className="border-b-2 border-stone-300 text-left text-xs uppercase tracking-wider text-stone-500">
+          <tr className="border-b-2 border-ink-600 text-left text-xs uppercase tracking-wider text-ink-500">
             <th className="py-2 pr-3 font-semibold">Command</th>
             <th className="py-2 pr-3 font-semibold">Aliases</th>
             <th className="py-2 font-semibold">Description</th>
@@ -49,14 +47,14 @@ export function CommandTable({ commands, language }: { commands: GuideCommand[];
         </thead>
         <tbody>
           {commands.map((row) => (
-            <tr key={row.command} className="border-b border-stone-200 last:border-0">
+            <tr key={row.command} className="border-b border-ink-800 last:border-0">
               <td className="py-2 pr-3 align-top">
-                <code className="font-mono text-xs bg-stone-100 px-1.5 py-0.5 rounded border border-stone-200">
+                <code className="font-mono text-xs bg-ink-850 px-1.5 py-0.5 rounded border border-ink-700 text-phos-400">
                   {row.command}
                 </code>
               </td>
-              <td className="py-2 pr-3 align-top font-mono text-xs text-stone-500">{row.aliases}</td>
-              <td className="py-2 text-stone-700 align-top">{row.description[language]}</td>
+              <td className="py-2 pr-3 align-top font-mono text-xs text-ink-500">{row.aliases}</td>
+              <td className="py-2 text-ink-400 align-top">{row.description[language]}</td>
             </tr>
           ))}
         </tbody>

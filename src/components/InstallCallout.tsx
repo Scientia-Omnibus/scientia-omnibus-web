@@ -40,32 +40,30 @@ export default function InstallCallout({ language, className = '', project = 'sc
   };
 
   return (
-    <div
-      className={`rounded-xl overflow-hidden border-2 border-stone-900 bg-[#1e1b29] shadow-[4px_4px_0px_#1A1A1A] relative before:absolute before:inset-0 before:pointer-events-none before:rounded-xl before:shadow-[inset_0_0_30px_rgba(187,247,208,0.05)] ${className}`}
-    >
-      <div className="flex items-center justify-between gap-3 px-4 py-3 bg-[#15121e] border-b border-stone-800">
+    <div className={`terminal-frame ${className}`}>
+      <div className="flex items-center justify-between gap-3 px-4 py-3 bg-ink-900 border-b border-ink-800">
         <div className="flex items-center gap-2 min-w-0">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-stone-700 shrink-0" />
-          <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-stone-700 shrink-0" />
-          <span className="h-2.5 w-2.5 rounded-full bg-green-400 border border-stone-700 shrink-0" />
-          <span className="ml-1 font-mono text-[10px] sm:text-xs text-stone-500 truncate">
+          <span className="h-2.5 w-2.5 rounded-full bg-alert-400/70 shrink-0" />
+          <span className="h-2.5 w-2.5 rounded-full bg-amber-400/60 shrink-0" />
+          <span className="h-2.5 w-2.5 rounded-full bg-phos-500/70 shrink-0" />
+          <span className="ml-1 font-mono text-[10px] sm:text-xs text-ink-500 truncate">
             terminal
           </span>
         </div>
-        <span className="inline-flex items-center gap-1.5 shrink-0 font-fredoka text-[10px] font-bold uppercase tracking-wider text-stone-900 bg-cartoon-green border border-stone-900 px-2.5 py-1 rounded shadow-[1px_1px_0px_#1A1A1A]">
+        <span className="inline-flex items-center gap-1.5 shrink-0 font-mono text-[10px] font-bold uppercase tracking-widest text-phos-400 border border-phos-400/30 px-2.5 py-1 rounded">
           <Terminal className="h-3 w-3" />
           {t.installTitle[language]}
         </span>
       </div>
 
-      <div className="p-4 sm:p-5 bg-[#110e19] space-y-5">
+      <div className="p-4 sm:p-5 bg-ink-950 space-y-5">
         {config.hasOneLiner !== false && (
-          <div className="rounded-xl border-2 border-cartoon-green bg-[#15121e] p-4 sm:p-5 shadow-[3px_3px_0px_#BBF7D0]">
+          <div className="rounded-xl border border-phos-400/40 bg-ink-900 p-4 sm:p-5">
             <div className="flex flex-wrap items-center gap-2 mb-3">
-              <p className="text-xs sm:text-sm font-display font-bold text-stone-100">
+              <p className="text-xs sm:text-sm font-mono font-bold text-ink-100">
                 {t.installOneLiner[language]}
               </p>
-              <span className="inline-flex items-center gap-1 font-fredoka text-[10px] font-bold uppercase tracking-wider text-stone-900 bg-cartoon-yellow border border-stone-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#1A1A1A]">
+              <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold uppercase tracking-widest text-phos-400 border border-phos-400/40 px-2 py-0.5 rounded">
                 <Sparkles className="h-3 w-3" />
                 {t.installRecommended[language]}
               </span>
@@ -73,31 +71,31 @@ export default function InstallCallout({ language, className = '', project = 'sc
             <div className="relative">
               <button
                 onClick={() => copyToClipboard(config.bashCommand, setCopiedBash)}
-                className="absolute top-2 right-2 z-10 p-1.5 rounded border bg-stone-800 border-stone-600 text-stone-400 hover:text-stone-200 hover:border-stone-400 transition-colors"
+                className="absolute top-2 right-2 z-10 p-1.5 rounded border bg-ink-850 border-ink-700 text-ink-400 hover:text-phos-300 hover:border-phos-400/50 transition-colors"
                 aria-label="Copy command"
               >
-                {copiedBash ? <Check className="h-3.5 w-3.5 text-cartoon-green" /> : <Copy className="h-3.5 w-3.5" />}
+                {copiedBash ? <Check className="h-3.5 w-3.5 text-phos-400" /> : <Copy className="h-3.5 w-3.5" />}
               </button>
-              <pre className="bg-stone-950 text-cartoon-green px-4 py-4 sm:py-5 rounded-lg border-2 border-stone-700 text-sm sm:text-base font-mono overflow-x-auto shadow-[2px_2px_0px_#1A1A1A]">
-                <span className="text-stone-500 select-none">$ </span>
+              <pre className="bg-ink-950 text-phos-400 px-4 py-4 sm:py-5 rounded-lg border border-ink-700 text-sm sm:text-base font-mono overflow-x-auto">
+                <span className="text-ink-600 select-none">$ </span>
                 {config.bashCommand}
               </pre>
             </div>
           </div>
         )}
 
-        <div className="rounded-lg border border-stone-800 bg-[#0d0b14] p-3 sm:p-4">
-          <p className="text-[11px] font-mono font-bold uppercase tracking-wider text-stone-500 mb-2">
+        <div className="rounded-lg border border-ink-800 bg-ink-900/50 p-3 sm:p-4">
+          <p className="text-[11px] font-mono font-bold uppercase tracking-widest text-ink-500 mb-2">
             {t.installManual[language]}
           </p>
           {config.downloadUrl && (
-            <p className="text-xs text-stone-500 mb-3 leading-relaxed">
+            <p className="text-xs text-ink-500 mb-3 leading-relaxed">
               {t[config.manualLabel!][language]}{' '}
               <a
                 href={config.downloadUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-stone-400 underline decoration-stone-600 hover:text-cartoon-green transition-colors"
+                className="text-ink-300 underline decoration-ink-600 hover:text-phos-400 transition-colors"
               >
                 {config.downloadLabel}
               </a>
@@ -106,29 +104,29 @@ export default function InstallCallout({ language, className = '', project = 'sc
           <div className="relative">
             <button
               onClick={() => copyToClipboard(config.manualCommand, setCopiedManual)}
-              className="absolute top-1.5 right-1.5 z-10 p-1 rounded border bg-stone-800 border-stone-700 text-stone-500 hover:text-stone-300 hover:border-stone-500 transition-colors"
+              className="absolute top-1.5 right-1.5 z-10 p-1 rounded border bg-ink-850 border-ink-700 text-ink-500 hover:text-phos-300 hover:border-phos-400/50 transition-colors"
               aria-label="Copy command"
             >
-              {copiedManual ? <Check className="h-3 w-3 text-cartoon-green" /> : <Copy className="h-3 w-3" />}
+              {copiedManual ? <Check className="h-3 w-3 text-phos-400" /> : <Copy className="h-3 w-3" />}
             </button>
-            <pre className="bg-stone-950/80 text-stone-400 px-3 py-2.5 rounded-lg border border-stone-800 text-xs sm:text-sm font-mono overflow-x-auto">
-              <span className="text-stone-600 select-none">$ </span>
+            <pre className="bg-ink-950/80 text-ink-300 px-3 py-2.5 rounded-lg border border-ink-800 text-xs sm:text-sm font-mono overflow-x-auto">
+              <span className="text-ink-600 select-none">$ </span>
               {config.manualCommand}
             </pre>
           </div>
         </div>
 
-        <div className="rounded-lg border border-dashed border-cartoon-orange/30 bg-[#0d0b14] p-3 sm:p-4">
+        <div className="rounded-lg border border-dashed border-amber-400/30 bg-ink-900/50 p-3 sm:p-4">
           <div className="flex items-center gap-2 mb-1">
-            <Monitor className="h-3.5 w-3.5 shrink-0 text-cartoon-orange" />
-            <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold uppercase tracking-wider text-stone-900 bg-cartoon-orange border border-stone-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#1A1A1A]">
+            <Monitor className="h-3.5 w-3.5 shrink-0 text-amber-400" />
+            <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400 border border-amber-400/40 px-2 py-0.5 rounded">
               {t.installWindowsLabel[language]}
             </span>
-            <span className="text-xs font-mono text-stone-300 font-semibold">
+            <span className="text-xs font-mono text-ink-400 font-semibold">
               {t.installUpcoming[language]}
             </span>
           </div>
-          <p className="text-[11px] font-mono text-stone-500 leading-relaxed ml-6">
+          <p className="text-[11px] font-mono text-ink-500 leading-relaxed ml-6">
             {t.installWindowsDesc[language]}
           </p>
         </div>

@@ -52,9 +52,9 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
   }, []);
 
   const navItems = [
-    { id: 'why', label: { en: 'Philosophy', by: 'Філасофія' } },
+    { id: 'why', label: { en: 'Why terminal', by: 'Чаму тэрмінал' } },
     { id: 'projects', label: { en: 'Projects', by: 'Праекты' } },
-    { id: 'get-involved', label: { en: 'Get Involved', by: 'Далучыцца' } },
+    { id: 'get-involved', label: { en: 'Get involved', by: 'Далучыцца' } },
   ];
 
   const handleNavClick = (id: string) => {
@@ -71,42 +71,49 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
   };
 
   return (
-    <header className="sticky top-0 z-30 w-full border-b-3 border-stone-900 bg-bg-warm/95 py-2 backdrop-blur-md shadow-[0_2px_0px_0px_rgba(187,247,208,0.15)]">
-      <div className="mx-auto flex max-w-7xl h-14 sm:h-18 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <button type="button" className="flex items-center min-w-0 relative" onClick={() => { goHome(); handleLogoClick(); }}>
-          <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-stone-900 leading-tight truncate">
+    <header className="sticky top-0 z-30 w-full border-b border-ink-800 bg-ink-950/85 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl h-14 sm:h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+        <button
+          type="button"
+          className="flex items-center min-w-0 gap-1.5"
+          onClick={() => { goHome(); handleLogoClick(); }}
+          aria-label="Scientia Omnibus"
+        >
+          <span className="text-phos-400 font-mono font-bold select-none text-lg leading-none">$</span>
+          <span className="font-display text-base sm:text-lg font-bold tracking-tight text-ink-100 truncate">
             Scientia Omnibus
           </span>
         </button>
 
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center gap-7">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id)}
-              className="text-sm font-bold text-stone-850 hover:text-orange-650 transition-colors cursor-pointer border-b-2 border-transparent hover:border-stone-900 px-1 py-0.5"
+              className="font-mono text-xs font-semibold text-ink-400 hover:text-phos-400 transition-colors cursor-pointer border-b border-transparent hover:border-phos-400/60 py-1"
             >
               {item.label[language]}
             </button>
           ))}
         </nav>
 
-        <div className="flex items-center space-x-2 sm:space-x-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <LanguageToggle language={language} setLanguage={setLanguage} />
 
           <a
             href="https://github.com/Scientia-Omnibus"
             target="_blank"
             rel="noreferrer"
-            className="hidden sm:flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center sketch-button bg-cartoon-green text-stone-900 hover:scale-105 transition-transform"
+            className="hidden sm:inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-ink-300 border border-ink-700 hover:border-phos-400 hover:text-phos-300 transition-colors rounded-lg px-3 py-1.5"
             title="GitHub"
           >
-            <Github className="h-4 w-4" />
+            <Github className="h-3.5 w-3.5" />
+            GitHub
           </a>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex h-8 w-8 items-center justify-center sketch-button bg-cartoon-orange text-stone-900"
+            className="md:hidden flex h-9 w-9 items-center justify-center rounded-lg border border-ink-700 text-ink-300 hover:text-phos-400 hover:border-phos-400/60 transition-colors"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -120,14 +127,14 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
             initial={{ opacity: 0, maxHeight: 0 }}
             animate={{ opacity: 1, maxHeight: 300 }}
             exit={{ opacity: 0, maxHeight: 0 }}
-            className="md:hidden border-t-2 border-stone-900 bg-bg-warm overflow-hidden"
+            className="md:hidden border-t border-ink-800 bg-ink-900 overflow-hidden"
           >
             <div className="px-4 py-3 space-y-1">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className="block w-full text-left px-3 py-2.5 text-sm font-bold text-stone-900 hover:bg-cartoon-blue rounded-lg transition-colors"
+                  className="block w-full text-left px-3 py-2.5 font-mono text-sm text-ink-200 hover:text-phos-400 hover:bg-ink-850 rounded-lg transition-colors cursor-pointer"
                 >
                   {item.label[language]}
                 </button>
@@ -136,7 +143,7 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
                 href="https://github.com/Scientia-Omnibus"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 px-3 py-2.5 text-sm font-bold text-stone-900 hover:bg-cartoon-green rounded-lg transition-colors"
+                className="flex items-center gap-2 px-3 py-2.5 font-mono text-sm text-ink-200 hover:text-phos-400 hover:bg-ink-850 rounded-lg transition-colors"
               >
                 <Github className="h-4 w-4" />
                 GitHub
@@ -149,7 +156,7 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
       <AnimatePresence>
         {easterEgg && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/90"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-ink-950/95"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -157,26 +164,26 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
             onClick={() => setEasterEgg(false)}
           >
             <motion.div
-              className="max-w-md w-full mx-4 bg-[#110e19] border-2 border-cartoon-green rounded-xl p-5 sm:p-6 font-mono text-sm shadow-[0_0_30px_rgba(187,247,208,0.15)]"
-              initial={{ scale: 0.9, y: 20 }}
+              className="max-w-md w-full mx-4 terminal-frame p-5 sm:p-6 font-mono text-sm"
+              initial={{ scale: 0.94, y: 16 }}
               animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
+              exit={{ scale: 0.94, y: 16 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-stone-800">
-                <div className="flex h-6 w-6 items-center justify-center rounded border border-cartoon-green">
-                  <TerminalIcon className="h-3.5 w-3.5 text-cartoon-green" />
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-ink-800">
+                <div className="flex h-6 w-6 items-center justify-center rounded border border-phos-400/40">
+                  <TerminalIcon className="h-3.5 w-3.5 text-phos-400" />
                 </div>
-                <span className="text-cartoon-green font-bold text-[10px] uppercase tracking-widest">
+                <span className="text-phos-400 font-bold text-[10px] uppercase tracking-widest">
                   {language === 'en' ? 'Scientia Access Terminal' : 'Тэрмінал доступу Scientia'}
                 </span>
               </div>
-              <pre className="text-cartoon-green leading-relaxed whitespace-pre-wrap text-xs sm:text-sm">
+              <pre className="text-phos-400 leading-relaxed whitespace-pre-wrap text-xs sm:text-sm">
                 {easterText}
                 <motion.span
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.5, repeat: Infinity }}
-                  className="inline-block w-2 h-4 bg-cartoon-green ml-0.5 align-middle"
+                  className="inline-block w-2 h-4 bg-phos-400 ml-0.5 align-middle"
                 />
               </pre>
             </motion.div>

@@ -10,25 +10,23 @@ export default function Footer({ language }: FooterProps) {
   const t = UI_TRANSLATIONS;
 
   return (
-    <footer className="bg-[#1e1b29] text-stone-300 py-8 sm:py-12 border-t-3 border-stone-1000">
+    <footer className="bg-ink-950 text-ink-400 py-10 sm:py-14 border-t border-ink-800">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center pb-6 sm:pb-8 border-b-2 border-stone-800">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-start pb-8 border-b border-ink-800">
           <div className="md:col-span-4 space-y-2">
-            <div className="flex items-center space-x-2">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center border-2 border-stone-900 rounded-lg bg-cartoon-yellow text-stone-900 font-bold text-base shadow-[1.5px_1.5px_0px_#1D1D1D]">
-                S
-              </div>
-              <span className="font-display font-medium text-lg sm:text-xl text-white font-fredoka">
+            <div className="flex items-center gap-1.5">
+              <span className="text-phos-400 font-mono font-bold select-none">$</span>
+              <span className="font-display font-bold text-lg sm:text-xl text-ink-100">
                 Scientia Omnibus
               </span>
             </div>
-            <p className="font-mono text-[10px] sm:text-xs text-stone-400 uppercase tracking-widest font-semibold">
+            <p className="font-mono text-[11px] text-ink-500 uppercase tracking-widest font-semibold">
               {language === 'en' ? 'Volunteer open-source initiative' : 'Валонцёрская open-source ініцыятыва'}
             </p>
           </div>
 
-          <div className="md:col-span-5 text-stone-400 font-sans text-xs max-w-md leading-relaxed md:border-l-2 md:border-stone-800 md:pl-6">
-            <p className="text-stone-300 font-medium">
+          <div className="md:col-span-5 text-sm max-w-md leading-relaxed md:border-l md:border-ink-800 md:pl-6">
+            <p className="text-ink-400">
               {t.footerMission[language]}
             </p>
           </div>
@@ -38,7 +36,7 @@ export default function Footer({ language }: FooterProps) {
               href="https://github.com/Scientia-Omnibus"
               target="_blank"
               rel="noreferrer"
-              className="px-3.5 py-1.5 rounded-lg bg-cartoon-blue border-2 border-stone-900 text-stone-900 hover:bg-cartoon-orange transition-all font-mono font-bold text-xs flex items-center gap-1.5 shadow-[2px_2px_0px_#1A1A1A]"
+              className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-ink-300 border border-ink-700 hover:border-phos-400 hover:text-phos-300 transition-colors rounded-lg px-3.5 py-2"
             >
               <Github className="h-4 w-4" />
               <span>GitHub</span>
@@ -46,7 +44,7 @@ export default function Footer({ language }: FooterProps) {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center pt-4 sm:pt-6 gap-3 font-mono text-[10px] text-stone-400 font-semibold text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row justify-between items-center pt-5 gap-3 font-mono text-[11px] text-ink-500 font-medium text-center sm:text-left">
           <div>
             &copy; {new Date().getFullYear()} Scientia Omnibus. {t.footerRights[language]}
           </div>

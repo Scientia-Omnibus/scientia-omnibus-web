@@ -1,107 +1,190 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* ─── tokens ─────────────────────────────────────────────────────────
+   Dark "terminal as a platform" system.
+   Ink (cool graphite) surfaces + one phosphor-green accent.
+   Mono = display + data. Sans = body. */
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: 'Fredoka', 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-fredoka: 'Fredoka', 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-display-cyrillic: 'Manrope', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'JetBrains Mono', 'Inter', ui-monospace, SFMono-Regular, monospace;
   --font-mono: 'JetBrains Mono', 'Inter', ui-monospace, SFMono-Regular, monospace;
 
-  --color-stone-904: #15121e;
-  --color-stone-850: #1a1724;
-  --color-stone-950: #0a0810;
-  --color-orange-850: #8c3b12;
-  --color-orange-650: #c2410c;
-  --color-orange-655: #df4a0b;
-  --color-orange-450: #f45b13;
-  --color-orange-550: #e24905;
+  /* surfaces */
+  --color-ink-950: oklch(0.145 0.012 255);
+  --color-ink-900: oklch(0.185 0.013 255);
+  --color-ink-850: oklch(0.225 0.014 255);
+  --color-ink-800: oklch(0.275 0.015 255);
+  --color-ink-700: oklch(0.35 0.016 255);
+  --color-ink-600: oklch(0.46 0.018 255);
+  --color-ink-500: oklch(0.58 0.02 255);
+  --color-ink-400: oklch(0.70 0.016 255);
+  --color-ink-300: oklch(0.80 0.012 255);
+  --color-ink-200: oklch(0.86 0.009 255);
+  --color-ink-100: oklch(0.93 0.006 255);
 
-  --color-cartoon-blue: #BAE6FD;
-  --color-cartoon-green: #BBF7D0;
-  --color-cartoon-orange: #FFEDD5;
-  --color-cartoon-purple: #DDD6FE;
-  --color-cartoon-yellow: #FEF08A;
-  --color-bg-warm: #FFFDF5;
-  --color-bg-card: #FFFAF3;
-  --color-stone-1000: #050308;
-  --color-gray-750: #2d2a35;
+  /* accent — terminal phosphor green */
+  --color-phos-300: oklch(0.85 0.16 150);
+  --color-phos-400: oklch(0.78 0.17 150);
+  --color-phos-500: oklch(0.69 0.17 150);
+  --color-phos-600: oklch(0.60 0.15 150);
 
-  --color-accent-green: rgba(187, 247, 208, 0.35);
-  --color-accent-blue: rgba(186, 230, 253, 0.3);
-  --color-accent-glow: rgba(187, 247, 208, 0.1);
+  /* semantic / chart only */
+  --color-alert-300: oklch(0.72 0.17 27);
+  --color-alert-400: oklch(0.64 0.19 27);
+  --color-sky-400: oklch(0.72 0.12 250);
+  --color-amber-400: oklch(0.82 0.15 80);
+  --color-violet-400: oklch(0.68 0.16 295);
 }
 
-/* Fredoka has no Cyrillic — switch display fonts for Belarusian */
-.lang-by {
-  --font-display: var(--font-display-cyrillic);
-  --font-fredoka: var(--font-display-cyrillic);
+/* ─── base ─────────────────────────────────────────────────────────── */
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--color-ink-950);
+  color: var(--color-ink-100);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: color-mix(in oklch, var(--color-phos-400) 30%, transparent); color: var(--color-ink-100); }
+* { scrollbar-width: thin; scrollbar-color: var(--color-ink-700) transparent; }
+:focus-visible { outline: 2px solid var(--color-phos-400); outline-offset: 2px; border-radius: 6px; }
+p { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
+
+/* ─── component classes ────────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-phos-400);
 }
 
-.lang-by .font-display,
-.lang-by .font-fredoka {
-  font-family: var(--font-display-cyrillic);
-  letter-spacing: -0.015em;
-}
-
-.lang-by {
-  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  font-feature-settings: 'kern' 1, 'liga' 1;
-}
-
-.lang-by h1,
-.lang-by h2,
-.lang-by h3,
-.lang-by h4 {
-  line-height: 1.2;
-}
-
-.sketch-border {
-  border: 3px solid #1A1A1A;
-  box-shadow: 6px 6px 0px #1A1A1A;
+.panel {
+  background: var(--color-ink-900);
+  border: 1px solid var(--color-ink-700);
   border-radius: 12px;
 }
 
-.sketch-border-sm {
-  border: 2px solid #1A1A1A;
-  box-shadow: 4px 4px 0px #1A1A1A;
+/* terminal window frame */
+.terminal-frame {
+  background: var(--color-ink-950);
+  border: 1px solid var(--color-ink-700);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px oklch(0.78 0.17 150 / 0.04),
+    0 24px 80px -32px oklch(0 0 0 / 0.8);
+}
+
+/* dotted background grid, terminal-paper style */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, oklch(0.35 0.016 255 / 0.16) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.35 0.016 255 / 0.16) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 30%, transparent 75%);
+}
+
+.blink { animation: blink 1.1s steps(2, start) infinite; }
+@keyframes blink { to { visibility: hidden; } }
+
+.stat-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  color: var(--color-phos-400);
+  line-height: 1;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
   border-radius: 8px;
-}
-
-.sketch-border-xs {
-  border: 2px solid #1A1A1A;
-  box-shadow: 3px 3px 0px #1A1A1A;
-  border-radius: 6px;
-}
-
-.sketch-border-dark {
-  border: 3px solid #FFFFFF;
-  box-shadow: 6px 6px 0px #FFFFFF;
-  border-radius: 12px;
-}
-
-.sketch-button {
-  border: 2px solid #1A1A1A;
-  box-shadow: 4px 4px 0px #1A1A1A;
-  transition: transform 0.1s, box-shadow 0.1s;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.2s ease, transform 0.05s ease;
   cursor: pointer;
 }
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+  background: var(--color-phos-400);
+  color: var(--color-ink-950);
+}
+.btn-primary:hover {
+  background: var(--color-phos-300);
+  box-shadow: 0 0 0 1px var(--color-phos-400), 0 0 24px -6px var(--color-phos-400);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--color-ink-100);
+  border-color: var(--color-ink-600);
+}
+.btn-secondary:hover { border-color: var(--color-phos-400); color: var(--color-phos-300); }
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink-300);
+  padding-inline: 6px;
+}
+.btn-ghost:hover { color: var(--color-phos-400); }
+.btn-arrow::after { content: '→'; margin-left: 2px; transition: transform 0.15s ease; }
+.btn-arrow:hover::after { transform: translateX(3px); }
 
-.sketch-button:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px #1A1A1A;
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--color-ink-700);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-ink-300);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+.chip-ok { color: var(--color-phos-400); border-color: oklch(0.78 0.17 150 / 0.35); }
+.chip-dim { color: var(--color-ink-500); }
+
+.kbd {
+  display: inline-block;
+  padding: 2px 7px;
+  border: 1px solid var(--color-ink-600);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: var(--color-ink-850);
+  color: var(--color-ink-200);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
 }
 
-.sketch-button-dark {
-  border: 2px solid #FFFFFF;
-  box-shadow: 4px 4px 0px #FFFFFF;
-  transition: transform 0.1s, box-shadow 0.1s;
-  cursor: pointer;
+.rule { border: 0; border-top: 1px solid var(--color-ink-800); margin: 0; }
+.rule-strong { border: 0; border-top: 1px solid var(--color-ink-500); margin: 0; }
+
+/* table — data style, no chrome */
+.ds-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.ds-table th, .ds-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--color-ink-800); }
+.ds-table th {
+  color: var(--color-ink-400);
+  font-weight: 500;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
-
-.sketch-button-dark:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px #FFFFFF;
-}
-
-
+.ds-table tbody tr:hover { background: oklch(0.93 0.006 255 / 0.03); }
+.ds-table .num-col { font-family: var(--font-mono); font-variant-numeric: tabular-nums; text-align: right; }

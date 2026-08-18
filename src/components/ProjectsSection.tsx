@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Language } from '../types';
 import { RELEASED_PROJECTS, UPCOMING_PROJECTS, MODULES, UI_TRANSLATIONS } from '../data/modules';
 import { Github, BookOpen, Terminal, Play, ChevronLeft, ChevronRight, Map } from 'lucide-react';
+import { motion } from 'motion/react';
 import screenshotEducation from '../assets/images/screenshot-education.png';
 import screenshotSurvival from '../assets/images/screenshot-survival.png';
 import screenshotEditor from '../assets/images/screenshot-editor.png';
@@ -28,50 +29,47 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
   const previewModes: PreviewMode[] = ['video', 'education', 'survival'];
 
   return (
-    <section id="projects" className="py-12 sm:py-20 bg-[#FFFCEE]">
+    <section id="projects" className="py-16 sm:py-24 bg-ink-900 overflow-hidden border-b border-ink-800">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <span className="font-fredoka text-xs sm:text-sm font-bold text-stone-900 bg-cartoon-yellow px-4 py-1.5 border-2 border-stone-900 rounded-lg shadow-[2px_2px_0px_#1A1A1A] uppercase tracking-wider">
-            {t.projectsLabel[language]}
-          </span>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-stone-950 mt-4 sm:mt-5 mb-3 sm:mb-4 leading-tight">
+        <motion.div
+          className="max-w-3xl mx-auto mb-10 sm:mb-14 text-center"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <p className="eyebrow mb-4">{t.projectsLabel[language]}</p>
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-[2.75rem] font-bold text-ink-100 leading-tight mb-4">
             {t.projectsTitle[language]}
           </h2>
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-sans font-medium">
+          <p className="text-sm sm:text-base text-ink-400 leading-relaxed">
             {t.projectsSubtitle[language]}
           </p>
-        </div>
+        </motion.div>
 
-        <p className="text-xs font-mono font-bold uppercase tracking-widest text-stone-500 mb-4">
+        <p className="font-mono text-xs font-bold uppercase tracking-widest text-ink-500 mb-4">
           {t.releasedLabel[language]}
         </p>
 
-        <div className="bg-[#FFFAF3] sketch-border p-5 sm:p-8 mb-10 sm:mb-14">
+        <div className="panel p-5 sm:p-8 mb-10 sm:mb-14">
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center sketch-border-xs bg-[#1e1b29] text-cartoon-green">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-ink-850 border border-ink-700 text-phos-400">
                 <Terminal className="h-6 w-6" />
               </div>
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-1">
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-stone-950">
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-ink-100">
                     {coreProject.name}
                   </h3>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-cartoon-green border border-stone-900 px-2 py-0.5 rounded">
-                    {t.statusReleased[language]}
-                  </span>
+                  <span className="chip chip-ok">{t.statusReleased[language]}</span>
                 </div>
-                <p className="text-sm text-stone-600 font-medium mb-2">
+                <p className="text-sm text-ink-400 font-medium mb-2">
                   {coreProject.tagline[language]}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {coreProject.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded"
-                    >
-                      {tech}
-                    </span>
+                    <span key={tech} className="chip chip-dim">{tech}</span>
                   ))}
                 </div>
               </div>
@@ -82,33 +80,30 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                 href={coreProject.repoUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 sketch-button bg-cartoon-green text-stone-900 font-bold text-sm"
+                className="btn btn-secondary"
               >
                 <Github className="h-4 w-4" />
                 <span>GitHub</span>
               </a>
-              <Link
-                to="/scientia-core/guide"
-                className="inline-flex items-center gap-1.5 px-4 py-2 sketch-button bg-cartoon-blue text-stone-900 font-bold text-sm"
-              >
+              <Link to="/scientia-core/guide" className="btn btn-primary">
                 <BookOpen className="h-4 w-4" />
                 <span>{t.viewGuide[language]}</span>
               </Link>
             </div>
           </div>
 
-          <p className="text-sm text-gray-700 leading-relaxed mb-6 max-w-3xl">
+          <p className="text-sm text-ink-400 leading-relaxed mb-6 max-w-3xl">
             {coreProject.description[language]}
           </p>
 
           <InstallCallout language={language} className="mb-6" />
 
-          <div className="rounded-xl overflow-hidden border-2 border-stone-900 bg-[#1e1b29] shadow-[4px_4px_0px_#1A1A1A] relative before:absolute before:inset-0 before:pointer-events-none before:rounded-xl before:shadow-[inset_0_0_20px_rgba(187,247,208,0.06)]">
-            <div className="flex items-center gap-2 px-3 py-2 bg-[#15121e] border-b border-stone-800">
-              <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-stone-700" />
-              <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-stone-700" />
-              <span className="h-2.5 w-2.5 rounded-full bg-green-400 border border-stone-700" />
-              <span className="ml-2 font-mono text-[10px] sm:text-xs text-stone-500 truncate">
+          <div className="terminal-frame relative">
+            <div className="flex items-center gap-2 px-3 py-2 bg-ink-900 border-b border-ink-800">
+              <span className="h-2.5 w-2.5 rounded-full bg-alert-400/70" />
+              <span className="h-2.5 w-2.5 rounded-full bg-amber-400/60" />
+              <span className="h-2.5 w-2.5 rounded-full bg-phos-500/70" />
+              <span className="ml-2 font-mono text-[10px] sm:text-xs text-ink-500 truncate">
                 scientia-core
               </span>
               <div className="ml-auto flex flex-wrap gap-1.5 justify-end">
@@ -116,8 +111,8 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                   onClick={() => setPreviewMode('video')}
                   className={`inline-flex items-center gap-1 text-xs font-mono font-bold px-3 py-1.5 rounded border transition-all ${
                     previewMode === 'video'
-                      ? 'bg-cartoon-green text-stone-900 border-stone-900 shadow-[2px_2px_0px_#1A1A1A]'
-                      : 'bg-stone-800 text-stone-400 border-stone-700 hover:text-stone-200 hover:bg-stone-700'
+                      ? 'bg-phos-400 text-ink-950 border-phos-400'
+                      : 'text-ink-500 border-ink-700 hover:text-ink-200 hover:border-ink-500'
                   }`}
                 >
                   <Play className="h-3 w-3" />
@@ -127,8 +122,8 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                   onClick={() => setPreviewMode('education')}
                   className={`inline-flex items-center gap-1 text-xs font-mono font-bold px-3 py-1.5 rounded border transition-all ${
                     previewMode === 'education'
-                      ? 'bg-cartoon-green text-stone-900 border-stone-900 shadow-[2px_2px_0px_#1A1A1A]'
-                      : 'bg-stone-800 text-stone-400 border-stone-700 hover:text-stone-200 hover:bg-stone-700'
+                      ? 'bg-phos-400 text-ink-950 border-phos-400'
+                      : 'text-ink-500 border-ink-700 hover:text-ink-200 hover:border-ink-500'
                   }`}
                 >
                   <BookOpen className="h-3 w-3" />
@@ -138,8 +133,8 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                   onClick={() => setPreviewMode('survival')}
                   className={`inline-flex items-center gap-1 text-xs font-mono font-bold px-3 py-1.5 rounded border transition-all ${
                     previewMode === 'survival'
-                      ? 'bg-cartoon-green text-stone-900 border-stone-900 shadow-[2px_2px_0px_#1A1A1A]'
-                      : 'bg-stone-800 text-stone-400 border-stone-700 hover:text-stone-200 hover:bg-stone-700'
+                      ? 'bg-phos-400 text-ink-950 border-phos-400'
+                      : 'text-ink-500 border-ink-700 hover:text-ink-200 hover:border-ink-500'
                   }`}
                 >
                   <Map className="h-3 w-3" />
@@ -148,7 +143,7 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               </div>
             </div>
 
-            <div className="bg-[#110e19] p-2 sm:p-3 relative group">
+            <div className="bg-ink-950 p-2 sm:p-3 relative group">
               {previewMode === 'video' ? (
                 <video
                   src={corePreviewVideo}
@@ -156,13 +151,13 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                   muted
                   loop
                   playsInline
-                  className="w-full h-auto rounded border border-stone-800"
+                  className="w-full h-auto rounded border border-ink-800"
                 />
               ) : (
                 <img
                   src={previewMode === 'education' ? screenshotEducation : screenshotSurvival}
                   alt="scientia-core"
-                  className="w-full h-auto rounded border border-stone-800"
+                  className="w-full h-auto rounded border border-ink-800"
                 />
               )}
 
@@ -171,7 +166,7 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                   const idx = previewModes.indexOf(previewMode);
                   setPreviewMode(previewModes[(idx - 1 + 3) % 3]);
                 }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-60 hover:!opacity-100 transition-all bg-stone-900/80 hover:bg-stone-900 text-white rounded-full p-1.5 border border-white/20"
+                className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-70 hover:!opacity-100 transition-all bg-ink-950/80 hover:bg-ink-950 text-ink-100 rounded-full p-1.5 border border-ink-700"
                 aria-label="Previous"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -181,22 +176,22 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                   const idx = previewModes.indexOf(previewMode);
                   setPreviewMode(previewModes[(idx + 1) % 3]);
                 }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-60 hover:!opacity-100 transition-all bg-stone-900/80 hover:bg-stone-900 text-white rounded-full p-1.5 border border-white/20"
+                className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-70 hover:!opacity-100 transition-all bg-ink-950/80 hover:bg-ink-950 text-ink-100 rounded-full p-1.5 border border-ink-700"
                 aria-label="Next"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="flex items-center justify-center gap-2 pb-3 pt-2 bg-[#15121e] border-t border-stone-800/50">
+            <div className="flex items-center justify-center gap-2 pb-3 pt-2 bg-ink-900 border-t border-ink-800/50">
               {previewModes.map((mode) => (
                 <button
                   key={mode}
                   onClick={() => setPreviewMode(mode)}
                   className={`transition-all duration-300 rounded-full ${
                     previewMode === mode
-                      ? 'bg-cartoon-green w-6 h-2'
-                      : 'bg-stone-600 hover:bg-stone-400 w-2 h-2'
+                      ? 'bg-phos-400 w-6 h-2'
+                      : 'bg-ink-700 hover:bg-ink-500 w-2 h-2'
                   }`}
                   title={previewLabels[mode][language]}
                 />
@@ -204,8 +199,8 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
             </div>
           </div>
 
-          <div className="mt-4">
-            <p className="text-[11px] font-mono font-bold uppercase tracking-widest text-stone-500 mb-2">
+          <div className="mt-6">
+            <p className="font-mono text-xs font-bold uppercase tracking-widest text-ink-500 mb-3">
               {t.knowledgeBasesTitle[language]}
             </p>
 
@@ -213,31 +208,31 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               href="https://github.com/Scientia-Omnibus/formal-sciences"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 text-sm font-semibold text-stone-900 hover:text-cartoon-purple transition-colors"
+              className="inline-flex items-center gap-1 font-mono text-sm font-semibold text-ink-200 hover:text-phos-400 transition-colors"
             >
               formal-sciences <Github className="h-3 w-3" />
             </a>
-            <p className="text-xs text-stone-500 mt-0.5 mb-2">
+            <p className="text-xs text-ink-500 mt-0.5 mb-2">
               {t.formalSciencesDesc[language]}
             </p>
 
             <div className="ml-2 mb-4 font-mono text-xs sm:text-sm">
               <div className="relative pl-4 pb-0.5">
-                <span className="absolute left-0 top-0 bottom-0 w-3 border-l-2 border-stone-300 rounded-bl" />
-                <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
-                <span className="pl-1 text-stone-900 font-semibold">{t.kbBasic[language]}/</span>
-                <span className="text-[10px] ml-1.5 text-emerald-500 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
+                <span className="absolute left-0 top-0 bottom-0 w-3 border-l border-ink-700 rounded-bl" />
+                <span className="absolute left-0 top-[0.55em] w-3 border-b border-ink-700" />
+                <span className="pl-1 text-ink-100 font-semibold">{t.kbBasic[language]}/</span>
+                <span className="text-[10px] ml-1.5 text-phos-400 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
               </div>
               <div className="relative pl-4 pb-0.5">
-                <span className="absolute left-0 top-0 bottom-0 w-3 border-l-2 border-stone-300 rounded-bl" />
-                <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
-                <span className="pl-1 text-stone-700">{t.kbAlgebraCore[language]}/</span>
-                <span className="text-[10px] ml-1.5 text-emerald-500 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
+                <span className="absolute left-0 top-0 bottom-0 w-3 border-l border-ink-700 rounded-bl" />
+                <span className="absolute left-0 top-[0.55em] w-3 border-b border-ink-700" />
+                <span className="pl-1 text-ink-300">{t.kbAlgebraCore[language]}/</span>
+                <span className="text-[10px] ml-1.5 text-phos-400 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
               </div>
               <div className="relative pl-4">
-                <span className="absolute left-0 top-0 w-3 border-l-2 border-stone-300" style={{ height: '0.55em' }} />
-                <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
-                <span className="pl-1 text-stone-400">{t.kbAdvanced[language]}</span>
+                <span className="absolute left-0 top-0 w-3 border-l border-ink-700" style={{ height: '0.55em' }} />
+                <span className="absolute left-0 top-[0.55em] w-3 border-b border-ink-700" />
+                <span className="pl-1 text-ink-600">{t.kbAdvanced[language]}</span>
               </div>
             </div>
 
@@ -247,78 +242,71 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                   href="https://github.com/Scientia-Omnibus/survival-and-medicine"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1 text-sm font-semibold text-stone-900 hover:text-cartoon-purple transition-colors"
+                  className="inline-flex items-center gap-1 font-mono text-sm font-semibold text-ink-200 hover:text-phos-400 transition-colors"
                 >
                   survival-and-medicine <Github className="h-3 w-3" />
                 </a>
-                <p className="text-xs text-stone-500 mt-0.5 mb-2">
+                <p className="text-xs text-ink-500 mt-0.5 mb-2">
                   {survivalModule.description[language]}
                 </p>
 
                 <div className="ml-2 mb-4 font-mono text-xs sm:text-sm">
                   <div className="relative pl-4 pb-0.5">
-                    <span className="absolute left-0 top-0 bottom-0 w-3 border-l-2 border-stone-300 rounded-bl" />
-                    <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
-                    <span className="pl-1 text-stone-900 font-semibold">{survivalModule.title[language]}/</span>
-                    <span className="text-[10px] ml-1.5 text-emerald-500 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
+                    <span className="absolute left-0 top-0 bottom-0 w-3 border-l border-ink-700 rounded-bl" />
+                    <span className="absolute left-0 top-[0.55em] w-3 border-b border-ink-700" />
+                    <span className="pl-1 text-ink-100 font-semibold">{survivalModule.title[language]}/</span>
+                    <span className="text-[10px] ml-1.5 text-phos-400 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
                   </div>
                   <div className="relative pl-4">
-                    <span className="absolute left-0 top-0 w-3 border-l-2 border-stone-300" style={{ height: '0.55em' }} />
-                    <span className="absolute left-0 top-[0.55em] w-3 border-b-2 border-stone-300" />
-                    <span className="pl-1 text-stone-400">{language === 'en' ? 'Medicine (coming soon)' : 'Медыцына (хутка)'}</span>
+                    <span className="absolute left-0 top-0 w-3 border-l border-ink-700" style={{ height: '0.55em' }} />
+                    <span className="absolute left-0 top-[0.55em] w-3 border-b border-ink-700" />
+                    <span className="pl-1 text-ink-600">{language === 'en' ? 'Medicine (coming soon)' : 'Медыцына (хутка)'}</span>
                   </div>
                 </div>
               </>
             )}
 
-            <p className="text-[11px] font-mono font-bold uppercase tracking-widest text-stone-500 mb-1.5">
+            <p className="font-mono text-xs font-bold uppercase tracking-widest text-ink-500 mb-2">
               {t.kbPlanned[language]}
             </p>
             <div className="flex flex-wrap gap-1.5 mb-3">
-              <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbHumanities[language]}</span>
-              <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbSocial[language]}</span>
-              <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbNatural[language]}</span>
-              <span className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded">{t.kbDiy[language]}</span>
+              <span className="chip chip-dim">{t.kbHumanities[language]}</span>
+              <span className="chip chip-dim">{t.kbSocial[language]}</span>
+              <span className="chip chip-dim">{t.kbNatural[language]}</span>
+              <span className="chip chip-dim">{t.kbDiy[language]}</span>
             </div>
 
-            <p className="text-xs text-stone-500 leading-relaxed">
+            <p className="text-xs text-ink-500 leading-relaxed">
               {t.kbContrib[language]}{' '}
-              <a href="https://github.com/Scientia-Omnibus/formal-sciences" target="_blank" rel="noreferrer" className="text-stone-900 font-semibold underline hover:text-cartoon-purple transition-colors">formal-sciences</a>
+              <a href="https://github.com/Scientia-Omnibus/formal-sciences" target="_blank" rel="noreferrer" className="text-phos-400 font-semibold underline decoration-phos-400/40 hover:text-phos-300 transition-colors">formal-sciences</a>
               {' / '}
-              <a href="https://github.com/Scientia-Omnibus/survival-and-medicine" target="_blank" rel="noreferrer" className="text-stone-900 font-semibold underline hover:text-cartoon-purple transition-colors">survival-and-medicine</a>
+              <a href="https://github.com/Scientia-Omnibus/survival-and-medicine" target="_blank" rel="noreferrer" className="text-phos-400 font-semibold underline decoration-phos-400/40 hover:text-phos-300 transition-colors">survival-and-medicine</a>
               {' / '}
-              <a href="https://github.com/Scientia-Omnibus/scientia-core" target="_blank" rel="noreferrer" className="text-stone-900 font-semibold underline hover:text-cartoon-purple transition-colors">scientia-core</a>
+              <a href="https://github.com/Scientia-Omnibus/scientia-core" target="_blank" rel="noreferrer" className="text-phos-400 font-semibold underline decoration-phos-400/40 hover:text-phos-300 transition-colors">scientia-core</a>
             </p>
           </div>
         </div>
 
         {RELEASED_PROJECTS.filter((p) => p.id !== 'scientia-core').map((project) => (
-          <div key={project.id} className="bg-[#FFFAF3] sketch-border p-5 sm:p-8 mb-10 sm:mb-14">
+          <div key={project.id} className="panel p-5 sm:p-8 mb-10 sm:mb-14">
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center sketch-border-xs bg-[#1e1b29] text-cartoon-green">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-ink-850 border border-ink-700 text-phos-400">
                   <Terminal className="h-6 w-6" />
                 </div>
                 <div>
                   <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <h3 className="font-display text-xl sm:text-2xl font-bold text-stone-950">
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-ink-100">
                       {project.name}
                     </h3>
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-cartoon-green border border-stone-900 px-2 py-0.5 rounded">
-                      {t.statusReleased[language]}
-                    </span>
+                    <span className="chip chip-ok">{t.statusReleased[language]}</span>
                   </div>
-                  <p className="text-sm text-stone-600 font-medium mb-2">
+                  <p className="text-sm text-ink-400 font-medium mb-2">
                     {project.tagline[language]}
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {project.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-[10px] font-mono bg-stone-100 border border-stone-300 text-stone-600 px-2 py-0.5 rounded"
-                      >
-                        {tech}
-                      </span>
+                      <span key={tech} className="chip chip-dim">{tech}</span>
                     ))}
                   </div>
                 </div>
@@ -330,42 +318,39 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                     href={project.repoUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 sketch-button bg-cartoon-green text-stone-900 font-bold text-sm"
+                    className="btn btn-secondary"
                   >
                     <Github className="h-4 w-4" />
                     <span>GitHub</span>
                   </a>
                 )}
-                <Link
-                  to={`/${project.id}/guide`}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 sketch-button bg-cartoon-blue text-stone-900 font-bold text-sm"
-                >
+                <Link to={`/${project.id}/guide`} className="btn btn-primary">
                   <BookOpen className="h-4 w-4" />
                   <span>{t.viewGuide[language]}</span>
                 </Link>
               </div>
             </div>
 
-            <p className="text-sm text-gray-700 leading-relaxed mb-6 max-w-3xl">
+            <p className="text-sm text-ink-400 leading-relaxed mb-6 max-w-3xl">
               {project.description[language]}
             </p>
 
             <InstallCallout language={language} project={project.id as 'scientia-core' | 'scientia-editor'} className="mb-4" />
 
-            <div className="rounded-xl overflow-hidden border-2 border-stone-900 bg-[#1e1b29] shadow-[4px_4px_0px_#1A1A1A] relative">
-              <div className="flex items-center gap-2 px-3 py-2 bg-[#15121e] border-b border-stone-800">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-stone-700" />
-                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-stone-700" />
-                <span className="h-2.5 w-2.5 rounded-full bg-green-400 border border-stone-700" />
-                <span className="ml-2 font-mono text-[10px] sm:text-xs text-stone-500 truncate">
+            <div className="terminal-frame relative">
+              <div className="flex items-center gap-2 px-3 py-2 bg-ink-900 border-b border-ink-800">
+                <span className="h-2.5 w-2.5 rounded-full bg-alert-400/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-amber-400/60" />
+                <span className="h-2.5 w-2.5 rounded-full bg-phos-500/70" />
+                <span className="ml-2 font-mono text-[10px] sm:text-xs text-ink-500 truncate">
                   {project.name}
                 </span>
               </div>
-              <div className="bg-[#110e19] p-2 sm:p-3">
+              <div className="bg-ink-950 p-2 sm:p-3">
                 <img
                   src={screenshotEditor}
                   alt="scientia-editor"
-                  className="w-full h-auto rounded border border-stone-800"
+                  className="w-full h-auto rounded border border-ink-800"
                 />
               </div>
             </div>
@@ -374,36 +359,28 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
 
         {UPCOMING_PROJECTS.length > 0 && (
           <>
-            <p className="text-xs font-mono font-bold uppercase tracking-widest text-stone-500 mb-4">
+            <p className="font-mono text-xs font-bold uppercase tracking-widest text-ink-500 mb-4">
               {t.inDevelopmentLabel[language]}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               {UPCOMING_PROJECTS.map((project) => (
                 <div
                   key={project.id}
-                  className="p-5 sm:p-6 bg-stone-50 border-2 border-dashed border-stone-400 rounded-xl relative overflow-hidden"
+                  className="p-5 sm:p-6 rounded-xl border border-dashed border-ink-700 bg-ink-900/40 relative overflow-hidden"
                 >
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-cartoon-blue/40 to-transparent" />
                   <div className="flex items-start justify-between gap-3 mb-3">
-                    <h3 className="font-display text-lg font-bold text-stone-800">
+                    <h3 className="font-display text-lg font-bold text-ink-200">
                       {project.name}
                     </h3>
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-stone-200 text-stone-600 border border-stone-400 px-2 py-0.5 rounded shrink-0">
-                      {t.statusInDevelopment[language]}
-                    </span>
+                    <span className="chip">{t.statusInDevelopment[language]}</span>
                   </div>
-                  <p className="text-sm text-stone-600 leading-relaxed mb-3">
+                  <p className="text-sm text-ink-400 leading-relaxed mb-3">
                     {project.description[language]}
                   </p>
                   {project.stack && (
                     <div className="flex flex-wrap gap-1.5">
                       {project.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-[10px] font-mono bg-white border border-stone-300 text-stone-500 px-2 py-0.5 rounded"
-                        >
-                          {tech}
-                        </span>
+                        <span key={tech} className="chip chip-dim">{tech}</span>
                       ))}
                     </div>
                   )}

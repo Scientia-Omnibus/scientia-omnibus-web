@@ -37,7 +37,7 @@ export default function Layout() {
 
   return (
     <div
-      className={`min-h-screen bg-bg-warm font-sans selection:bg-cartoon-blue selection:text-stone-900 overflow-x-hidden antialiased text-stone-900 ${language === 'by' ? 'lang-by' : 'lang-en'}`}
+      className={`min-h-screen bg-ink-950 font-sans text-ink-100 overflow-x-hidden antialiased`}
     >
       {!isGuidePage && (
         <Header

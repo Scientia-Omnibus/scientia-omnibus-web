@@ -8,6 +8,10 @@ export interface LocalizedString {
 export interface TranslationDict {
   heroTitle: LocalizedString;
   heroSubtitle: LocalizedString;
+  heroStatFootprintDesc: LocalizedString;
+  heroStatMemoryDesc: LocalizedString;
+  heroStatOfflineDesc: LocalizedString;
+  heroStatHardwareDesc: LocalizedString;
   statZeroOverhead: LocalizedString;
   statZeroOverheadDesc: LocalizedString;
   statOffline: LocalizedString;
@@ -83,12 +87,18 @@ export interface TranslationDict {
   mapFactBloat: LocalizedString;
   helpSectionTitle: LocalizedString;
   helpSectionSubtitle: LocalizedString;
+  helpTranslatorTitle: LocalizedString;
+  helpTranslatorDesc: LocalizedString;
   helpWriteTitle: LocalizedString;
   helpWriteDesc: LocalizedString;
   helpFormalDesc: LocalizedString;
   helpSurvivalDesc: LocalizedString;
+  helpTeacherTitle: LocalizedString;
+  helpTeacherDesc: LocalizedString;
   helpBuildTitle: LocalizedString;
   helpBuildDesc: LocalizedString;
+  helpNoCodeTitle: LocalizedString;
+  helpNoCodeDesc: LocalizedString;
   helpEditorComing: LocalizedString;
   helpShareTitle: LocalizedString;
   helpShareDesc: LocalizedString;

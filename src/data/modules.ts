@@ -21,8 +21,24 @@ export const UI_TRANSLATIONS: TranslationDict = {
     by: "Веды не павінны патрабаваць гігабайтаў."
   },
   heroSubtitle: {
-    en: "A volunteer open-source initiative building lightweight, offline-first terminal software — for communities where internet is unreliable and hardware is old.",
-    by: "Валонцёрская open-source ініцыятыва, якая стварае лёгкі тэрмінальны афлайн-софт — для суполак, дзе інтэрнэт ненадзейны, а тэхніка састарэлая."
+    en: "A volunteer open-source initiative building terminal-native, offline-first learning tools — efficient, keyboard-driven, and light enough to run on any computer, even one everyone else has written off.",
+    by: "Валонцёрская open-source ініцыятыва, якая стварае тэрмінальныя афлайн-інструменты для навучання — эфектыўныя, кіраваныя з клавіятуры і настолькі лёгкія, што працуюць на любой тэхніцы, нават той, якую ўсе спісалі."
+  },
+  heroStatFootprintDesc: {
+    en: "scientia-core ships at 8 MB — fits on an old floppy disk",
+    by: "scientia-core займае 8 МБ — змяшчаецца на дыскету"
+  },
+  heroStatMemoryDesc: {
+    en: "less RAM than a typical browser tab",
+    by: "менш АЗП, чым тыповая ўкладка браўзера"
+  },
+  heroStatOfflineDesc: {
+    en: "offline after the very first download",
+    by: "афлайн пасля першай загрузкі"
+  },
+  heroStatHardwareDesc: {
+    en: "designed for hardware everyone else left behind",
+    by: "разлічана на тэхніку, якую ўсе спісалі"
   },
   statZeroOverhead: {
     en: "0MB Base Overhead",
@@ -323,6 +339,30 @@ export const UI_TRANSLATIONS: TranslationDict = {
   helpSectionSubtitle: {
     en: "Every skill counts — writing, translating, testing, teaching, or simply spreading the word.",
     by: "Кожны навык мае значэнне — пісанне, пераклад, тэставанне, навучанне ці проста распаўсюд."
+  },
+  helpTranslatorTitle: {
+    en: "Translators",
+    by: "Перакладчыкі"
+  },
+  helpTranslatorDesc: {
+    en: "Bring the knowledge bases to new languages. No code required — just care for words and clarity.",
+    by: "Пераносьце базы ведаў на новыя мовы. Код не патрэбны — толькі ўвага да слова і яснасці."
+  },
+  helpTeacherTitle: {
+    en: "Teachers & testers",
+    by: "Настаўнікі і тэстары"
+  },
+  helpTeacherDesc: {
+    en: "Try the tools in a real classroom or field conditions, share feedback and lesson ideas. Your judgment shapes the product.",
+    by: "Выпрабоўвайце інструменты ў рэальным класе ці палявых умовах, дзяліцеся водгукамі і ідэямі заняткаў. Ваша меркаванне фармуе прадукт."
+  },
+  helpNoCodeTitle: {
+    en: "No code? Perfect.",
+    by: "Без кода? Выдатна."
+  },
+  helpNoCodeDesc: {
+    en: "Most of what keeps this project alive is words, not code: translations, articles, edits, feedback, and spreading the word. Translators, writers, teachers, and testers are the majority of our community.",
+    by: "Большую частку таго, што трымае праект жывым, складаюць словы, а не код: пераклады, артыкулы, праўкі, водгукі і распаўсюд. Перакладчыкі, аўтары, настаўнікі і тэстары — большасць нашай супольнасці."
   },
   helpWriteTitle: {
     en: "Write & Edit Knowledge",

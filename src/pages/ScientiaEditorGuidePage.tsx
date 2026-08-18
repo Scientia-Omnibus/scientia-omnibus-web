@@ -25,18 +25,18 @@ export default function ScientiaEditorGuidePage() {
   const nextSection = activeIndex < GUIDE_SECTIONS.length - 1 ? GUIDE_SECTIONS[activeIndex + 1] : undefined;
 
   return (
-    <div className="min-h-screen bg-bg-warm">
-      <div className="sticky top-0 z-20 border-b-2 border-stone-900 bg-white/95 backdrop-blur-sm">
+    <div className="min-h-screen bg-ink-950">
+      <div className="sticky top-0 z-20 border-b border-ink-800 bg-ink-950/85 backdrop-blur-md">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
           <Link
             to="/#projects"
-            className="inline-flex items-center gap-2 text-sm font-bold text-stone-700 hover:text-stone-900 transition-colors"
+            className="inline-flex items-center gap-2 font-mono text-sm font-semibold text-ink-400 hover:text-phos-400 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             <span className="hidden sm:inline">{t.backToProjects[language]}</span>
           </Link>
 
-          <span className="font-mono text-xs text-stone-500 hidden sm:inline">
+          <span className="font-mono text-xs text-ink-500 hidden sm:inline">
             scientia-editor / guide
           </span>
 
@@ -46,10 +46,10 @@ export default function ScientiaEditorGuidePage() {
 
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <header className="mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-4xl font-display font-bold text-stone-950 mb-2">
+          <h1 className="text-2xl sm:text-4xl font-display font-bold text-ink-100 mb-2">
             {t.editorGuideTitle[language]}
           </h1>
-          <p className="text-sm sm:text-base text-stone-600 max-w-2xl">
+          <p className="text-sm sm:text-base text-ink-400 max-w-2xl">
             {t.editorGuideSubtitle[language]}
           </p>
         </header>
@@ -62,8 +62,8 @@ export default function ScientiaEditorGuidePage() {
               className={`
                 shrink-0 text-[11px] font-mono font-bold px-3 py-1.5 rounded-lg border transition-all whitespace-nowrap
                 ${activeSection === section.id
-                  ? 'bg-cartoon-blue border-stone-900 text-stone-900 shadow-[2px_2px_0px_#1A1A1A]'
-                  : 'bg-stone-100 border-stone-300 text-stone-500 hover:border-stone-500 hover:text-stone-700'
+                  ? 'bg-phos-400 border-phos-400 text-ink-950'
+                  : 'text-ink-500 border-ink-700 hover:border-ink-500 hover:text-ink-200'
                 }
               `}
             >
@@ -73,13 +73,13 @@ export default function ScientiaEditorGuidePage() {
         </div>
 
         <div className="flex-1 min-w-0">
-          <article className="bg-white border-2 border-stone-900 rounded-xl p-5 sm:p-7 shadow-[3px_3px_0px_#1A1A1A]">
-            <h2 className="font-display text-lg sm:text-xl font-bold text-stone-950 mb-4 pb-3 border-b border-stone-200">
+          <article className="panel p-5 sm:p-7">
+            <h2 className="font-display text-lg sm:text-xl font-bold text-ink-100 mb-4 pb-3 border-b border-ink-800">
               {activeData.title[language]}
             </h2>
 
             {activeData.intro && (
-              <p className="text-sm text-stone-700 mb-4">{activeData.intro[language]}</p>
+              <p className="text-sm text-ink-400 mb-4">{activeData.intro[language]}</p>
             )}
 
             {activeData.id === 'installation' && (
@@ -90,21 +90,21 @@ export default function ScientiaEditorGuidePage() {
               <div className="space-y-3 mb-4">
                 {activeData.codeBlocks.map((block, i) => (
                   <div key={i}>
-                    <p className="text-[11px] font-mono font-bold text-stone-500 mb-1">
+                    <p className="text-[11px] font-mono font-bold text-ink-500 mb-1">
                       {block.label[language]}
                     </p>
                     <div className="relative">
                       <button
                         onClick={() => copyCommand(block.command, i)}
-                        className="absolute top-2 right-2 z-10 p-1.5 rounded border bg-stone-800 border-stone-600 text-stone-500 hover:text-stone-300 hover:border-stone-400 transition-colors"
+                        className="absolute top-2 right-2 z-10 p-1.5 rounded border bg-ink-850 border-ink-700 text-ink-500 hover:text-phos-300 hover:border-phos-400/50 transition-colors"
                         aria-label="Copy command"
                       >
                         {copiedIndex === i
-                          ? <Check className="h-3.5 w-3.5 text-cartoon-green" />
+                          ? <Check className="h-3.5 w-3.5 text-phos-400" />
                           : <Copy className="h-3.5 w-3.5" />
                         }
                       </button>
-                      <pre className="bg-stone-900 text-cartoon-green p-3 rounded-lg border border-stone-700 overflow-x-auto text-sm font-mono shadow-[2px_2px_0px_#1A1A1A] whitespace-pre-wrap">
+                      <pre className="bg-ink-950 text-phos-400 p-3 rounded-lg border border-ink-700 overflow-x-auto text-sm font-mono whitespace-pre-wrap">
                         $ {block.command}
                       </pre>
                     </div>
@@ -117,10 +117,10 @@ export default function ScientiaEditorGuidePage() {
               <dl className="space-y-3 mb-4">
                 {activeData.bullets.map((b) => (
                   <div key={b.term.en} className="flex flex-col sm:flex-row sm:gap-3">
-                    <dt className="font-semibold text-sm text-stone-900 sm:w-40 shrink-0">
+                    <dt className="font-mono font-semibold text-sm text-ink-100 sm:w-40 shrink-0">
                       {b.term[language]}
                     </dt>
-                    <dd className="text-sm text-stone-600">{b.description[language]}</dd>
+                    <dd className="text-sm text-ink-400">{b.description[language]}</dd>
                   </div>
                 ))}
               </dl>
@@ -135,18 +135,18 @@ export default function ScientiaEditorGuidePage() {
             )}
 
             {activeData.notes?.map((note, i) => (
-              <p key={i} className="text-sm text-stone-500 mt-4 pt-3 border-t border-stone-100">
+              <p key={i} className="text-sm text-ink-500 mt-4 pt-3 border-t border-ink-800">
                 {note[language]}
               </p>
             ))}
 
             {activeData.id === 'tech' && (
-              <div className="mt-4 pt-3 border-t border-stone-100">
+              <div className="mt-4 pt-3 border-t border-ink-800">
                 <a
                   href="https://github.com/Scientia-Omnibus/scientia-editor"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-stone-700 hover:text-cartoon-purple transition-colors"
+                  className="inline-flex items-center gap-1.5 font-mono text-sm font-semibold text-phos-400 hover:text-phos-300 transition-colors"
                 >
                   <ExternalLink className="h-4 w-4" />
                   {language === 'en' ? 'View on GitHub' : 'Глядзець на GitHub'}
@@ -155,10 +155,10 @@ export default function ScientiaEditorGuidePage() {
             )}
 
             {nextSection && (
-              <div className="mt-6 pt-4 border-t border-stone-200 flex justify-end">
+              <div className="mt-6 pt-4 border-t border-ink-800 flex justify-end">
                 <button
                   onClick={() => setActiveSection(nextSection.id)}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 sketch-button bg-cartoon-blue text-stone-900 font-bold text-sm"
+                  className="btn btn-secondary"
                 >
                   <span>{nextSection.title[language]}</span>
                   <ArrowRight className="h-4 w-4" />
@@ -166,7 +166,7 @@ export default function ScientiaEditorGuidePage() {
               </div>
             )}
           </article>
-          </div>
+        </div>
       </div>
     </div>
   );
