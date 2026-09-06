@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Terminal, Sparkles, Copy, Check, Monitor } from 'lucide-react';
+import { Terminal, Sparkles, Copy, Check, Download } from 'lucide-react';
 import { Language } from '../types';
 import { UI_TRANSLATIONS } from '../data/modules';
 
@@ -10,6 +10,8 @@ const PROJECT_CONFIG: Record<Project, { bashCommand: string; manualCommand: stri
     bashCommand: 'curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-core/main/install.sh | bash',
     manualCommand: 'uv tool install scientia-core',
     hasOneLiner: true,
+    downloadUrl: '/scientia-core.exe',
+    downloadLabel: 'scientia-core.exe',
   },
   'scientia-editor': {
     bashCommand: 'curl -fsSL https://raw.githubusercontent.com/Scientia-Omnibus/scientia-omnibus-web/main/install.sh | bash',
@@ -57,6 +59,31 @@ export default function InstallCallout({ language, className = '', project = 'sc
       </div>
 
       <div className="p-4 sm:p-5 bg-ink-950 space-y-5">
+        {config.downloadUrl && !config.downloadUrl.startsWith('http') && (
+          <div className="rounded-xl border border-phos-400/40 bg-ink-900 p-4 sm:p-5">
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <p className="text-xs sm:text-sm font-mono font-bold text-ink-100">
+                Windows
+              </p>
+              <span className="inline-flex items-center gap-1 font-mono text-[10px] font-bold uppercase tracking-widest text-phos-400 border border-phos-400/40 px-2 py-0.5 rounded">
+                <Download className="h-3 w-3" />
+                {language === 'en' ? 'Download' : 'Спампаваць'}
+              </span>
+            </div>
+            <a
+              href={config.downloadUrl}
+              download
+              className="inline-flex items-center gap-2 font-mono text-sm font-semibold bg-phos-400 text-ink-950 hover:bg-phos-300 hover:shadow-[0_0_0_1px_var(--color-phos-400),0_0_24px_-6px_var(--color-phos-400)] transition-colors rounded-lg px-4 py-2.5"
+            >
+              <Download className="h-4 w-4" />
+              <span>{config.downloadLabel}</span>
+            </a>
+            <p className="text-[11px] font-mono text-ink-500 mt-2">
+              {language === 'en' ? 'No installer needed — just run the .exe' : 'Усталёўшчык не патрэбен — проста запусціце .exe'}
+            </p>
+          </div>
+        )}
+
         {config.hasOneLiner !== false && (
           <div className="rounded-xl border border-phos-400/40 bg-ink-900 p-4 sm:p-5">
             <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -88,9 +115,9 @@ export default function InstallCallout({ language, className = '', project = 'sc
           <p className="text-[11px] font-mono font-bold uppercase tracking-widest text-ink-500 mb-2">
             {t.installManual[language]}
           </p>
-          {config.downloadUrl && (
+          {config.downloadUrl && config.downloadUrl.startsWith('http') && (
             <p className="text-xs text-ink-500 mb-3 leading-relaxed">
-              {t[config.manualLabel!][language]}{' '}
+              {config.manualLabel ? t[config.manualLabel][language] : ''}{' '}
               <a
                 href={config.downloadUrl}
                 target="_blank"
@@ -114,21 +141,6 @@ export default function InstallCallout({ language, className = '', project = 'sc
               {config.manualCommand}
             </pre>
           </div>
-        </div>
-
-        <div className="rounded-lg border border-dashed border-amber-400/30 bg-ink-900/50 p-3 sm:p-4">
-          <div className="flex items-center gap-2 mb-1">
-            <Monitor className="h-3.5 w-3.5 shrink-0 text-amber-400" />
-            <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400 border border-amber-400/40 px-2 py-0.5 rounded">
-              {t.installWindowsLabel[language]}
-            </span>
-            <span className="text-xs font-mono text-ink-400 font-semibold">
-              {t.installUpcoming[language]}
-            </span>
-          </div>
-          <p className="text-[11px] font-mono text-ink-500 leading-relaxed ml-6">
-            {t.installWindowsDesc[language]}
-          </p>
         </div>
       </div>
     </div>

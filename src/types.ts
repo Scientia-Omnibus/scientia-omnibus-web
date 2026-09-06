@@ -103,4 +103,19 @@ export interface TranslationDict {
   helpShareTitle: LocalizedString;
   helpShareDesc: LocalizedString;
   helpCTA: LocalizedString;
+  footerProjects: LocalizedString;
+  footerResources: LocalizedString;
+  footerCommunity: LocalizedString;
+  footerLegal: LocalizedString;
+  footerCore: LocalizedString;
+  footerEditor: LocalizedString;
+  footerFormalSciences: LocalizedString;
+  footerSurvival: LocalizedString;
+  footerGuides: LocalizedString;
+  footerGitHub: LocalizedString;
+  footerKnowledgeBases: LocalizedString;
+  footerContribute: LocalizedString;
+  footerIssues: LocalizedString;
+  footerLicense: LocalizedString;
+  footerPrivacy: LocalizedString;
 }

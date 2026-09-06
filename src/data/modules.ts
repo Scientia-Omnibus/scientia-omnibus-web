@@ -404,6 +404,66 @@ export const UI_TRANSLATIONS: TranslationDict = {
     en: "Every contribution, big or small, makes knowledge accessible.",
     by: "Кожны ўнёсак, вялікі ці малы, робіць веды даступнымі."
   },
+  footerProjects: {
+    en: "Projects",
+    by: "Праекты"
+  },
+  footerResources: {
+    en: "Resources",
+    by: "Рэсурсы"
+  },
+  footerCommunity: {
+    en: "Community",
+    by: "Супольнасць"
+  },
+  footerLegal: {
+    en: "Legal",
+    by: "Правовая інфармацыя"
+  },
+  footerCore: {
+    en: "scientia-core",
+    by: "scientia-core"
+  },
+  footerEditor: {
+    en: "scientia-editor",
+    by: "scientia-editor"
+  },
+  footerFormalSciences: {
+    en: "formal-sciences KB",
+    by: "formal-sciences KB"
+  },
+  footerSurvival: {
+    en: "survival-and-medicine KB",
+    by: "survival-and-medicine KB"
+  },
+  footerGuides: {
+    en: "Usage Guides",
+    by: "Дапаможнікі"
+  },
+  footerGitHub: {
+    en: "GitHub Organization",
+    by: "GitHub арганізацыя"
+  },
+  footerKnowledgeBases: {
+    en: "Knowledge Bases",
+    by: "Базы ведаў"
+  },
+  footerContribute: {
+    en: "Contribute",
+    by: "Дапамагчы"
+  },
+  footerIssues: {
+    en: "Report Issues",
+    by: "Паведаміць пра памылку"
+  },
+  footerLicense: {
+    en: "GPL-3.0 License",
+    by: "Ліцэнзія GPL-3.0"
+  },
+  footerPrivacy: {
+    en: "Privacy",
+    by: "Прыватнасць"
+  },
 };
 
 export const RELEASED_PROJECTS: ProjectInfo[] = [

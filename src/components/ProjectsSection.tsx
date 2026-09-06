@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Language } from '../types';
 import { RELEASED_PROJECTS, UPCOMING_PROJECTS, MODULES, UI_TRANSLATIONS } from '../data/modules';
-import { Github, BookOpen, Terminal, Play, ChevronLeft, ChevronRight, Map } from 'lucide-react';
+import { Github, BookOpen, Terminal, Play, ChevronLeft, ChevronRight, Map, Download } from 'lucide-react';
 import { motion } from 'motion/react';
 import screenshotEducation from '../assets/images/screenshot-education.png';
 import screenshotSurvival from '../assets/images/screenshot-survival.png';
@@ -84,6 +84,14 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               >
                 <Github className="h-4 w-4" />
                 <span>GitHub</span>
+              </a>
+              <a
+                href="/scientia-core.exe"
+                download
+                className="btn btn-primary"
+              >
+                <Download className="h-4 w-4" />
+                <span>{language === 'en' ? 'Download for Windows' : 'Спампаваць для Windows'}</span>
               </a>
               <Link to="/scientia-core/guide" className="btn btn-primary">
                 <BookOpen className="h-4 w-4" />
