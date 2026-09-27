@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Language } from '../types';
-import { RELEASED_PROJECTS, UPCOMING_PROJECTS, MODULES, UI_TRANSLATIONS } from '../data/modules';
+import { RELEASED_PROJECTS, UPCOMING_PROJECTS, UI_TRANSLATIONS } from '../data/modules';
+import { LINKS } from '../data/links';
 import { Github, BookOpen, Terminal, Play, ChevronLeft, ChevronRight, Map, Download } from 'lucide-react';
 import { motion } from 'motion/react';
 import screenshotEducation from '../assets/images/screenshot-education.png';
@@ -19,10 +20,8 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
   const [previewMode, setPreviewMode] = useState<PreviewMode>('video');
   const t = UI_TRANSLATIONS;
   const coreProject = RELEASED_PROJECTS[0];
-  const educationModule = MODULES.find((m) => m.id === 'education');
-  const survivalModule = MODULES.find((m) => m.id === 'survival');
   const previewLabels = {
-    video: { en: 'Preview', by: "Прэв'ю" },
+    video: { en: 'Preview', by: 'Прэв’ю' },
     education: { en: 'Formal Sciences', by: 'Фармальныя навукі' },
     survival: { en: 'Survival', by: 'Выжыванне' },
   };
@@ -38,7 +37,6 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="eyebrow mb-4">{t.projectsLabel[language]}</p>
           <h2 className="font-display text-2xl sm:text-4xl lg:text-[2.75rem] font-bold text-ink-100 leading-tight mb-4">
             {t.projectsTitle[language]}
           </h2>
@@ -79,21 +77,21 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               <a
                 href={coreProject.repoUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="btn btn-secondary"
               >
                 <Github className="h-4 w-4" />
                 <span>GitHub</span>
               </a>
               <a
-                href="/scientia-core.exe"
+                href={LINKS.coreExe}
                 download
                 className="btn btn-primary"
               >
                 <Download className="h-4 w-4" />
-                <span>{language === 'en' ? 'Download for Windows' : 'Спампаваць для Windows'}</span>
+                <span>{t.downloadWindows[language]}</span>
               </a>
-              <Link to="/scientia-core/guide" className="btn btn-primary">
+              <Link to={LINKS.coreGuide} className="btn btn-primary">
                 <BookOpen className="h-4 w-4" />
                 <span>{t.viewGuide[language]}</span>
               </Link>
@@ -108,9 +106,9 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
 
           <div className="terminal-frame relative">
             <div className="flex items-center gap-2 px-3 py-2 bg-ink-900 border-b border-ink-800">
-              <span className="h-2.5 w-2.5 rounded-full bg-alert-400/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-amber-400/60" />
-              <span className="h-2.5 w-2.5 rounded-full bg-phos-500/70" />
+              <span className="h-2.5 w-2.5 rounded-full bg-ink-700" />
+              <span className="h-2.5 w-2.5 rounded-full bg-ink-700" />
+              <span className="h-2.5 w-2.5 rounded-full bg-ink-700" />
               <span className="ml-2 font-mono text-[10px] sm:text-xs text-ink-500 truncate">
                 scientia-core
               </span>
@@ -213,9 +211,9 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
             </p>
 
             <a
-              href="https://github.com/Scientia-Omnibus/formal-sciences"
+              href={LINKS.formalSciences}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1 font-mono text-sm font-semibold text-ink-200 hover:text-phos-400 transition-colors"
             >
               formal-sciences <Github className="h-3 w-3" />
@@ -229,13 +227,13 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                 <span className="absolute left-0 top-0 bottom-0 w-3 border-l border-ink-700 rounded-bl" />
                 <span className="absolute left-0 top-[0.55em] w-3 border-b border-ink-700" />
                 <span className="pl-1 text-ink-100 font-semibold">{t.kbBasic[language]}/</span>
-                <span className="text-[10px] ml-1.5 text-phos-400 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
+                <span className="text-[10px] ml-1.5 text-phos-400 font-semibold">{t.kbDone[language]}</span>
               </div>
               <div className="relative pl-4 pb-0.5">
                 <span className="absolute left-0 top-0 bottom-0 w-3 border-l border-ink-700 rounded-bl" />
                 <span className="absolute left-0 top-[0.55em] w-3 border-b border-ink-700" />
                 <span className="pl-1 text-ink-300">{t.kbAlgebraCore[language]}/</span>
-                <span className="text-[10px] ml-1.5 text-phos-400 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
+                <span className="text-[10px] ml-1.5 text-phos-400 font-semibold">{t.kbDone[language]}</span>
               </div>
               <div className="relative pl-4">
                 <span className="absolute left-0 top-0 w-3 border-l border-ink-700" style={{ height: '0.55em' }} />
@@ -244,35 +242,29 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
               </div>
             </div>
 
-            {survivalModule && (
-              <>
-                <a
-                  href="https://github.com/Scientia-Omnibus/survival-and-medicine"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1 font-mono text-sm font-semibold text-ink-200 hover:text-phos-400 transition-colors"
-                >
-                  survival-and-medicine <Github className="h-3 w-3" />
-                </a>
-                <p className="text-xs text-ink-500 mt-0.5 mb-2">
-                  {survivalModule.description[language]}
-                </p>
+            <a
+              href={LINKS.survival}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 font-mono text-sm font-semibold text-ink-200 hover:text-phos-400 transition-colors"
+            >
+              survival-and-medicine <Github className="h-3 w-3" />
+            </a>
+            <p className="text-xs text-ink-500 mt-0.5 mb-2">{t.survivalDesc[language]}</p>
 
-                <div className="ml-2 mb-4 font-mono text-xs sm:text-sm">
-                  <div className="relative pl-4 pb-0.5">
-                    <span className="absolute left-0 top-0 bottom-0 w-3 border-l border-ink-700 rounded-bl" />
-                    <span className="absolute left-0 top-[0.55em] w-3 border-b border-ink-700" />
-                    <span className="pl-1 text-ink-100 font-semibold">{survivalModule.title[language]}/</span>
-                    <span className="text-[10px] ml-1.5 text-phos-400 font-semibold">{language === 'en' ? 'done' : 'гатова'}</span>
-                  </div>
-                  <div className="relative pl-4">
-                    <span className="absolute left-0 top-0 w-3 border-l border-ink-700" style={{ height: '0.55em' }} />
-                    <span className="absolute left-0 top-[0.55em] w-3 border-b border-ink-700" />
-                    <span className="pl-1 text-ink-600">{language === 'en' ? 'Medicine (coming soon)' : 'Медыцына (хутка)'}</span>
-                  </div>
-                </div>
-              </>
-            )}
+            <div className="ml-2 mb-4 font-mono text-xs sm:text-sm">
+              <div className="relative pl-4 pb-0.5">
+                <span className="absolute left-0 top-0 bottom-0 w-3 border-l border-ink-700 rounded-bl" />
+                <span className="absolute left-0 top-[0.55em] w-3 border-b border-ink-700" />
+                <span className="pl-1 text-ink-100 font-semibold">{t.kbSurvival[language]}/</span>
+                <span className="text-[10px] ml-1.5 text-phos-400 font-semibold">{t.kbDone[language]}</span>
+              </div>
+              <div className="relative pl-4">
+                <span className="absolute left-0 top-0 w-3 border-l border-ink-700" style={{ height: '0.55em' }} />
+                <span className="absolute left-0 top-[0.55em] w-3 border-b border-ink-700" />
+                <span className="pl-1 text-ink-600">{t.medicinePlanned[language]}</span>
+              </div>
+            </div>
 
             <p className="font-mono text-xs font-bold uppercase tracking-widest text-ink-500 mb-2">
               {t.kbPlanned[language]}
@@ -286,11 +278,11 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
 
             <p className="text-xs text-ink-500 leading-relaxed">
               {t.kbContrib[language]}{' '}
-              <a href="https://github.com/Scientia-Omnibus/formal-sciences" target="_blank" rel="noreferrer" className="text-phos-400 font-semibold underline decoration-phos-400/40 hover:text-phos-300 transition-colors">formal-sciences</a>
+              <a href={LINKS.formalSciences} target="_blank" rel="noopener noreferrer" className="text-phos-400 font-semibold underline decoration-phos-400/40 hover:text-phos-300 transition-colors">formal-sciences</a>
               {' / '}
-              <a href="https://github.com/Scientia-Omnibus/survival-and-medicine" target="_blank" rel="noreferrer" className="text-phos-400 font-semibold underline decoration-phos-400/40 hover:text-phos-300 transition-colors">survival-and-medicine</a>
+              <a href={LINKS.survival} target="_blank" rel="noopener noreferrer" className="text-phos-400 font-semibold underline decoration-phos-400/40 hover:text-phos-300 transition-colors">survival-and-medicine</a>
               {' / '}
-              <a href="https://github.com/Scientia-Omnibus/scientia-core" target="_blank" rel="noreferrer" className="text-phos-400 font-semibold underline decoration-phos-400/40 hover:text-phos-300 transition-colors">scientia-core</a>
+              <a href={LINKS.core} target="_blank" rel="noopener noreferrer" className="text-phos-400 font-semibold underline decoration-phos-400/40 hover:text-phos-300 transition-colors">scientia-core</a>
             </p>
           </div>
         </div>
@@ -307,7 +299,11 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                     <h3 className="font-display text-xl sm:text-2xl font-bold text-ink-100">
                       {project.name}
                     </h3>
-                    <span className="chip chip-ok">{t.statusReleased[language]}</span>
+                    {project.sourcePublic ? (
+                      <span className="chip chip-ok">{t.statusReleased[language]}</span>
+                    ) : (
+                      <span className="chip">{t.statusSourcePrivate[language]}</span>
+                    )}
                   </div>
                   <p className="text-sm text-ink-400 font-medium mb-2">
                     {project.tagline[language]}
@@ -325,7 +321,7 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
                   <a
                     href={project.repoUrl}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="btn btn-secondary"
                   >
                     <Github className="h-4 w-4" />
@@ -347,9 +343,9 @@ export default function ProjectsSection({ language }: ProjectsSectionProps) {
 
             <div className="terminal-frame relative">
               <div className="flex items-center gap-2 px-3 py-2 bg-ink-900 border-b border-ink-800">
-                <span className="h-2.5 w-2.5 rounded-full bg-alert-400/70" />
-                <span className="h-2.5 w-2.5 rounded-full bg-amber-400/60" />
-                <span className="h-2.5 w-2.5 rounded-full bg-phos-500/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-ink-700" />
+                <span className="h-2.5 w-2.5 rounded-full bg-ink-700" />
+                <span className="h-2.5 w-2.5 rounded-full bg-ink-700" />
                 <span className="ml-2 font-mono text-[10px] sm:text-xs text-ink-500 truncate">
                   {project.name}
                 </span>

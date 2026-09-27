@@ -14,7 +14,6 @@ const CAPABILITIES = {
 
 export default function WhySection({ language }: WhySectionProps) {
   const t = UI_TRANSLATIONS;
-  const isEn = language === 'en';
 
   const cardVariants = {
     hidden: { opacity: 0, y: 18 },
@@ -31,7 +30,6 @@ export default function WhySection({ language }: WhySectionProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="eyebrow mb-4">{isEn ? 'Why the terminal' : 'Чаму тэрмінал'}</p>
           <h2 className="font-display text-2xl sm:text-4xl lg:text-[2.75rem] font-bold text-ink-100 leading-tight mb-4">
             {t.whyTitle[language]}
           </h2>
@@ -49,7 +47,7 @@ export default function WhySection({ language }: WhySectionProps) {
         >
           <span className="inline-flex items-center gap-2 font-mono text-xs font-bold text-phos-400 uppercase tracking-widest">
             <Keyboard className="h-4 w-4" />
-            {isEn ? 'Terminal as a platform' : 'Тэрмінал як платформа'}
+            {t.whyPlatformLabel[language]}
           </span>
           {CAPABILITIES[language].map((cap) => (
             <span key={cap} className="font-mono text-xs text-ink-400">
@@ -75,8 +73,8 @@ export default function WhySection({ language }: WhySectionProps) {
                 {t.problemDesc[language]}
               </p>
             </div>
-            <div className="shrink-0 inline-flex items-center gap-2 rounded-lg border border-alert-400/40 bg-alert-400/10 px-4 py-2.5 font-mono text-xs text-alert-300 font-bold">
-              <span className="w-1.5 h-1.5 rounded-full bg-alert-400" />
+            <div className="shrink-0 inline-flex items-center gap-2 rounded-lg border border-clay-400/40 bg-clay-400/10 px-4 py-2.5 font-mono text-xs text-clay-300 font-bold">
+              <span className="w-1.5 h-1.5 rounded-full bg-clay-400" />
               {t.problemStat[language]}
             </div>
           </div>

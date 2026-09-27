@@ -1,9 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { Language } from '../types';
-import { Github, Menu, X, Terminal as TerminalIcon } from 'lucide-react';
+import { Github, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import LanguageToggle from './LanguageToggle';
+import { LINKS } from '../data/links';
 
 interface HeaderProps {
   language: Language;
@@ -23,14 +24,14 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
   const handleLogoClick = useCallback(() => {
     setClickCount((prev) => {
       const next = prev + 1;
-      if (next >= 7) {
+      if (next >= 5) {
         setClickCount(0);
         setEasterEgg(true);
         const msg = language === 'en'
-          ? '> INITIALIZING DIGITAL EQUALITY PROTOCOL...\n> SCANNING KNOWLEDGE BASES...\n> ALL SYSTEMS OPERATIONAL\n> WELCOME, PIONEER.'
-          : '> ЗАПУСК ПРАТАКОЛУ ЛІЧБАВАЙ РОЎНАСЦІ...\n> СКАНАВАННЕ БАЗ ВЕДАЎ...\n> УСЕ СІСТЭМЫ ПРАЦУЮЦЬ\n> ВІТАЕМ, ПЕРШАПРАХОДЧАК.';
+          ? '> SCIENTIA ACCESS TERMINAL\n> READY.'
+          : '> ТЭРМІНАЛ ДОСТУПУ SCIENTIA\n> ГОТА.';
         typeWriter(msg, 0, '');
-        setTimeout(() => setEasterEgg(false), 4000);
+        setTimeout(() => setEasterEgg(false), 2200);
         return 0;
       }
       return next;
@@ -43,9 +44,19 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
     if (i < text.length) {
       const nextChar = text[i] === '\n' ? '\n' : text[i];
       setEasterText(acc + nextChar);
-      setTimeout(() => typeWriter(text, i + 1, acc + nextChar), 25);
+      setTimeout(() => typeWriter(text, i + 1, acc + nextChar), 18);
     }
   };
+
+  useEffect(() => {
+    if (!easterEgg) return;
+    const onKey = () => setEasterEgg(false);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      clearTimeout(clickTimer.current);
+    };
+  }, [easterEgg]);
 
   useEffect(() => {
     return () => clearTimeout(clickTimer.current);
@@ -101,9 +112,9 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
           <LanguageToggle language={language} setLanguage={setLanguage} />
 
           <a
-            href="https://github.com/Scientia-Omnibus"
+            href={LINKS.org}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-ink-300 border border-ink-700 hover:border-phos-400 hover:text-phos-300 transition-colors rounded-lg px-3 py-1.5"
             title="GitHub"
           >
@@ -140,9 +151,9 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
                 </button>
               ))}
               <a
-                href="https://github.com/Scientia-Omnibus"
+                href={LINKS.org}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 py-2.5 font-mono text-sm text-ink-200 hover:text-phos-400 hover:bg-ink-850 rounded-lg transition-colors"
               >
                 <Github className="h-4 w-4" />
@@ -170,14 +181,6 @@ export default function Header({ language, setLanguage, onScrollToSection }: Hea
               exit={{ scale: 0.94, y: 16 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-ink-800">
-                <div className="flex h-6 w-6 items-center justify-center rounded border border-phos-400/40">
-                  <TerminalIcon className="h-3.5 w-3.5 text-phos-400" />
-                </div>
-                <span className="text-phos-400 font-bold text-[10px] uppercase tracking-widest">
-                  {language === 'en' ? 'Scientia Access Terminal' : 'Тэрмінал доступу Scientia'}
-                </span>
-              </div>
               <pre className="text-phos-400 leading-relaxed whitespace-pre-wrap text-xs sm:text-sm">
                 {easterText}
                 <motion.span

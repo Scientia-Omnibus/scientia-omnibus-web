@@ -1,8 +1,10 @@
 import { Language } from '../types';
 import { UI_TRANSLATIONS } from '../data/modules';
 import { CONTINENT_PATHS } from '../data/map-continents';
+import { MAP_REGIONS } from '../data/map-regions';
 import { AFFECTED_COUNTRIES } from '../data/countries';
-import { WifiOff, Monitor, Cpu, TrendingUp, Globe, BookOpen, Zap } from 'lucide-react';
+import { SOURCES } from '../data/sources';
+import { Globe, BookOpen, WifiOff, Cpu, ShieldAlert, Ban } from 'lucide-react';
 import { motion } from 'motion/react';
 import AnimatedNumber from './AnimatedNumber';
 
@@ -11,52 +13,7 @@ interface ProblemMapSectionProps {
 }
 
 const VIEW_BOX = '0 0 1020 680';
-const LABELED_COUNTRIES = ['Nigeria', 'India', 'Brazil', 'Indonesia', 'DR Congo', 'Ethiopia', 'Bangladesh', 'Pakistan', 'Myanmar', 'Colombia'];
-
-const REGION_KEYS: { id: string; cx: number; cy: number; r: number; dots: [number, number][] }[] = [
-  {
-    id: 'regionAfrica',
-    cx: 520,
-    cy: 485,
-    r: 40,
-    dots: [
-      [510, 460], [515, 470], [498, 475], [505, 490], [495, 505],
-      [512, 510], [525, 495], [535, 478], [528, 465], [520, 455],
-      [505, 450], [530, 470],
-    ],
-  },
-  {
-    id: 'regionSouthAsia',
-    cx: 685,
-    cy: 295,
-    r: 20,
-    dots: [
-      [675, 285], [685, 290], [695, 295], [690, 305], [680, 300],
-      [672, 290], [678, 288], [695, 285],
-    ],
-  },
-  {
-    id: 'regionSoutheastAsia',
-    cx: 810,
-    cy: 250,
-    r: 22,
-    dots: [
-      [800, 235], [815, 240], [825, 250], [815, 260], [805, 255],
-      [795, 245], [810, 248], [820, 245],
-    ],
-  },
-  {
-    id: 'regionLatinAmerica',
-    cx: 324,
-    cy: 565,
-    r: 25,
-    dots: [
-      [315, 550], [325, 555], [310, 565], [330, 575], [335, 560],
-      [328, 545], [315, 558], [320, 570],
-    ],
-  },
-];
-
+const LABELED_COUNTRIES = ['Nigeria', 'India', 'Brazil', 'Indonesia', 'DR Congo', 'Ethiopia', 'Bangladesh', 'Pakistan', 'Colombia'];
 const CONTINENT_IDS = ['africa', 'north_america', 'south_america', 'asia', 'europe', 'australia'];
 
 const PALETTE = {
@@ -66,13 +23,25 @@ const PALETTE = {
   continentStroke: '#2C3648',
   land: '#7D8A9E',
   strong: '#9AA7B8',
-  dot: 'oklch(0.64 0.19 27)',
-  dotSoft: 'oklch(0.72 0.13 32)',
+  dot: 'oklch(0.62 0.09 45)',
+  dotSoft: 'oklch(0.70 0.055 48)',
 };
+
+const MAP_STATS = [
+  { icon: WifiOff, value: 2.2, decimals: 1, suffix: 'B', labelKey: 'mapStatOffline', source: SOURCES.itu2025 },
+  { icon: BookOpen, value: 500, decimals: 0, suffix: 'M', labelKey: 'mapStatStudents', source: SOURCES.unescoGem2023 },
+  { icon: Globe, value: 58, decimals: 0, suffix: '%', labelKey: 'mapStatRural', source: SOURCES.itu2025 },
+] as const;
+
+const MAP_FACTS = [
+  { icon: WifiOff, key: 'mapFactDistance', figure: '500M+', source: SOURCES.unescoGem2023 },
+  { icon: Cpu, key: 'mapFactSchools', figure: '40%', source: SOURCES.unescoGem2023 },
+  { icon: ShieldAlert, key: 'mapFactCoverage', figure: '96%', source: SOURCES.itu2025 },
+  { icon: Ban, key: 'mapFactEdtech', figure: '85%', source: SOURCES.unescoGem2023 },
+] as const;
 
 export default function ProblemMapSection({ language }: ProblemMapSectionProps) {
   const t = UI_TRANSLATIONS;
-  const isEn = language === 'en';
 
   return (
     <section id="problem" className="py-16 sm:py-24 bg-ink-950 overflow-hidden">
@@ -84,14 +53,11 @@ export default function ProblemMapSection({ language }: ProblemMapSectionProps) 
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="eyebrow mb-4">{isEn ? 'The problem' : 'Праблема'}</p>
           <h2 className="font-display text-2xl sm:text-4xl lg:text-[2.75rem] font-bold text-ink-100 leading-tight mb-4">
-            {isEn ? 'Digital learning has an access problem' : 'Лічбавая адукацыя мае праблему доступу'}
+            {t.mapTitle[language]}
           </h2>
           <p className="text-sm sm:text-base text-ink-400 leading-relaxed">
-            {isEn
-              ? 'Real numbers behind the global digital divide — and why lightweight, offline tools are not a luxury but a necessity.'
-              : 'Рэальныя лічбы глабальнага лічбавага разрыву — і чаму лёгкія афлайн-інструменты не раскоша, а неабходнасць.'}
+            {t.mapSubtitle[language]}
           </p>
         </motion.div>
 
@@ -112,8 +78,8 @@ export default function ProblemMapSection({ language }: ProblemMapSectionProps) 
                 <feDropShadow dx="1" dy="2" stdDeviation="3" floodColor="#000" floodOpacity="0.35" />
               </filter>
 
-              {REGION_KEYS.map((r) => (
-                <radialGradient key={r.id} id={`heat-${r.id}`} cx="50%" cy="50%" r="50%">
+              {MAP_REGIONS.map((region) => (
+                <radialGradient key={region.id} id={`heat-${region.id}`} cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor={PALETTE.dot} stopOpacity="0.30" />
                   <stop offset="55%" stopColor={PALETTE.dotSoft} stopOpacity="0.12" />
                   <stop offset="100%" stopColor={PALETTE.dotSoft} stopOpacity="0" />
@@ -124,26 +90,26 @@ export default function ProblemMapSection({ language }: ProblemMapSectionProps) 
             <rect width="1020" height="680" fill={PALETTE.mapBg} />
             <rect width="1020" height="680" fill="url(#map-grid)" />
 
-            {REGION_KEYS.map((r, ri) => (
-              <g key={r.id}>
-                <circle cx={r.cx} cy={r.cy} r={r.r + 25} fill={`url(#heat-${r.id})`} />
+            {MAP_REGIONS.map((region, ri) => (
+              <g key={region.id}>
+                <circle cx={region.cx} cy={region.cy} r={region.r + 25} fill={`url(#heat-${region.id})`} />
                 <motion.circle
-                  cx={r.cx}
-                  cy={r.cy}
-                  r={r.r}
+                  cx={region.cx}
+                  cy={region.cy}
+                  r={region.r}
                   fill="none"
                   stroke={PALETTE.dot}
                   strokeWidth="1"
                   opacity="0.5"
-                  animate={{ r: [r.r, r.r + 16, r.r], opacity: [0.45, 0, 0.45] }}
+                  animate={{ r: [region.r, region.r + 16, region.r], opacity: [0.45, 0, 0.45] }}
                   transition={{ duration: 3.4, repeat: Infinity, ease: 'easeOut', delay: ri * 0.7 }}
                 />
-                {r.dots.map((dot, di) => (
+                {region.dots.map((dot, di) => (
                   <circle key={di} cx={dot[0]} cy={dot[1]} r="2" fill={PALETTE.dot} fillOpacity="0.55" />
                 ))}
                 <text
-                  x={r.cx}
-                  y={r.cy - r.r - 8}
+                  x={region.cx}
+                  y={region.cy - region.r - 12}
                   textAnchor="middle"
                   fill={PALETTE.strong}
                   fontSize="9"
@@ -151,10 +117,18 @@ export default function ProblemMapSection({ language }: ProblemMapSectionProps) 
                   fontFamily="JetBrains Mono, monospace"
                   className="select-none"
                 >
-                  {r.id === 'regionAfrica' && (isEn ? 'Sub-Saharan Africa' : 'Афрыка')}
-                  {r.id === 'regionSouthAsia' && (isEn ? 'South Asia' : 'Паўдн. Азія')}
-                  {r.id === 'regionSoutheastAsia' && (isEn ? 'Southeast Asia' : 'Паўдн.-Усх. Азія')}
-                  {r.id === 'regionLatinAmerica' && (isEn ? 'Latin America' : 'Лац. Амерыка')}
+                  {region.label[language]}
+                </text>
+                <text
+                  x={region.cx}
+                  y={region.cy - region.r - 3}
+                  textAnchor="middle"
+                  fill={PALETTE.land}
+                  fontSize="7"
+                  fontFamily="JetBrains Mono, monospace"
+                  className="select-none"
+                >
+                  {region.figure(language)}
                 </text>
               </g>
             ))}
@@ -174,32 +148,40 @@ export default function ProblemMapSection({ language }: ProblemMapSectionProps) 
               ))}
             </g>
 
-            {AFFECTED_COUNTRIES.map((c) => (
-              <g key={c.name}>
-                <circle cx={c.cx} cy={c.cy} r="3.5" fill={PALETTE.dot} stroke={PALETTE.mapBg} strokeWidth="1" className="cursor-pointer">
-                  <title>{`${c.name}: ${c.penetration}`}</title>
+            {AFFECTED_COUNTRIES.map((country) => (
+              <g key={country.name}>
+                <circle
+                  cx={country.cx}
+                  cy={country.cy}
+                  r="3.5"
+                  fill={PALETTE.dot}
+                  stroke={PALETTE.mapBg}
+                  strokeWidth="1"
+                  className="cursor-pointer"
+                >
+                  <title>{`${country.name}: ${country.penetration}% (ITU ${country.year})`}</title>
                 </circle>
-                {LABELED_COUNTRIES.includes(c.name) && (
+                {LABELED_COUNTRIES.includes(country.name) && (
                   <text
-                    x={c.cx + 6}
-                    y={c.cy + 1.5}
+                    x={country.cx + 6}
+                    y={country.cy + 1.5}
                     fill={PALETTE.land}
                     fontSize="6.5"
                     fontWeight="600"
                     fontFamily="JetBrains Mono, monospace"
                     className="select-none"
                   >
-                    {c.name}
+                    {country.name}
                   </text>
                 )}
-                <circle cx={c.cx} cy={c.cy} r="7" fill="none" stroke={PALETTE.dot} strokeWidth="0.4" strokeOpacity="0.25" />
+                <circle cx={country.cx} cy={country.cy} r="7" fill="none" stroke={PALETTE.dot} strokeWidth="0.4" strokeOpacity="0.25" />
               </g>
             ))}
 
             <rect x="15" y="645" width="230" height="26" rx="3" fill={PALETTE.mapBg} fillOpacity="0.92" stroke={PALETTE.continentStroke} strokeWidth="0.5" />
             <circle cx="27" cy="658" r="3" fill={PALETTE.dot} />
             <text x="35" y="662" fill={PALETTE.land} fontSize="7" fontWeight="600" fontFamily="JetBrains Mono, monospace">
-              {`${AFFECTED_COUNTRIES.length} ${isEn ? 'affected countries' : 'пацярпелых краін'}`}
+              {`${AFFECTED_COUNTRIES.length} ${t.mapLegend[language]}`}
             </text>
           </svg>
         </motion.div>
@@ -213,66 +195,56 @@ export default function ProblemMapSection({ language }: ProblemMapSectionProps) 
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div>
-              <span className="font-mono text-[11px] font-bold text-alert-400 uppercase tracking-widest">
-                {isEn ? 'Where access is hardest' : 'Дзе доступ найцяжэйшы'}
+              <span className="font-mono text-[11px] font-bold text-clay-400 uppercase tracking-widest">
+                {t.mapHardestLabel[language]}
               </span>
+              <p className="font-mono text-[11px] text-ink-600 mt-1">{t.mapHardestHint[language]}</p>
               <div className="mt-3 space-y-1">
-                {AFFECTED_COUNTRIES.slice(0, 10).map((c) => (
-                  <div key={c.name} className="flex items-center gap-2 py-1">
-                    <div className="w-1.5 h-1.5 shrink-0 rounded-full bg-alert-400/70" />
-                    <span className="font-mono text-xs text-ink-300 font-medium min-w-[88px]">
-                      {isEn ? c.name : c.nameRu}
+                {AFFECTED_COUNTRIES.slice(0, 10).map((country) => (
+                  <div key={country.name} className="flex items-baseline gap-2 py-1">
+                    <span className="w-1.5 h-1.5 shrink-0 rounded-full bg-clay-400/70 translate-y-[-1px]" />
+                    <span className="font-mono text-xs text-ink-300 font-medium">
+                      {language === 'en' ? country.name : country.nameBy}
                     </span>
-                    <span className="font-mono text-xs text-alert-400 font-bold">
-                      {c.penetration}
+                    <span className="font-mono text-xs text-clay-400 font-bold tabular-nums">
+                      {country.penetration}%
                     </span>
-                    <span className="font-mono text-[11px] text-ink-600 leading-tight truncate">
-                      {c.fact}
-                    </span>
+                    <span className="font-mono text-[10px] text-ink-700 ml-auto">ITU {country.year}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="flex flex-col justify-center gap-4 rounded-lg border border-ink-800 bg-ink-850/50 p-4 sm:p-5">
-              <div className="flex items-center gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-ink-800 text-phos-400 border border-ink-700">
-                  <Globe className="h-5 w-5" />
-                </div>
-                <div>
-                  <AnimatedNumber value={2.6} decimals={1} suffix="B" className="stat-num text-2xl" />
-                  <p className="font-mono text-[11px] text-ink-500 leading-tight mt-0.5">
-                    {isEn ? 'people still offline worldwide' : 'чалавек усё яшчэ па-за сеткай'}
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-ink-800 text-phos-400 border border-ink-700">
-                  <BookOpen className="h-5 w-5" />
-                </div>
-                <div>
-                  <AnimatedNumber value={500} suffix="M" className="stat-num text-2xl" />
-                  <p className="font-mono text-[11px] text-ink-500 leading-tight mt-0.5">
-                    {isEn ? 'students lost remote learning access' : 'вучняў страцілі доступ да дыстанцыйнага навучання'}
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-ink-800 text-phos-400 border border-ink-700">
-                  <Zap className="h-5 w-5" />
-                </div>
-                <div>
-                  <AnimatedNumber value={350} suffix=" MB" className="stat-num text-2xl" />
-                  <p className="font-mono text-[11px] text-ink-500 leading-tight mt-0.5">
-                    {isEn ? 'typical browser RAM per tab' : 'тыповыя АЗП браўзера на ўкладку'}
-                  </p>
-                </div>
-              </div>
-              <p className="font-mono text-[10px] text-ink-600 leading-relaxed mt-1">
-                {isEn
-                  ? 'Sources: ITU 2024 · UNESCO 2020 · typical Chrome measurement'
-                  : 'Крыніцы: ITU 2024 · UNESCO 2020 · тыповае вымярэнне Chrome'}
-              </p>
+              {MAP_STATS.map((stat) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={stat.labelKey} className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-ink-800 text-phos-400 border border-ink-700">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <a
+                        href={stat.source.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:opacity-80 transition-opacity"
+                        title={stat.source.label[language]}
+                      >
+                        <AnimatedNumber
+                          value={stat.value}
+                          decimals={stat.decimals}
+                          suffix={stat.suffix}
+                          className="stat-num text-2xl"
+                        />
+                      </a>
+                      <p className="font-mono text-[11px] text-ink-500 leading-tight mt-0.5">
+                        {t[stat.labelKey][language]}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </motion.div>
@@ -280,7 +252,7 @@ export default function ProblemMapSection({ language }: ProblemMapSectionProps) 
         <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
           <div className="h-px flex-1 max-w-24 bg-ink-800" />
           <span className="font-mono text-xs text-ink-500 font-semibold select-none">
-            {isEn ? 'The blind spots' : 'Нябачнае'}
+            {t.mapNumbersLabel[language]}
           </span>
           <div className="h-px flex-1 max-w-24 bg-ink-800" />
         </div>
@@ -295,10 +267,7 @@ export default function ProblemMapSection({ language }: ProblemMapSectionProps) 
             visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
           }}
         >
-          {([{ icon: WifiOff, key: 'mapFactStudents', number: '~400M' },
-             { icon: Monitor, key: 'mapFactSchools', number: '43%' },
-             { icon: Cpu, key: 'mapFactHardware', number: '12+ yrs' },
-             { icon: TrendingUp, key: 'mapFactBloat', number: '300%' }] as const).map((fact) => {
+          {MAP_FACTS.map((fact) => {
             const Icon = fact.icon;
             return (
               <motion.div
@@ -310,34 +279,55 @@ export default function ProblemMapSection({ language }: ProblemMapSectionProps) 
                 }}
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink-850 border border-ink-700 text-alert-400">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ink-850 border border-ink-700 text-clay-400">
                     <Icon className="h-4 w-4" />
                   </div>
                   <span className="font-display text-xl font-bold text-ink-100 leading-none">
-                    {fact.number}
+                    {fact.figure}
                   </span>
                 </div>
-                <p className="text-sm text-ink-400 leading-relaxed">
-                  {t[fact.key as keyof typeof t][language]}
+                <p className="text-sm text-ink-400 leading-relaxed mb-3">
+                  {t[fact.key][language]}
                 </p>
+                <a
+                  href={fact.source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-[10px] text-ink-600 hover:text-phos-400 transition-colors"
+                >
+                  {fact.source.label[language]} →
+                </a>
               </motion.div>
             );
           })}
         </motion.div>
 
-        <motion.div
-          className="text-center mt-12"
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+          <span className="font-mono text-[10px] text-ink-600 uppercase tracking-widest">
+            {t.sourceLabel[language]}
+          </span>
+          {[SOURCES.itu2025, SOURCES.unescoGem2023, SOURCES.ituCountryEstimates].map((source) => (
+            <a
+              key={source.id}
+              href={source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[10px] text-ink-500 hover:text-phos-400 transition-colors"
+            >
+              {source.label[language]}
+            </a>
+          ))}
+        </div>
+
+        <motion.p
+          className="text-center mt-10 font-mono text-sm sm:text-base text-ink-300 max-w-xl mx-auto"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          <p className="text-sm sm:text-base text-ink-400 font-mono max-w-xl mx-auto">
-            {isEn
-              ? 'Software designed for these constraints doesn\'t limit who can learn — it sets them free.'
-              : 'Праграмнае забеспячэнне, створанае для гэтых абмежаванняў, не абмяжоўвае, а вызваляе.'}
-          </p>
-        </motion.div>
+          {t.mapClosing[language]}
+        </motion.p>
       </div>
     </section>
   );

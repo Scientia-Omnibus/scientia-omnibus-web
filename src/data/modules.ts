@@ -1,10 +1,5 @@
-import { LocalizedString, TranslationDict } from '../types';
-
-export interface ModuleInfo {
-  id: string;
-  title: LocalizedString;
-  description: LocalizedString;
-}
+import { LocalizedString } from '../types';
+import { LINKS } from './links';
 
 export interface ProjectInfo {
   id: string;
@@ -13,464 +8,523 @@ export interface ProjectInfo {
   tagline: LocalizedString;
   description: LocalizedString;
   stack?: string[];
+  sourcePublic: boolean;
 }
 
-export const UI_TRANSLATIONS: TranslationDict = {
+export const UI_TRANSLATIONS = {
+  heroEyebrow: {
+    en: 'Volunteer open-source project',
+    by: 'Валонцёрскі open-source праект',
+  },
   heroTitle: {
     en: "Knowledge shouldn't demand gigabytes.",
-    by: "Веды не павінны патрабаваць гігабайтаў."
+    by: 'Веды не павінны патрабаваць гігабайтаў.',
   },
   heroSubtitle: {
-    en: "A volunteer open-source initiative building terminal-native, offline-first learning tools — efficient, keyboard-driven, and light enough to run on any computer, even one everyone else has written off.",
-    by: "Валонцёрская open-source ініцыятыва, якая стварае тэрмінальныя афлайн-інструменты для навучання — эфектыўныя, кіраваныя з клавіятуры і настолькі лёгкія, што працуюць на любой тэхніцы, нават той, якую ўсе спісалі."
-  },
-  heroStatFootprintDesc: {
-    en: "scientia-core ships at 8 MB — fits on an old floppy disk",
-    by: "scientia-core займае 8 МБ — змяшчаецца на дыскету"
-  },
-  heroStatMemoryDesc: {
-    en: "less RAM than a typical browser tab",
-    by: "менш АЗП, чым тыповая ўкладка браўзера"
-  },
-  heroStatOfflineDesc: {
-    en: "offline after the very first download",
-    by: "афлайн пасля першай загрузкі"
-  },
-  heroStatHardwareDesc: {
-    en: "designed for hardware everyone else left behind",
-    by: "разлічана на тэхніку, якую ўсе спісалі"
-  },
-  statZeroOverhead: {
-    en: "0MB Base Overhead",
-    by: "0 МБ накладных выдаткаў"
-  },
-  statZeroOverheadDesc: {
-    en: "No heavy Electron shells or memory-hogging web components. Native terminal speeds.",
-    by: "Ніякага цяжкага Electron або хрому. Натуральная хуткасць тэрмінала."
-  },
-  statOffline: {
-    en: "100% Offline-First",
-    by: "100% праца па-за сеткай"
-  },
-  statOfflineDesc: {
-    en: "Internet is only needed for the first download. Everything else works without a connection.",
-    by: "Інтэрнэт патрэбны толькі для першага спампоўвання. Далей усё працуе без сувязі."
-  },
-  statLightweight: {
-    en: "< 10 Megabytes",
-    by: "Менш за 10 Мегабайтаў"
-  },
-  statLightweightDesc: {
-    en: "Every tool we ship fits on an old floppy disk. No installers, no background services.",
-    by: "Кожны наш інструмент змяшчаецца на старую дыскету. Без усталёўшчыкаў і фонавых сэрвісаў."
-  },
-  statHardware: {
-    en: "15-Year-Old PCs",
-    by: "ПК 15-гадовай даўнасці"
-  },
-  statHardwareDesc: {
-    en: "Designed for old school laptops, low-power boards, and hardware others have left behind.",
-    by: "Разлічана на старыя школьныя нетбукі, слабыя платы і абсталяванне, якое іншыя ўжо не падтрымліваюць."
-  },
-  viewOnGithub: {
-    en: "View on GitHub",
-    by: "Адкрыць на GitHub"
+    en: 'We are volunteers. We write small programs for the terminal that keep working when the network does not, on computers other people have already thrown away.',
+    by: 'Мы — валанцёры. Мы пішам невялікія праграмы для тэрмінала, якія працуюць і без сеткі, на камп’ютарах, якія ўжо спісалі.',
   },
   viewProjects: {
-    en: "View Projects",
-    by: "Паглядзець праекты"
+    en: 'See the tools',
+    by: 'Глядзець інструменты',
   },
-  projectsLabel: {
-    en: "Open Source",
-    by: "Open Source"
+  viewOnGithub: {
+    en: 'Source on GitHub',
+    by: 'Крыжык на GitHub',
   },
+  heroStatFootprintDesc: {
+    en: 'scientia-core, memory in use',
+    by: 'scientia-core, занятая памяць',
+  },
+  heroStatMemoryDesc: {
+    en: 'less memory than one browser tab',
+    by: 'менш памяці, чым адна ўкладка браўзера',
+  },
+  heroStatOfflineDesc: {
+    en: 'works offline after the first download',
+    by: 'працуе афлайн пасля першай загрузкі',
+  },
+  heroStatHardwareDesc: {
+    en: 'years-old hardware we design for',
+    by: 'гадоў — на такой тэхніцы мы разлічаем',
+  },
+
   projectsTitle: {
-    en: "Our Projects",
-    by: "Нашы праекты"
+    en: 'The tools',
+    by: 'Інструменты',
   },
   projectsSubtitle: {
-    en: "Real software, shipped and maintained. Each project is designed to run on minimal hardware and work fully offline.",
-    by: "Рэальны софт, які мы распрацоўваем і падтрымліваем. Кожны праект разлічаны на мінімальнае абсталяванне і поўную афлайн-працу."
+    en: 'Two programs, both for the terminal. Each one runs on old hardware and keeps working without a connection.',
+    by: 'Два праграмы, абодва для тэрмінала. Кожны працуе на старой тэхніцы і працаўтае без сувязі.',
   },
   releasedLabel: {
-    en: "Released",
-    by: "Выпушчана"
+    en: 'Released',
+    by: 'Выпушчана',
   },
   inDevelopmentLabel: {
-    en: "In Development",
-    by: "У распрацоўцы"
+    en: 'In Development',
+    by: 'У распрацоўцы',
   },
   statusReleased: {
-    en: "Released",
-    by: "Выпушчана"
+    en: 'Released',
+    by: 'Выпушчана',
+  },
+  statusSourcePrivate: {
+    en: 'Source not public',
+    by: 'Крыжык не публічны',
   },
   statusInDevelopment: {
-    en: "In Development",
-    by: "У распрацоўцы"
+    en: 'In Development',
+    by: 'У распрацоўцы',
   },
   viewGuide: {
-    en: "Usage Guide",
-    by: "Дапаможнік"
+    en: 'Usage guide',
+    by: 'Дапаможнік',
   },
-  guideTitle: {
-    en: "Scientia Core — Usage Guide",
-    by: "Scientia Core — Дапаможнік"
-  },
-  guideSubtitle: {
-    en: "Keyboard shortcuts, navigation, and commands for the offline knowledge reader.",
-    by: "Спалучэнні клавіш, навігацыя і каманды для афлайн-рэдара ведаў."
-  },
-  backToProjects: {
-    en: "Back to projects",
-    by: "Назад да праектаў"
-  },
-  installTitle: {
-    en: "Installation",
-    by: "Усталяванне"
-  },
-  installOneLiner: {
-    en: "Linux / macOS",
-    by: "Linux / macOS"
-  },
-  installRecommended: {
-    en: "Recommended",
-    by: "Рэкамендавана"
-  },
-  installManual: {
-    en: "Manual install",
-    by: "Уручную"
-  },
-  installManualGit: {
-    en: "Install Git, then run:",
-    by: "Усталюйце Git, потым выканайце:"
-  },
-  installUpcoming: {
-    en: "Windows release coming soon",
-    by: "Выхад на Windows хутка"
-  },
-  installWindowsLabel: {
-    en: "Coming soon",
-    by: "Хутка"
-  },
-  installWindowsDesc: {
-    en: "A native Windows installer is being prepared. Watch the GitHub repository for release announcements.",
-    by: "Нацыйны інсталятар для Windows рыхтуецца. Сачыце за рэлізамі на GitHub."
-  },
-  editorGuideTitle: {
-    en: "Scientia Editor — Usage Guide",
-    by: "Scientia Editor — Дапаможнік"
-  },
-  editorGuideSubtitle: {
-    en: "Keyboard shortcuts, commands, and configuration for the terminal code editor.",
-    by: "Спалучэнні клавіш, каманды і налады для тэрмінальнага рэдактара кода."
-  },
-  installManualRust: {
-    en: "Install Rust, then run:",
-    by: "Усталюйце Rust, потым выканайце:"
-  },
-  whyTitle: {
-    en: "Software Built for Real Constraints",
-    by: "Софт для рэальных абмежаванняў"
-  },
-  whySubtitle: {
-    en: "Billions of people lack reliable internet and modern hardware. We design tools that work within those limits — not despite them.",
-    by: "Мільярды людзей не маюць стабільнага інтэрнэту і сучаснай тэхнікі. Мы ствараем інструменты, якія працуюць у гэтых умовах — а не ігноруюць іх."
-  },
-  problemTitle: {
-    en: "The cost of bloated software",
-    by: "Цана цяжкага софту"
-  },
-  problemDesc: {
-    en: "A single educational webpage can consume 100+ MB of RAM. Students with old laptops or metered connections are effectively excluded from digital learning.",
-    by: "Адна адукацыйная старонка можа спажываць 100+ МБ АЗП. Вучні са старымі ноўтбукамі або абмежаваным трафікам фактычна адрэзаны ад лічбавага навучання."
-  },
-  problemStat: {
-    en: "Single educational page: 100+ MB of RAM",
-    by: "Адна адукацыйная старонка: 100+ МБ АЗП"
-  },
-  impactTitle: {
-    en: "Concrete impact",
-    by: "Канкрэтны ўплыў"
-  },
-  impactItems: {
-    en: "A rural school downloads Education modules once — students study math offline during power outages. A volunteer packs Survival guides onto a USB stick for field teams. A maker follows DIY instructions without needing YouTube.",
-    by: "Сельская школа спампоўвае модулі Адукацыі адзін раз — вучні вучаць матэматыку афлайн падчас адключэння святла. Валонтэр запісвае даведнікі Выжывання на USB для польскіх каманд. Майстар выконвае DIY-інструкцыі без YouTube."
-  },
-  equityTitle: {
-    en: "Access without barriers",
-    by: "Доступ без бар'ераў"
-  },
-  equityDesc: {
-    en: "Premium educational content should not require premium hardware. Our tools run on five-dollar single-board computers and decade-old laptops.",
-    by: "Якасныя адукацыйныя матэрыялы не павінны патрабаваць дарагой тэхнікі. Нашы інструменты працуюць на мікракампутары за 5 даляраў і 10-гадовых ноўтбуках."
-  },
-  efficiencyTitle: {
-    en: "Terminal-Native by Design",
-    by: "Створаны для тэрмінала"
-  },
-  efficiencyDesc: {
-    en: "Terminal (TUI) interfaces and direct file reads use up to 98% less memory than web browsers. Less RAM means less electricity and longer battery life.",
-    by: "Тэрмінальныя (TUI) інтэрфейсы і прамое чытанне файлаў спажываюць да 98% менш АЗП, чым браўзеры. Менш памяці — менш электрычнасці і даўжэй працуе батарэя."
-  },
-  empowermentTitle: {
-    en: "You own your knowledge",
-    by: "Веды належаць вам"
-  },
-  empowermentDesc: {
-    en: "No subscriptions, no cloud lock-in. Download once and the entire library is yours — on a USB drive, an old phone, or a Raspberry Pi.",
-    by: "Без падпісак і воблачнай залежнасці. Спампавалі адзін раз — і ўся бібліятэка ваша: на USB, старым тэлефоне ці Raspberry Pi."
-  },
-  contribTitle: {
-    en: "Open Source Community",
-    by: "Супольнасць Open Source"
-  },
-  contribSubtitle: {
-    en: "Scientia Omnibus is a volunteer initiative. Writers, translators, and developers are all welcome to contribute.",
-    by: "Scientia Omnibus — валонцёрская ініцыятыва. Аўтары, перакладчыкі і распрацоўшчыкі могуць далучыцца."
-  },
-  contribNonCoder: {
-    en: "Content creators",
-    by: "Аўтары кантэнту"
-  },
-  contribNonCoderDesc: {
-    en: "Write survival guides, educational articles, or translations in simple Markdown. No programming required.",
-    by: "Пішыце даведнікі па выжыванні, адукацыйныя артыкулы ці пераклады ў простым Markdown. Праграмаванне не патрэбна."
-  },
-  contribDev: {
-    en: "Developers",
-    by: "Распрацоўшчыкі"
-  },
-  contribDevDesc: {
-    en: "Optimize performance, improve the terminal UI, compress modules, or port to new platforms. All contributions go through GitHub.",
-    by: "Аптымізуйце прадукцыйнасць, палягчайце інтэрфейс, сціскайце модулі ці пераносьце на новыя платформы. Усе ўнёскі — праз GitHub."
-  },
-  footerRights: {
-    en: "All knowledge is free. Open-source initiative.",
-    by: "Усе веды — бясплатныя. Ініцыятыва з адкрытым кодам."
-  },
-  footerMission: {
-    en: "Volunteer project promoting digital and educational equity through lightweight, offline open-source software.",
-    by: "Валонцёрскі праект, які прасоўвае лічбавую і адукацыйную роўнасць праз лёгкі афлайн-софт з адкрытым кодам."
+  downloadWindows: {
+    en: 'Windows build',
+    by: 'Зборка для Windows',
   },
   knowledgeBasesTitle: {
-    en: "Knowledge Bases",
-    by: "Базы ведаў"
+    en: 'Knowledge packs',
+    by: 'Пакеты ведаў',
   },
   formalSciencesDesc: {
-    en: "Formal sciences — mathematics from basics to calculus.",
-    by: "Фармальныя навукі — матэматыка ад асноў да вылічэнняў."
+    en: 'Formal sciences — mathematics from basics to calculus.',
+    by: 'Фармальныя навукі — матэматыка ад асноў да вылічэнняў.',
+  },
+  survivalDesc: {
+    en: 'Water purification, campfires, and navigation — practical guides for the field.',
+    by: 'Ачыстка вады, вогнішча і арыентаванне — практычныя даведнікі для паходу.',
+  },
+  medicinePlanned: {
+    en: 'Medicine (coming soon)',
+    by: 'Медыцына (хутка)',
   },
   kbBasic: {
-    en: "Arithmetic & Algebra Basics",
-    by: "Арыфметыка і асновы алгебры"
+    en: 'Arithmetic & algebra basics',
+    by: 'Арыфметыка і асновы алгебры',
   },
   kbAlgebraCore: {
-    en: "Algebra & Trigonometry Core",
-    by: "Алгебра і трыганаметрыя"
-  },
-  kbAdvanced: {
-    en: "Advanced (coming soon)",
-    by: "Прасунутае (хутка)"
-  },
-  kbPlanned: {
-    en: "Planned",
-    by: "Плануецца"
-  },
-  kbHumanities: {
-    en: "humanities-sciences",
-    by: "humanities-sciences"
-  },
-  kbSocial: {
-    en: "social-sciences",
-    by: "social-sciences"
-  },
-  kbNatural: {
-    en: "natural-sciences",
-    by: "natural-sciences"
-  },
-  kbDiy: {
-    en: "DIY (make it yourself)",
-    by: "DIY (зрабі сам)"
+    en: 'Algebra & trigonometry',
+    by: 'Алгебра і трыганаметрыя',
   },
   kbSurvival: {
-    en: "Survival & Medicine",
-    by: "Выжыванне і медыцына"
+    en: 'Survival & Medicine',
+    by: 'Выжыванне і медыцына',
+  },
+  kbDone: {
+    en: 'done',
+    by: 'гатова',
+  },
+  kbAdvanced: {
+    en: 'Calculus (in progress)',
+    by: 'Вылічэнні (у працы)',
+  },
+  kbPlanned: {
+    en: 'Planned',
+    by: 'Плануецца',
+  },
+  kbHumanities: {
+    en: 'humanities',
+    by: 'гуманітарныя',
+  },
+  kbSocial: {
+    en: 'social sciences',
+    by: 'грамадскія навукі',
+  },
+  kbNatural: {
+    en: 'natural sciences',
+    by: 'прыродазнаўчыя навукі',
+  },
+  kbDiy: {
+    en: 'DIY',
+    by: 'DIY',
   },
   kbContrib: {
-    en: "Contribute — fix a bug, write content, or translate:",
-    by: "Дапамажыце — выпраўце памылку, напішыце тэкст ці перакладзіце:"
+    en: 'Packs are plain Markdown. To add a chapter or fix a typo, open a pull request in',
+    by: 'Пакеты — гэта просты Markdown. Каб дадаць раздзел або выправіць памылку, адкрыйце pull request у',
   },
-  regionAfrica: {
-    en: "Sub-Saharan Africa — 37% internet penetration",
-    by: "Афрыка на поўдзень ад Сахары — 37% пранікнення інтэрнэту"
+
+  guideTitle: {
+    en: 'scientia-core — usage guide',
+    by: 'scientia-core — дапаможнік',
   },
-  regionSouthAsia: {
-    en: "South Asia — 52% internet penetration",
-    by: "Паўднёвая Азія — 52% пранікнення інтэрнэту"
+  guideSubtitle: {
+    en: 'Shortcuts, panels and commands for the offline knowledge reader.',
+    by: 'Спалучэнні клавіш, панэлі і каманды афлайн-праграмы для чытання ведаў.',
   },
-  regionSoutheastAsia: {
-    en: "Southeast Asia — 65% internet penetration",
-    by: "Паўднёва-Усходняя Азія — 65% пранікнення інтэрнэту"
+  editorGuideTitle: {
+    en: 'scientia-editor — usage guide',
+    by: 'scientia-editor — дапаможнік',
   },
-  regionLatinAmerica: {
-    en: "Latin America — 75% but rural areas have 35%",
-    by: "Лацінская Амерыка — 75%, але сельскія раёны — 35%"
+  editorGuideSubtitle: {
+    en: 'Shortcuts, commands and configuration for the terminal code editor.',
+    by: 'Спалучэнні клавіш, каманды і налады тэрмінальнага рэдактара кода.',
   },
-  mapFactStudents: {
-    en: "~400 million students worldwide lack internet at home",
-    by: "~400 млн вучняў у свеце не маюць інтэрнэту дома"
+  backToProjects: {
+    en: 'Back to the tools',
+    by: 'Назад да інструментаў',
+  },
+
+  installTitle: {
+    en: 'Install',
+    by: 'Усталяванне',
+  },
+  installOneLiner: {
+    en: 'Linux / macOS',
+    by: 'Linux / macOS',
+  },
+  installRecommended: {
+    en: 'One line',
+    by: 'Адной камандай',
+  },
+  installManual: {
+    en: 'Manual install',
+    by: 'Уручную',
+  },
+  installManualRust: {
+    en: 'Install Rust first, then run:',
+    by: 'Спачатку ўсталюйце Rust, потым выканайце:',
+  },
+  installCopy: {
+    en: 'Copy',
+    by: 'Скапіраваць',
+  },
+  installDownload: {
+    en: 'Download',
+    by: 'Спампаваць',
+  },
+  installWindowsNote: {
+    en: 'Single file, no installer. Double-click it.',
+    by: 'Адзін файл, без усталёўшчыка. Проста адкрыйце яго.',
+  },
+
+  whyTitle: {
+    en: 'Built for the computer people actually have',
+    by: 'Зроблена для тэхнікі, якая ў людзей ёсць',
+  },
+  whySubtitle: {
+    en: 'A large part of the world has a slow connection and an old computer. Everything below is written for that case.',
+    by: 'Вялікая частка свету мае павольную сувязь і стары кампутар. Усё ніжэй напісана менавіта для гэтага выпадку.',
+  },
+  whyPlatformLabel: {
+    en: 'The terminal is the platform',
+    by: 'Платформа — тэрмінал',
+  },
+  problemTitle: {
+    en: 'The cost of a heavy web app',
+    by: 'Цана цяжкага вэб-дадатку',
+  },
+  problemDesc: {
+    en: 'A browser tab takes a few hundred megabytes of memory before a lesson even loads. On a machine with 2 GB of RAM that is the difference between opening a page and giving up.',
+    by: 'Ўкладка браўзера з’ядае некалькі сотняў мегабайтаў памяці яшчэ да загрузкі ўроку. На кампутары з 2 ГБ АЗП гэта розніца паміж «адкрыць старонку» і «адстаць».',
+  },
+  problemStat: {
+    en: '≈350 MB for one blank tab',
+    by: '≈350 МБ на адну пустую ўкладку',
+  },
+  impactTitle: {
+    en: 'What that changes',
+    by: 'Што гэта мяняе',
+  },
+  impactItems: {
+    en: 'A school downloads the maths pack once. During a power cut the lesson goes on, because the files are already on the machine.',
+    by: 'Школа спампоўвае падручнік па матэматыцы адзін раз. Падчас адключэння святла ўрок працягваецца, бо файлы ўжо на камп’ютары.',
+  },
+  equityTitle: {
+    en: 'The same file everywhere',
+    by: 'Адзін і той жа файл усюды',
+  },
+  equityDesc: {
+    en: 'It opens on a Raspberry Pi, on a ten-year-old laptop and on a school desktop. A textbook should not depend on which of those you got.',
+    by: 'Ён адкрываецца на Raspberry Pi, на дзесяцігадовым ноўтбуку і на школьным кампутары. Падручнік не павінен залежаць ад таго, які з іх у вас.',
+  },
+  efficiencyTitle: {
+    en: 'No browser in between',
+    by: 'Без браўзера паміжку',
+  },
+  efficiencyDesc: {
+    en: 'A terminal program reads files directly. On the machine measured in the chart above, that is 8 MB of memory where a browser tab needs 350.',
+    by: 'Тэрмінальная праграма чытае файлы напраўму. На машыне, змеранай на графіку вышэй, гэта 8 МБ памяці там, дзе ўкладцы браўзера патрэбна 350.',
+  },
+  empowermentTitle: {
+    en: 'It stays yours',
+    by: 'Ўстаёцца вашым',
+  },
+  empowermentDesc: {
+    en: 'Download a pack once and it works from a USB drive, an old phone or a single-board computer. There is no account, and nothing to cancel later.',
+    by: 'Спампавалі пакет адзін раз — ён працуе з USB, старога тэлефона або аднаплатнай платы. Ні акаўнта, нічога адмяняць пазней.',
+  },
+
+  mapTitle: {
+    en: 'Digital learning has an access problem',
+    by: 'Лічбавая адукацыя мае праблему доступу',
+  },
+  mapSubtitle: {
+    en: 'Where the connection is thin, and what that does to an ordinary lesson.',
+    by: 'Дзе сувязь тонкая і што гэта значыць для звычайнага ўроку.',
+  },
+  mapHardestLabel: {
+    en: 'Where access is hardest',
+    by: 'Дзе доступ найцяжэйшы',
+  },
+  mapHardestHint: {
+    en: 'Share of the population using the internet, lowest first',
+    by: 'Доля насельніцтва, якая карыстаецца інтэрнэтам, ад найменшай',
+  },
+  mapLegend: {
+    en: 'countries shown',
+    by: 'краін паказана',
+  },
+  mapStatOffline: {
+    en: 'people are still offline',
+    by: 'чалавек усё яшчэ па-за сеткай',
+  },
+  mapStatStudents: {
+    en: 'students that distance learning never reached',
+    by: 'вучняў, да якіх дыстанцыйнае навучанне не дайшло',
+  },
+  mapStatRural: {
+    en: 'of the rural population is online, against 85% in cities',
+    by: 'сельскага насельніцтва ў сетцы, супраць 85% у гарадах',
+  },
+  mapNumbersLabel: {
+    en: 'By the numbers',
+    by: 'Лічбы',
+  },
+  mapFactDistance: {
+    en: 'Distance learning failed to reach at least half a billion students worldwide, and 72% of the poorest.',
+    by: 'Дыстанцыйнае навучанне не дайшло як мінімум да паўмільярда вучняў у свеце і да 72% самых бедных.',
   },
   mapFactSchools: {
-    en: "43% of schools in developing countries lack internet",
-    by: "43% школ у краінах, якія развіваюцца, не маюць інтэрнэту"
+    en: 'Only 40% of primary schools are connected to the internet. One in four has no electricity at all.',
+    by: 'Да інтэрнэту падключана толькі 40% пачатковых школ. Адна з чатырёх увогуле не мае электрычнасці.',
   },
-  mapFactHardware: {
-    en: "Average school PC age in rural areas: 12+ years",
-    by: "Сярэдні ўзрост школьнага ПК у сельскіх раёнах: 12+ гадоў"
+  mapFactCoverage: {
+    en: '96% of the people who are offline live in low- and middle-income countries.',
+    by: '96% людзей, якія застаюцца па-за сеткай, жывуць у краінах з нізкім і сярэднім прыбыткам.',
   },
-  mapFactBloat: {
-    en: "Educational web apps grew 300% in size since 2015",
-    by: "Памер адукацыйных вэб-дадаткаў вырас на 300% з 2015 года"
+  mapFactEdtech: {
+    en: 'A study of 7,000 commercial teaching tools priced at $13 billion found 85% were a poor fit or badly implemented.',
+    by: 'Даследаванне 7 000 камерцыйных адукацыйных інструментаў на 13 млрд долараў: 85% не падыходзяць або дрэнна зроблены.',
   },
+  mapClosing: {
+    en: 'A file on disk does not care whether the network is there.',
+    by: 'Файл на дыску не цікавіць, ёсць сетка ці не.',
+  },
+
+  cmpTitle: {
+    en: 'What each tool costs to run',
+    by: 'Колькі памяці патрабуе кожны інструмент',
+  },
+  cmpSubtitle: {
+    en: 'Memory in use while idle, with nothing loaded. The way to reproduce these numbers is under the chart.',
+    by: 'Памяць, якая занята ў ідыльным рэжыме, без загружанага змесціва. Як праверыць гэтыя лічбы — пад графікам.',
+  },
+  cmpUnit: {
+    en: 'MB of memory per running instance',
+    by: 'МБ памяці на запушчаны працэс',
+  },
+  cmpChip: {
+    en: 'our measurement',
+    by: 'наша вымярэнне',
+  },
+  cmpChromeLabel: {
+    en: 'Chrome, one blank tab',
+    by: 'Chrome, адна пустая ўкладка',
+  },
+  cmpChromeDesc: {
+    en: 'Memory of the renderer process',
+    by: 'Памяць працэсу адлюстраваўніка',
+  },
+  cmpCoreLabel: {
+    en: 'scientia-core',
+    by: 'scientia-core',
+  },
+  cmpCoreDesc: {
+    en: 'Offline knowledge reader',
+    by: 'Афлайн-праграма для чытання ведаў',
+  },
+  cmpEditorLabel: {
+    en: 'scientia-editor',
+    by: 'scientia-editor',
+  },
+  cmpEditorDesc: {
+    en: 'Terminal code editor',
+    by: 'Тэрмінальны рэдактар кода',
+  },
+  cmpResult: {
+    en: 'scientia-core needs about 44× less memory than a single Chrome tab.',
+    by: 'scientia-core патрабуе прыблізна ў 44 разы менш памяці, чым адна ўкладка Chrome.',
+  },
+  cmpMethod: {
+    en: 'Reproduce it: open a blank tab and read the Chrome renderer in your task manager. Launch a terminal tool and read ps or htop. Your numbers will differ; the ratio will not.',
+    by: 'Праверце самі: адкрыйце пустую ўкладку і паглядзіце працэс Chrome у дыспетчары заданч. Запусціце тэрмінальны інструмент і паглядзіце ps або htop. Вашы лічбы будуць іншымі; суадносіны застануцца тымі ж.',
+  },
+
   helpSectionTitle: {
-    en: "You Can Help, Even Without Code",
-    by: "Можна дапамагчы нават без кода"
+    en: 'You can help without writing code',
+    by: 'Можна дапамагчы, не пішучи кода',
   },
   helpSectionSubtitle: {
-    en: "Every skill counts — writing, translating, testing, teaching, or simply spreading the word.",
-    by: "Кожны навык мае значэнне — пісанне, пераклад, тэставанне, навучанне ці проста распаўсюд."
+    en: 'Most of the work here is text. Translating, editing and testing help as much as a patch does.',
+    by: 'Асноўная частка працы тут — тэкст. Пераклад, рэдактура і тэставанне дапамагаюць не менш, чым заплатка.',
   },
   helpTranslatorTitle: {
-    en: "Translators",
-    by: "Перакладчыкі"
+    en: 'Translators',
+    by: 'Перакладчыкі',
   },
   helpTranslatorDesc: {
-    en: "Bring the knowledge bases to new languages. No code required — just care for words and clarity.",
-    by: "Пераносьце базы ведаў на новыя мовы. Код не патрэбны — толькі ўвага да слова і яснасці."
+    en: 'The packs are Markdown. If you speak a language we do not, you can translate one of them.',
+    by: 'Пакеты — гэта Markdown. Калі вы гаварыце на мове, якой у нас няма, можаце перавесці адзін з іх.',
   },
-  helpTeacherTitle: {
-    en: "Teachers & testers",
-    by: "Настаўнікі і тэстары"
-  },
-  helpTeacherDesc: {
-    en: "Try the tools in a real classroom or field conditions, share feedback and lesson ideas. Your judgment shapes the product.",
-    by: "Выпрабоўвайце інструменты ў рэальным класе ці палявых умовах, дзяліцеся водгукамі і ідэямі заняткаў. Ваша меркаванне фармуе прадукт."
-  },
-  helpNoCodeTitle: {
-    en: "No code? Perfect.",
-    by: "Без кода? Выдатна."
-  },
-  helpNoCodeDesc: {
-    en: "Most of what keeps this project alive is words, not code: translations, articles, edits, feedback, and spreading the word. Translators, writers, teachers, and testers are the majority of our community.",
-    by: "Большую частку таго, што трымае праект жывым, складаюць словы, а не код: пераклады, артыкулы, праўкі, водгукі і распаўсюд. Перакладчыкі, аўтары, настаўнікі і тэстары — большасць нашай супольнасці."
+  helpTranslateLink: {
+    en: 'Packs to translate',
+    by: 'Пакеты для перакладу',
   },
   helpWriteTitle: {
-    en: "Write & Edit Knowledge",
-    by: "Пішы і рэдагуй веды"
+    en: 'Write and edit',
+    by: 'Пісаць і рэдагаваць',
   },
   helpWriteDesc: {
-    en: "Fix typos, write new chapters, or translate existing ones — all in simple Markdown. No programming required. Your edits go directly into the official knowledge packs.",
-    by: "Выпраўляй памылкі, пішы новыя раздзелы ці перакладай існуючыя — усё ў простым Markdown. Праграмаванне не патрэбнае. Твае праўкі трапляюць проста ў афіцыйныя пакеты ведаў."
+    en: 'Fix a typo, add a chapter, translate an existing one. It is all plain Markdown, and edits go straight into the pack.',
+    by: 'Выпраўце памылку, дададзьце раздзел або перакладзеце існы. Усё гэта просты Markdown, і праўкі трапляюць проста ў пакет.',
   },
   helpFormalDesc: {
-    en: "Open math textbook collection — arithmetic through calculus, with advanced topics coming.",
-    by: "Адкрытая калекцыя падручнікаў па матэматыцы — ад арыфметыкі да вылічэнняў, хутка прасунутыя тэмы."
+    en: 'Open math textbook collection — arithmetic through calculus, with advanced topics coming.',
+    by: 'Адкрытая калекцыя падручнікаў па матэматыцы — ад арыфметыкі да вылічэнняў, хутка прасунутыя тэмы.',
   },
   helpSurvivalDesc: {
-    en: "31 chapters of field-proven survival knowledge — medicine, shelter, water, fire, and more.",
-    by: "31 раздзел правераных ведаў па выжыванні — медыцына, жытло, вада, агонь і іншае."
+    en: '31 chapters of field-proven survival knowledge — medicine, shelter, water, fire, and more.',
+    by: '31 раздзел правераных ведаў па выжыванні — медыцына, жытло, вада, агонь і іншае.',
+  },
+  helpTeacherTitle: {
+    en: 'Teachers and testers',
+    by: 'Настаўнікі і тэстары',
+  },
+  helpTeacherDesc: {
+    en: 'Run it in a real classroom and tell us what broke. Lesson ideas are welcome too.',
+    by: 'Запусціце ў рэальным класе і напішыце, што зламалася. Падзяліцеся і ідэямі заняткаў.',
+  },
+  helpFeedbackLink: {
+    en: 'Open an issue',
+    by: 'Адкрыць памылку',
   },
   helpBuildTitle: {
-    en: "Build the Tools",
-    by: "Стварай інструменты"
+    en: 'Build the tools',
+    by: 'Пісаць інструменты',
   },
   helpBuildDesc: {
-    en: "Improve scientia-core (Python/Textual) — fix bugs, optimise performance. The Rust-based scientia-editor is coming open source soon. Code, test, design, or share feedback.",
-    by: "Паляпшай scientia-core (Python/Textual) — выпраўляй памылкі, аптымізуй. Rust-рэдактар scientia-editor хутка стане адкрытым. Пішы код, тэстуй, прапаноўвай дызайн ці проста дзяліся меркаваннем."
+    en: 'scientia-core is Python and Textual: fix a bug or make it faster. scientia-editor is written in Rust and its source is not published yet.',
+    by: 'scientia-core напісаны на Python і Textual: выпраўце памылку або паскорце яго. scientia-editor напісаны на Rust, ягоны крыжык пакуль не апублікаваны.',
   },
-  helpEditorComing: {
-    en: "Rust/TUI editor — coming open source soon. Watch the repo for announcements.",
-    by: "Rust/TUI-рэдактар — хутка з адкрытым кодам. Сачы за рэпазітаром."
+  helpCoreDesc: {
+    en: 'Python, Textual — bug fixes and profiling',
+    by: 'Python, Textual — выпраўленні і прафіляванне',
+  },
+  helpEditorDesc: {
+    en: 'Rust, TUI — runs from crates.io, source not public yet',
+    by: 'Rust, TUI — ставіцца з crates.io, крыжык пакуль не публічны',
+  },
+  helpNoCodeTitle: {
+    en: 'No code? Good.',
+    by: 'Без кода? Дыкін добра.',
+  },
+  helpNoCodeDesc: {
+    en: 'Everything in the knowledge packs was written or checked by a person. A translated chapter is worth as much as a bug fix, and we need both.',
+    by: 'Усё ў пакетах ведаў напісана або выпрацавана чалавекам. Перакладзены раздзел варты столькі ж, сколькі выпраўленне памылкі, а патрэбны і тое, і тое.',
   },
   helpShareTitle: {
-    en: "Spread the Word",
-    by: "Распаўсюджвай"
+    en: 'Pass it on',
+    by: 'Перадаць далей',
   },
   helpShareDesc: {
-    en: "Tell educators, volunteers, and community organizers about Scientia Omnibus. Share it with schools and field teams that lack reliable internet or modern hardware.",
-    by: "Раскажы настаўнікам, валанцёрам і арганізатарам пра Scientia Omnibus. Падзяліся са школамі і палявымі камандамі, якім не хапае інтэрнэту ці сучаснай тэхнікі."
+    en: 'If you know a teacher, a volunteer group or a field team without a reliable connection, send them this page.',
+    by: 'Калі вы ведаеце настаўніка, групу валанцёраў або палявую каманду без надзейнай сувязі, дашліце ім гэту старонку.',
   },
-  helpCTA: {
-    en: "Every contribution, big or small, makes knowledge accessible.",
-    by: "Кожны ўнёсак, вялікі ці малы, робіць веды даступнымі."
+  helpJoinCommunity: {
+    en: 'Join us on GitHub',
+    by: 'Далучыцца на GitHub',
   },
+  helpJoinOrg: {
+    en: 'All repositories',
+    by: 'Усе рэпазіторыі',
+  },
+
   footerProjects: {
-    en: "Projects",
-    by: "Праекты"
+    en: 'Projects',
+    by: 'Праекты',
   },
-  footerResources: {
-    en: "Resources",
-    by: "Рэсурсы"
+  footerDocs: {
+    en: 'Docs',
+    by: 'Дакументацыя',
   },
   footerCommunity: {
-    en: "Community",
-    by: "Супольнасць"
-  },
-  footerLegal: {
-    en: "Legal",
-    by: "Правовая інфармацыя"
+    en: 'Contribute',
+    by: 'Дапамога праекту',
   },
   footerCore: {
-    en: "scientia-core",
-    by: "scientia-core"
+    en: 'scientia-core',
+    by: 'scientia-core',
   },
   footerEditor: {
-    en: "scientia-editor",
-    by: "scientia-editor"
+    en: 'scientia-editor',
+    by: 'scientia-editor',
   },
   footerFormalSciences: {
-    en: "formal-sciences KB",
-    by: "formal-sciences KB"
+    en: 'formal-sciences',
+    by: 'formal-sciences',
   },
   footerSurvival: {
-    en: "survival-and-medicine KB",
-    by: "survival-and-medicine KB"
+    en: 'survival-and-medicine',
+    by: 'survival-and-medicine',
   },
   footerGuides: {
-    en: "Usage Guides",
-    by: "Дапаможнікі"
+    en: 'scientia-core guide',
+    by: 'Дапаможнік scientia-core',
   },
-  footerGitHub: {
-    en: "GitHub Organization",
-    by: "GitHub арганізацыя"
+  footerWindows: {
+    en: 'Windows build (.exe)',
+    by: 'Зборка для Windows (.exe)',
   },
-  footerKnowledgeBases: {
-    en: "Knowledge Bases",
-    by: "Базы ведаў"
-  },
-  footerContribute: {
-    en: "Contribute",
-    by: "Дапамагчы"
+  footerOrg: {
+    en: 'All repositories',
+    by: 'Усе рэпазіторыі',
   },
   footerIssues: {
-    en: "Report Issues",
-    by: "Паведаміць пра памылку"
+    en: 'Report a bug',
+    by: 'Паведаміць пра памылку',
+  },
+  footerWebsite: {
+    en: 'This web site',
+    by: 'Гэты вэб-сайт',
   },
   footerLicense: {
-    en: "GPL-3.0 License",
-    by: "Ліцэнзія GPL-3.0"
+    en: 'GPL-3.0',
+    by: 'GPL-3.0',
   },
-  footerPrivacy: {
-    en: "Privacy",
-    by: "Прыватнасць"
+  footerRights: {
+    en: 'Free knowledge, open source.',
+    by: 'Бясплатныя веды, адкрыты код.',
   },
-};
+  footerMission: {
+    en: 'A volunteer project building offline open-source software for schools and field teams on old hardware.',
+    by: 'Валонцёрскі праект: афлайн-софт з адкрытым кодам для школ і палявых камандаў на старой тэхніцы.',
+  },
+  sourceLabel: {
+    en: 'Sources',
+    by: 'Крыніцы',
+  },
+} as const;
+
+export type TranslationKey = keyof typeof UI_TRANSLATIONS;
 
 export const RELEASED_PROJECTS: ProjectInfo[] = [
   {
     id: 'scientia-core',
     name: 'scientia-core',
-    repoUrl: 'https://github.com/Scientia-Omnibus/scientia-core',
+    repoUrl: LINKS.core,
     tagline: {
       en: 'Offline terminal knowledge reader',
       by: 'Афлайн тэрмінальны рэдар ведаў',
@@ -480,6 +534,7 @@ export const RELEASED_PROJECTS: ProjectInfo[] = [
       by: 'Лёгкая Python-праграма, якая спампоўвае Markdown-пакеты ведаў адзін раз і дазваляе чытаць іх без інтэрнэту. Створана на Textual для хуткага кіравання з клавіятуры.',
     },
     stack: ['Python', 'Textual'],
+    sourcePublic: true,
   },
   {
     id: 'scientia-editor',
@@ -493,26 +548,9 @@ export const RELEASED_PROJECTS: ProjectInfo[] = [
       by: 'Тэрмінальны рэдактар файлаў і кода для пачаткоўцаў і прафесіяналаў. Разлічаны на працу нават на 15-гадовых кампутарах.',
     },
     stack: ['Rust', 'TUI'],
+    sourcePublic: false,
   },
 ];
 
 export const UPCOMING_PROJECTS: ProjectInfo[] = [];
 
-export const MODULES: ModuleInfo[] = [
-  {
-    id: "education",
-    title: { en: "Education", by: "Адукацыя" },
-    description: {
-      en: "Mathematics, science, and academic subjects in compact Markdown textbooks.",
-      by: "Матэматыка, навука і акадэмічныя прадметы ў кампактных Markdown-падручніках.",
-    },
-  },
-  {
-    id: "survival",
-    title: { en: "Survival", by: "Выжыванне" },
-    description: {
-      en: "Water purification, campfires, and navigation — practical guides for the field.",
-      by: "Ачыстка вады, вогнішча і арыентаванне — практычныя даведнікі для паходу.",
-    },
-  },
-];

@@ -143,13 +143,13 @@ export default function ScientiaEditorGuidePage() {
             {activeData.id === 'tech' && (
               <div className="mt-4 pt-3 border-t border-ink-800">
                 <a
-                  href="https://github.com/Scientia-Omnibus/scientia-editor"
+                  href="https://crates.io/crates/scientia-editor"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 font-mono text-sm font-semibold text-phos-400 hover:text-phos-300 transition-colors"
                 >
                   <ExternalLink className="h-4 w-4" />
-                  {language === 'en' ? 'View on GitHub' : 'Глядзець на GitHub'}
+                  {language === 'en' ? 'Package on crates.io' : 'Пакет на crates.io'}
                 </a>
               </div>
             )}

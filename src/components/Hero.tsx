@@ -1,5 +1,6 @@
 import { Language } from '../types';
 import { UI_TRANSLATIONS } from '../data/modules';
+import { LINKS } from '../data/links';
 import { Github } from 'lucide-react';
 import { motion } from 'motion/react';
 import AnimatedNumber from './AnimatedNumber';
@@ -48,7 +49,7 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          {language === 'en' ? 'Volunteer open-source initiative' : 'Валонцёрская open-source ініцыятыва'}
+          {t.heroEyebrow[language]}
         </motion.p>
 
         <h1 className="font-display font-bold text-ink-100 tracking-tight leading-[1.12] text-[2.6rem] sm:text-6xl lg:text-7xl xl:text-[5rem]">
@@ -96,9 +97,9 @@ export default function Hero({ language, onScrollToSection }: HeroProps) {
             {t.viewProjects[language]}
           </button>
           <a
-            href="https://github.com/Scientia-Omnibus"
+            href={LINKS.org}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="btn btn-secondary"
           >
             <Github className="h-4 w-4" />
